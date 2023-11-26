@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GPLUSPLUS", "D:\Company Projects\GTOP\GPlusPlusProject\on work\GPLUSPLUS-06\GPLUSPLUS\GPLUSPLUS\GPLUSPLUS.csproj", "{BD6E09B8-C71F-4499-9E24-E93AAC6E6FA3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GPLUSPLUS", "GPLUSPLUS\GPLUSPLUS.csproj", "{BD6E09B8-C71F-4499-9E24-E93AAC6E6FA3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMSTools", "SMSTools\SMSTools.csproj", "{9F0FDB31-6ED8-45FB-BBA8-886B61128631}"
 EndProject
@@ -13,9 +13,9 @@ Global
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://gpluspack.visualstudio.com/defaultcollection
 		SccLocalPath0 = .
-		SccProjectUniqueName1 = D:\\Company\u0020Projects\\GTOP\\GPlusPlusProject\\on\u0020work\\GPLUSPLUS-06\\GPLUSPLUS\\GPLUSPLUS\\GPLUSPLUS.csproj
+		SccProjectUniqueName1 = GPLUSPLUS\\GPLUSPLUS.csproj
 		SccProjectName1 = GPLUSPLUS
-		SccLocalPath1 = D:\\Company\u0020Projects\\GTOP\\GPlusPlusProject\\on\u0020work\\GPLUSPLUS-06\\GPLUSPLUS\\GPLUSPLUS
+		SccLocalPath1 = GPLUSPLUS
 		SccProjectUniqueName2 = SMSTools\\SMSTools.csproj
 		SccProjectName2 = SMSTools
 		SccLocalPath2 = SMSTools

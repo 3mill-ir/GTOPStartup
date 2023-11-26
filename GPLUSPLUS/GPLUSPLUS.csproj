@@ -24,6 +24,7 @@
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -1029,7 +1030,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="C:\Users\pipo\Source\Workspaces\gplusplus\GplusWebSite\SMSTools\SMSTools.csproj">
+    <ProjectReference Include="..\SMSTools\SMSTools.csproj">
       <Project>{9f0fdb31-6ed8-45fb-bba8-886b61128631}</Project>
       <Name>SMSTools</Name>
     </ProjectReference>

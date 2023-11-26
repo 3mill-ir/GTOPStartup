@@ -1,0 +1,371 @@
+﻿@model PagedList.IPagedList<GPLUSPLUS.Models.Shop>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "ShopsList";
+}
+
+
+
+
+
+
+ <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3 col-sm-push-9">
+               @Html.Action("ShopTypesList", "Shops")
+                </div>
+
+                <div class="col-sm-9 col-sm-pull-3 padding-right" style="direction: rtl; text-align: right">
+ 
+                    <div class="features_items">
+                        <!--features_items-->
+                        <h2 class="title text-center">@ViewBag.ShopCategoryBase</h2>
+
+                                @foreach (var q in Model)
+                                {
+                                    var ScoreClass = "Normal";
+                            
+                            <div class="col-sm-4">
+                                <div class="product-image-wrapper">
+                                    <div class="single-products">
+                                        <div class="productinfo text-center">
+                                            <img src="data:image;base64,@System.Convert.ToBase64String(q.ShopImages.FirstOrDefault(u => u.F_Shop_ID == q.Id).ShopThumbnail)" alt="" class="img-responsive center-block" style="width: auto; height:150px"/>
+                                          @*  <h2>@q.P_ScoreCost</h2>*@
+                                            <p style="direction: rtl; white-space: nowrap; width: 95%; overflow: hidden; -ms-text-overflow: ellipsis; -o-text-overflow: ellipsis; text-overflow: ellipsis; text-align: center">
+                                                @q.ShopName
+                                            </p>
+                                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>توضیحات بیشتر</a>
+                                        </div>
+                                        <div class="product-overlay">
+                                            <div class="overlay-content @ScoreClass">
+                                              @*  <h2>@q.P_ScoreCost</h2>*@
+                                                <p style="direction: rtl; white-space: nowrap; width: 95%; overflow: hidden; -ms-text-overflow: ellipsis; -o-text-overflow: ellipsis; text-overflow: ellipsis; text-align: center">
+                                                         @q.ShopName
+                                                </p>
+@*                                                <a href="#openModalbuyProduct" id="S@q.Id" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>خرید</a>*@
+                                                <a href="#openModalAgent" id="Shop_@q.Id" class="btn btn-default add-to-cart Agent_@q.Id"><i class="fa fa-shopping-cart"></i>توضیحات بیشتر</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @*<div class="choose">
+									<ul class="nav nav-pills nav-justified">
+										<li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
+										<li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
+									</ul>
+								</div>*@
+                                </div>
+                            </div>
+                                }
+
+                   
+                         <br />
+                              <div class="row"><div class="col-sm-12">
+					<div style="text-align:center;direction:ltr">		 
+    صفحه @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) از @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("ProductsList", "Products",
+    new {  City= @ViewBag.CityBaseParam,ScoreBase = @ViewBag.ScoreBaseParam, Category = @ViewBag.CatBaseParam, page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+                        </div>
+    </div></div>
+					</div><!--features_items-->
+                    </div>
+                    <!--features_items-->
+
+              
+                </div>
+            </div>
+    </section>
+
+
+
+
+<style>
+    .mynewmodalistAgent {
+        position: fixed;
+        font-family: Arial, Helvetica, sans-serif;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: rgba(0,0,0,0.8);
+        z-index: 99999;
+        opacity: 0;
+        -webkit-transition: opacity 400ms ease-in;
+        -moz-transition: opacity 400ms ease-in;
+        transition: opacity 400ms ease-in;
+        pointer-events: none;
+    }
+
+        .mynewmodalistAgent:target {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .mynewmodalistAgent > div {
+            width: 100%;
+            position: relative;
+            margin: 10% auto;
+            padding: 5px 20px 13px 20px;
+            border-radius: 10px;
+            background: #fff;
+            background: -moz-linear-gradient(#fff, #01ffd2);
+            background: -webkit-linear-gradient(#fff, #01ffd2);
+            background: -o-linear-gradient(#fff, #01ffd2);
+            height: 70%;
+        }
+
+    .closeAgent {
+        background: #606061;
+        color: #FFFFFF;
+        line-height: 25px;
+        position: absolute;
+        right: -12px;
+        text-align: center;
+        top: -10px;
+        width: 24px;
+        text-decoration: none;
+        font-weight: bold;
+        -webkit-border-radius: 12px;
+        -moz-border-radius: 12px;
+        border-radius: 12px;
+        -moz-box-shadow: 1px 1px 3px #000;
+        -webkit-box-shadow: 1px 1px 3px #000;
+        box-shadow: 1px 1px 3px #000;
+    }
+
+        .closeAgent:hover {
+            background: #00d9ff;
+        }
+</style>
+
+
+<div class="container mynewmodalistAgent" id="openModalAgent">
+    <!-- Title -->
+    <div class="row" style="overflow: auto">
+        <div class="col-sm-12" style="height: inherit;">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div id="openModalDescAgent" style="text-align:center">
+                        <a href="#close" title="Close" class="closeAgent">X</a>
+                        <h2>اطلاعات بیشتر</h2>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12" style="text-align:center">
+                    <div id="ModalDialog_LoadingAjent">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-8">
+                    <div id="ModalDialogDescimageAgent">
+                    </div>
+                </div>
+                <div class="col-sm-4" style="direction: rtl; text-align: right">
+
+                    <div class="row" style="border-bottom: 3px solid white; background-color: #3b3c3c">
+                        <div class="col-sm-4 col-sm-push-8" style="background-color: #3b3c3c; color: white">
+                            <div id="ModalDialogDesc_ShopNameAgent_Tittle">
+                                <p>نام مرکز</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-8 col-sm-pull-4" style="background-color: #b8b8b8; color: black">
+                            <div id="ModalDialogDesc_ShopNameAgent">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row" style="border-bottom: 3px solid white; background-color: #3b3c3c">
+                        <div class="col-sm-4 col-sm-push-8" style="background-color: #3b3c3c; color: white">
+                            <div id="ModalDialogDesc_ShopTypeAgent_Tittle">
+                                <p>نوع فعالیت </p>
+                            </div>
+                        </div>
+                        <div class="col-sm-8 col-sm-pull-4" style="background-color: #b8b8b8; color: black">
+                            <div id="ModalDialogDesc_ShopTypeAgent">
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <div class="row" style="border-bottom: 3px solid white; background-color: #3b3c3c">
+                        <div class="col-sm-4 col-sm-push-8" style="background-color: #3b3c3c; color: white">
+                            <div id="ModalDialogDesc_ShopTellAgent_Tittle">
+                                <p>شماره تماس </p>
+                            </div>
+                        </div>
+                        <div class="col-sm-8 col-sm-pull-4" style="background-color: #b8b8b8; color: black">
+                            <div id="ModalDialogDesc_ShopTellAgent">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row" style="border-bottom: 3px solid white; background-color: #3b3c3c">
+                        <div class="col-sm-4 col-sm-push-8" style="background-color: #3b3c3c; color: white">
+                            <div id="ModalDialogDesc_ShopFaxAgent_Tittle">
+                                <p>شماره فکس </p>
+                            </div>
+                        </div>
+                        <div class="col-sm-8 col-sm-pull-4" style="background-color: #b8b8b8; color: black">
+                            <div id="ModalDialogDesc_ShopFaxAgent">
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row" style="border-bottom: 3px solid white; background-color: #3b3c3c">
+                        <div class="col-sm-4 col-sm-push-8" style="background-color: #3b3c3c; color: white">
+                            <div id="ModalDialogDesc_ShopEmailAgentAgent_Tittle">
+                                <p>ایمیل   </p>
+                            </div>
+                        </div>
+                        <div class="col-sm-8 col-sm-pull-4" style="background-color: #b8b8b8; color: black">
+                            <div id="ModalDialogDesc_ShopEmailAgentAgent">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row" style="border-bottom: 3px solid white; background-color: #3b3c3c">
+                        <div class="col-sm-4 col-sm-push-8" style="background-color: #3b3c3c; color: white">
+                            <div id="ModalDialogDesc_ShopAddressAgent_Tittle">
+                                <p>آدرس  </p>
+                            </div>
+                        </div>
+                        <div class="col-sm-8 col-sm-pull-4" style="background-color: #b8b8b8; color: black">
+                            <div id="ModalDialogDesc_ShopAddressAgent">
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="row" style="border-bottom: 3px solid white; background-color: #3b3c3c">
+                        <div class="col-sm-4 col-sm-push-8" style="background-color: #3b3c3c; color: white">
+                            <div id="ModalDialogDesc_PosterQuotesAgent_Tittle">
+                                <p>شعار مرکز  </p>
+                            </div>
+                        </div>
+                        <div class="col-sm-8 col-sm-pull-4" style="background-color: #b8b8b8; color: black">
+                            <div id="ModalDialogDesc_PosterQuotesAgent">
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="row" style="border-bottom: 3px solid white; background-color: #3b3c3c">
+                        <div class="col-sm-4 col-sm-push-8" style="background-color: #3b3c3c; color: white">
+                            <div id="ModalDialogDesc_ShopDescriptionAgent_Tittle">
+                                <p>توضیحات   </p>
+                            </div>
+                        </div>
+                        <div class="col-sm-8 col-sm-pull-4" style="background-color: #b8b8b8; color: black">
+                            <div id="ModalDialogDesc_ShopDescriptionAgent">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row" style="border-bottom: 3px solid white; background-color: #3b3c3c">
+                        <div class="col-sm-4 col-sm-push-8" style="background-color: #3b3c3c; color: white">
+                            <div id="ModalDialogDesc_WebSiteLinkAgent_Tittle">
+                                <p>وب سایت    </p>
+                            </div>
+                        </div>
+                        <div class="col-sm-8 col-sm-pull-4" style="background-color: #b8b8b8; color: black">
+                            <div id="ModalDialogDesc_WebSiteLinkAgent">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row" style="border-bottom: 3px solid white; background-color: #3b3c3c">
+                        <div class="col-sm-4 col-sm-push-8" style="background-color: #3b3c3c; color: white">
+                            <div id="ModalDialogDesc_InstagramLinkAgent_Tittle">
+                                <p>اینستاگرام   </p>
+                            </div>
+                        </div>
+                        <div class="col-sm-8 col-sm-pull-4" style="background-color: #b8b8b8; color: black">
+                            <div id="ModalDialogDesc_InstagramLinkAgent">
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        //Dropdownlist Selectedchange event
+        $("a[class*='Agent_']").click(function () {
+            var temp = $(this).attr('class').split("_");
+            var myid = temp[1];
+            $("#ModalDialog_LoadingAjent").append('  <img src="/Images/ajax-loader List.gif">');
+            $("#ModalDialogDesc_ShopNameAgent").empty();
+            $("#ModalDialogDesc_ShopTypeAgent").empty();
+            $("#ModalDialogDesc_ShopTellAgent").empty();
+            $("#ModalDialogDesc_ShopAddressAgent").empty();
+            $("#ModalDialogDesc_PosterQuotesAgent").empty();
+            $("#ModalDialogDesc_ShopDescriptionAgent").empty();
+            $("#ModalDialogDesc_WebSiteLinkAgent").empty();
+            $("#ModalDialogDesc_InstagramLinkAgent").empty();
+            $("#ModalDialogDesc_ShopFaxAgent").empty();
+            $("#ModalDialogDesc_ShopEmailAgentAgent").empty();
+            $("#ModalDialogDescimageAgent").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetShoptDesc", "Shops")', // we are calling json method
+                dataType: 'json',
+                data: "id=" + myid,
+                success:
+                     function (response) {
+                         $("#ModalDialogDesc_ShopNameAgent").append('<p> ' + response[0] + '</p>');
+                         $("#ModalDialogDesc_ShopTypeAgent").append('<p>' + response[1] + '</p>');
+                         $("#ModalDialogDesc_ShopTellAgent").append('<p>' + response[2] + '</p>');
+                         $("#ModalDialogDesc_ShopFaxAgent").append('<p>' + response[3] + '</p>');
+                         $("#ModalDialogDesc_ShopEmailAgentAgent").append('<p>' + response[4] + '</p>');
+                         $("#ModalDialogDesc_ShopAddressAgent").append('<p>' + response[5] + '</p>');
+                         $("#ModalDialogDesc_PosterQuotesAgent").append('<p>' + response[6] + '</p>');
+                         $("#ModalDialogDesc_ShopDescriptionAgent").append('<p>' + response[7] + '</p>');
+                         if (response[8] != "نامشخص") {
+                             $("#ModalDialogDesc_WebSiteLinkAgent").append('<a href=' + response[8] + '" class="btn btn-social-icon btn-lg btn-instagram"><i class="fa fa-instagram"></i></a>');
+                         }
+                         if (response[9] != "نامشخص") {
+                             $("#ModalDialogDesc_InstagramLinkAgent").append('<a href="https://www.instagram.com/' + response[9] + '" class="btn btn-social-icon btn-lg btn-instagram"><i class="fa fa-instagram"></i></a>');
+                         }
+                         //$.each(response, function (i, resp) {
+                         //    $("#ModalDialogDesc").append('<p>' + resp + '</p>');
+                         //}); // here we are adding option for States
+                         for (var i = 10; i < response.length; i++) {
+                             $("#ModalDialogDescimageAgent").append('  <img  src="data:image;base64,' + response[i] + '" class="img-responsive" alt="hi">');
+                         }
+                         $("#ModalDialog_LoadingAjent").empty();
+                     },
+                error: function (ex) {
+                    alert('Failed to retrieve states.' + ex);
+                }
+            });
+
+        });
+    });
+</script>

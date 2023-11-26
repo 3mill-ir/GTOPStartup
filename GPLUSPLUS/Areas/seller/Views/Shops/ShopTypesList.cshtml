@@ -1,0 +1,42 @@
+﻿@model GPLUSPLUS.Areas.seller.Models.ShopTypes
+
+@{
+    ViewBag.Title = "ShopTypesList";
+}
+
+<h2>ShopTypesList</h2>
+<div style="direction:rtl;text-align:center">
+         @foreach (var q in Model.DetailedTypes) {
+
+
+                   @q.Shop_state_Name
+                  @q.Shop_state_Count.ToString()
+                    foreach (var p in @q.Types) {
+
+                       @p.Shop_city_Name
+                      @p.Shop_city_Count.ToString()
+                        foreach (var r in @p.Types) {
+
+                            @r.ShopTypesName
+                           @r.ShopTypesCount.ToString()
+                 <br />
+             <p>1</p>
+                     <br />
+                        }
+                        <br />
+             <p>2</p>
+                     <br />
+                          <p>2</p>
+                     <br />
+
+                    }
+                       <br />
+                          <p>3</p>
+                     <br />
+                          <p>3</p>
+                     <br />
+                          <p>3</p>
+                     <br />
+
+                }
+    </div>

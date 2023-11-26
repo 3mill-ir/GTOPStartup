@@ -1,0 +1,318 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title | تدبیرسازان امید تخفیف پدیده</title>
+    <meta name="description" content="کارت امتیازی G&G: هم خرید کنید هم امتیاز بگیرید" />
+    <meta name="keywords" content="GPLUS, G&G, کارت امتیاز, GTOP, تدبیر سازان ارمغان تخفیف پارسا, خرید کنید امتیاز بگیرید, امتیاز کارت" />
+    <meta name="author" content="سامانه گستر طرح اندیش" />
+    <link href="~/Areas/eshop/Content/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Areas/eshop/Content/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Areas/eshop/Content/css/prettyPhoto.css" rel="stylesheet" />
+    <link href="~/Areas/eshop/Content/css/price-range.css" rel="stylesheet" />
+    <link href="~/Areas/eshop/Content/css/animate.css" rel="stylesheet" />
+    <link href="~/Areas/eshop/Content/css/main.css" rel="stylesheet" />
+    <link href="~/Areas/eshop/Content/css/responsive.css" rel="stylesheet" />
+
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="../../Content/HomeContent/images/ico/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../../Content/HomeContent/images/ico/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../../Content/HomeContent/images/ico/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../../Content/HomeContent/images/ico/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="../../Content/HomeContent/images/ico/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="../../Content/HomeContent/images/ico/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="../../Content/HomeContent/images/ico/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../Content/HomeContent/images/ico/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="../../Content/HomeContent/images/ico/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="../../Content/HomeContent/images/ico/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="../../Content/HomeContent/images/ico/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="../../Content/HomeContent/images/ico/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="../../Content/HomeContent/images/ico/favicon-128.png" sizes="128x128" />
+    <meta name="application-name" content="&nbsp;" />
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="../../Content/HomeContent/images/ico/mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="../../Content/HomeContent/images/ico/mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="../../Content/HomeContent/images/ico/mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="../../Content/HomeContent/images/ico/mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="../../Content/HomeContent/images/ico/mstile-310x310.png" />
+</head>
+<!--/head-->
+
+
+
+<body>
+     <header id="header">
+        <!--header-->
+        <div class="header_top" style="position: fixed; width: 100%; z-index: 9999">
+            <!--header_top-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="contactinfo">
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <ul class="nav nav-pills">
+                                    <li>
+                                        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                                        {
+                                            @Html.AntiForgeryToken()
+
+                                            <a href="javascript:document.getElementById('/logoutForm').submit()" class="btn btn-danger" style="height:39px;padding-top:10px">خــروج &nbsp; <span class="glyphicon glyphicon-log-out"></span></a>
+                               
+                                        }  
+
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("Manage", "Account", new {Area="" })"  class = "btn btn-success">@User.Identity.Name &nbsp; <span class="glyphicon glyphicon-user"></span></a>
+
+                                    </li>
+                                </ul>
+                            }
+                            else
+                            {
+                                <ul class="nav nav-pills">
+                                    <li>
+                                        <a href="@Url.Action("register", "Account", new {Area="" })"  class = "btn btn-warning">ثبت نام &nbsp; <span class="glyphicon glyphicon-plus-sign"></span></a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("login", "Account", new {Area="" })"  class = "btn btn-warning">ورود &nbsp; <span class="glyphicon glyphicon-log-in"></span></a>
+                                    </li>
+                                </ul>
+                            }
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="social-icons pull-right">
+                            <h6 style="direction: rtl;">تمامی محصولات این سایت اورجینال می باشد.</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/header_top-->
+
+        <div class="header-middle">
+            <!--header-middle-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="logo pull-left">
+                        </div>
+
+                    </div>
+                    <div class="col-sm-8" style="direction: rtl; text-align: right;">
+                    </div>
+                </div>
+            </div>
+            <div id="custom-bootstrap-menu" class="navbar navbar-default " role="navigation" style="position: fixed; width: 100%; z-index: 999; margin-top: -5px">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="/home">
+                            <img src="../../Images/newlogo.png" alt="" height="30" />
+                        </a>
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menubuilder">
+                            <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div class="collapse navbar-collapse navbar-menubuilder">
+                        <ul class="nav navbar-nav navbar-right" style="direction: rtl;">
+                            <li style=" border-left:2px solid #00a99d;"><a href="/agents/agentregister">پیوستن به مراکز طرف قرارداد</a>
+                            </li>
+                            <li><a href="#">آرشیو نشریه اختصاصی</a>
+                            </li>
+                            <li><a href="/seller/home">مراکز طرف قرارداد</a>
+                            </li>
+                            <li class="active"><a href="/eshop/home">فروشگاه G&G</a>
+                            </li>
+                            <li ><a href="/home">خانه</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/header-middle-->
+    </header>
+    <!--/header-->
+
+    <section id="slider" style="margin-top: 150px;margin-bottom:30px">
+    <!--slider-->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div id="slider-carousel" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#slider-carousel" data-slide-to="1"></li>
+                        <li data-target="#slider-carousel" data-slide-to="2"></li>
+                        <li data-target="#slider-carousel" data-slide-to="3"></li>
+                    </ol>
+
+                    <div class="carousel-inner" style="direction: rtl">
+                        <div class="item active">
+                            <div class="col-sm-6 SliderText">
+                                <h2>بیشتر بدانیم</h2>
+                                <p>امتیاز کارت GCARD نوعی کارت شناسایی است که به دارنده کارت این امکان را می دهد که بتواند از تخفیفات و خدمات ویژه بسیاری از مراکز درمانی، بیمارستانها، مطب ها و فروشگاهها و ... حتی مراکزی که در شرایط عادی امکان دریافت تخفیف وجود ندارد و  طرف قرارداد GTOP می باشند بهره مند گردد.</p>
+                               @* <button type="button" class="btn btn-default get">Get it now</button>*@
+                            </div>
+                            <div class="col-sm-6">
+                                           <img src="../../Images/gplus-plus-3-min.jpg" class="girl img-responsive" alt="" />
+                             @*   <img src="~/Content/HomeContent/images/home/placeholder.png" class="girl img-responsive" alt="" />*@
+                              @*  <img src="~/Content/HomeContent/images/home/pricing.png" class="pricing" alt="" />*@
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="col-sm-6 SliderText">
+                                <h2>مزاياي پذيرنده امتیاز کارت</h2>
+                                <p>
+                                    بهره مندي از ابزاري جهت تکريم مشتريان<br />
+                                    بهره مندي از نتايج احساس تکريم از سوي مشتريان<br />
+                                    بازگشت مشتريان براي خريد هاي مجدد با توجه به انگيزش هاي ايجاد شده در خريد قبلي<br />
+                                    بهره مندي از تبليغات غير مستقيم مشتريان وفادار
+                                            <br />
+                                    معرفي مشتريان جديد توسط مشتريان وفادار<br />
+                                </p>
+                           @*     <button type="button" class="btn btn-default get">Get it now</button>*@
+                            </div>
+                            <div class="col-sm-6">
+                                 <img src="../../Images/gplus-plus-4-min.jpg" class="girl img-responsive" alt="" />
+                   @*             <img src="~/Content/HomeContent/images/home/placeholder.png" class="girl img-responsive" alt="" />*@
+                           @*     <img src="~/Content/HomeContent/images/home/pricing.png" class="pricing" alt="" />*@
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <div class="col-sm-6 SliderText">
+                                <h2>از کجا و چگونه تهیه کنیم</h2>
+                                <p>شما با خرید از فروشگاهها و مراکز طرف قرارداد GTOP می توانید کارت امتیازی GPLUS دریافت کنید. سپس با مراجعه به سایت کد 16 رقمی درج شده رو کارت را در سایت ثبت و امتیاز دریافت خواهید کرد. شما با توجه به امتیاز خود قادر به خرید از سایت GPLUSPLUS خواهید شد.</p>
+                        @*        <button type="button" class="btn btn-default get">Get it now</button>*@
+                            </div>
+                            <div class="col-sm-6">
+                                  <img src="../../Images/gplus-plus-1-min.jpg" class="girl img-responsive" alt="" />
+                        @*        <img src="~/Content/HomeContent/images/home/placeholder.png" class="girl img-responsive" alt="" />*@
+                           @*     <img src="~/Content/HomeContent/images/home/pricing.png" class="pricing" alt="" />*@
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <div class="col-sm-6 SliderText">
+                                <h2>و اما جایزه بزرگ GTOP</h2>
+                                <p>شما با رساندن حد امتیاز خود به جایزه بزرگ GTOP بدون قرعه کشی صاحب یک دستگاه خودروی النترا خواهید شد.  </p>
+                     @*           <button type="button" class="btn btn-default get">Get it now</button>*@
+                            </div>
+                            <div class="col-sm-6">
+                                           <img src="../../Images/gplus-plus-min.jpg"  class="girl img-responsive" alt="" />
+                            @*    <img src="~/Content/HomeContent/images/home/placeholder.png" class="girl img-responsive" alt="" />*@
+                      @*          <img src="~/Content/HomeContent/images/home/pricing.png" class="pricing" alt="" />*@
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<!--/slider-->
+
+
+    @RenderBody()
+
+
+    <footer id="footer" style="direction: rtl; text-align: right;">
+        <!--Footer-->
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="contactinfo" style="margin-top: 57px;">
+                            <ul class="nav nav-pills" style="direction: ltr">
+                                <li><a href="tel:+984432256020">044 - 32256020 <i class="fa fa-phone"></i></a></li>
+                                <li><a href="mailto:Info@gtop.com?Subject=Hello%20again">Info@gtop.com <i class="fa fa-envelope"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="companyinfo">
+                            <h2>۷ روز هفته، ۲۴ ساعته پاسخگوی شما هستیم.</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-widget">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="single-widget">
+                            <h2>ما را در شبکه های اجتماعی دنبال کنید</h2>
+                            <div class="social-icons">
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="single-widget">
+                            <h2>راهنمای امتیاز بندی جوایز فروشگاه G&G</h2>
+                            <ul class="nav nav-pills nav-stacked">
+                                <li><a href="/UserManual/NormalGifts">جوایز عادی</a></li>
+                                <li><a href="/UserManual/BoronzeGifts">جوایز برنزی</a></li>
+                                <li><a href="/UserManual/SilverGifts">جوایز نقره ایی</a></li>
+                                <li><a href="/UserManual/GoldGifts">جوایز طلایی</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="single-widget">
+                            <h2>راهنمای خرید از فروشگاه G&G</h2>
+                            <ul class="nav nav-pills nav-stacked">
+                                <li><a href="/UserManual/GetGift">چطور کالای مورد نظرم را انتخاب کنم؟</a></li>
+                                <li><a href="/UserManual/GiftDelivery">چطور سفارش برای من ارسال می شود؟</a></li>
+                                <li><a href="/UserManual/PaymentTerms">آیا هزینه ایی بابت خرید کالا باید پرداخت کنم؟</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom" style="direction: rtl; text-align: right">
+            <div class="container">
+                <div class="row">
+                    <p><span><a href="http://www.GPLUSPLUS.ir">GPLUSPLUS © (2015)</a></span></p>
+                </div>
+            </div>
+        </div>
+
+    </footer>
+    <!--/Footer-->
+
+
+
+    <script src="~/Areas/eshop/Content/js/jquery.js"></script>
+    <script src="~/Areas/eshop/Content/js/bootstrap.min.js"></script>
+    <script src="~/Areas/eshop/Content/js/jquery.scrollUp.min.js"></script>
+    <script src="~/Areas/eshop/Content/js/price-range.js"></script>
+    <script src="~/Areas/eshop/Content/js/jquery.prettyPhoto.js"></script>
+    <script src="~/Areas/eshop/Content/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+﻿@model GPLUSPLUS.Models.LoginModel
+
+@{
+    ViewBag.Title = "ورود";
+}
+
+<section id="form" style="direction: rtl; text-align: right">
+    <!--form-->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4  col-sm-offset-4">
+<div class="login-form">
+    <!--login form-->
+    <h2>ورود به حساب کاربری</h2>
+    @using (Html.BeginForm("Login", "Account"))
+    {
+        @Html.AntiForgeryToken()
+          <p style="color:red;float:left">@ViewBag.MyErrorLogin</p>
+
+ @Html.TextBoxFor(m => m.UserName, new { placeholder = "شماره همراه" })
+           @Html.ValidationMessageFor(model => model.UserName)
+
+ @Html.PasswordFor(m => m.Password, new { placeholder = "رمز عبور" })
+           @Html.ValidationMessageFor(model => model.Password)
+        <div></div>
+        <span>
+
+            @Html.CheckBoxFor(m => m.RememberMe)
+            مرا به خاطر بسپار
+							</span>
+        <div></div>
+        @Html.ActionLink("کلمه عبور را فراموش کرده ام", "ForgetPassword","Account")
+        <button type="submit" class="btn btn-default">ورود</button>
+    }
+</div>
+<!--/login form-->
+
+                            </div>
+
+        </div>
+    </div>
+</section>
+
+@Scripts.Render("~/bundles/jquery")
+ @Scripts.Render("~/bundles/jqueryval")
+
+

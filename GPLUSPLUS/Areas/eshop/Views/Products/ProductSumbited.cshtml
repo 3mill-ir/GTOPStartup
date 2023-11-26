@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "سفارش ثبت شد";
+}
+
+<div class="container" >
+    <div class="row" >
+        <div class="col-lg-12" >
+            <div style="text-align: center; direction: rtl;font-size:x-large; background-color: lightgreen; -moz-border-radius: 50px; -webkit-border-radius: 50px; border-radius: 50px;margin-top:20%">
+                <p>
+                سفارش شما در سیستم ثبت شد. 
+                </p>
+            </div>
+            </div>
+        </div>
+
+     <div class="row" >
+        <div class="col-lg-12" >
+            <div style="text-align: center; direction: rtl;font-size:large; background-color: yellowgreen; -moz-border-radius: 50px; -webkit-border-radius: 50px; border-radius: 50px;margin-top:5px">
+                   <p id="footer_SMSNotSend" >شما بعد از 60 ثانیه به صورت خودکار به صفحه خانگی منتقل خواهید شد. در غیر این صورت بر روی @Html.ActionLink("صفحه خانگی","Index", "Home",null,new { @style=" color:green;" })  کلیک نمایید.</p>
+            </div>
+            </div>
+        </div>
+        </div>
+ <script>
+            setTimeout(function(){
+                window.location.href="/Home"; // The URL that will be redirected too.
+            }, 60000); // The bigger the number the longer the delay.
+        </script>

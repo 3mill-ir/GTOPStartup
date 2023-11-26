@@ -1,0 +1,121 @@
+﻿@model Dictionary<int, GPLUSPLUS.Controllers.Customer>
+
+@{ bool isFirst = true;
+   string date_year="";
+   string date_month="";
+   string date_month_name = "";
+    int counter=0;
+  
+foreach (var cust in Model)
+{
+    switch (@cust.Value.date_Month)
+    {
+
+        case "1":
+            date_month_name = "فروردین";
+            break;
+        case "2":
+            date_month_name = "اردیبهشت";
+            break;
+        case "3":
+            date_month_name = "خرداد";
+            break;
+        case "4":
+            date_month_name = "تیر";
+            break;
+        case "5":
+            date_month_name = "مرداد";
+            break;
+        case "6":
+            date_month_name = "شهریور";
+            break;
+        case "7":
+            date_month_name = "مهر";
+            break;
+        case "8":
+            date_month_name = "آبان";
+            break;
+        case "9":
+            date_month_name = "اذر";
+            break;
+        case "10":
+            date_month_name = "دی";
+            break;
+        case "11":
+            date_month_name = "بهمن";
+            break;
+        default:
+            date_month_name = "اسفند";
+            break;
+    }
+    counter++;
+    if (!IsAjax)
+    {
+        if (isFirst == true)
+        {
+          <li><div class="tldate">@date_month_name  @cust.Value.date_Year </div></li>
+            date_year=cust.Value.date_Year;
+            date_month = cust.Value.date_Month;
+            isFirst = false;
+        }
+        else
+        {
+            if (date_month != cust.Value.date_Month || date_year != cust.Value.date_Year)
+            {
+         <li><div class="tldate">@date_month_name  @cust.Value.date_Year</div></li>
+                date_year = cust.Value.date_Year;
+                date_month = cust.Value.date_Month;
+            }
+        }
+    }
+    else
+    {
+        if(isFirst==true){
+            {
+                date_year = @ViewBag.lastAjaxDate_year;
+                date_month = @ViewBag.lastAjaxDate_month;
+            }
+        isFirst = false;
+        }
+        if (date_month != cust.Value.date_Month || date_year != cust.Value.date_Year)
+        {
+         <li><div class="tldate">@date_month_name  @cust.Value.date_Year </div></li>
+            date_year = cust.Value.date_Year;
+            date_month = cust.Value.date_Month;
+        }
+    }
+    
+
+    if(counter%2==0){
+    <li>
+      <div class="tl-circ"></div>
+      <div class="timeline-panel">
+        <div class="tl-heading" style="direction:rtl;text-align:right">
+          <h4>@cust.Value.name</h4>
+          <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i>@cust.Value.date_Day/@cust.Value.date_Month/@cust.Value.date_Year @cust.Value.date_time</small></p>
+        </div>
+        <div class="tl-body" style="direction:rtl;text-align:center">
+        <img u="image" src="data:image;base64,@System.Convert.ToBase64String(@cust.Value.thumbimg)" />
+        </div>
+      </div>
+    </li>
+}
+else{
+    <li class="timeline-inverted">
+      <div class="tl-circ"></div>
+      <div class="timeline-panel">
+        <div class="tl-heading" style="direction:rtl;text-align:right">
+        <h4>@cust.Value.name</h4>
+          <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i>@cust.Value.date_Day/@cust.Value.date_Month/@cust.Value.date_Year @cust.Value.date_time</small></p>
+        </div>
+        <div class="tl-body" style="direction:rtl;text-align:center">
+  <img u="image" src="data:image;base64,@System.Convert.ToBase64String(@cust.Value.thumbimg)" />
+        </div>
+      </div>
+    </li>}
+}
+    <script type="text/javascript">
+        var Ajax_month = '@date_month';
+        var Ajax_year = '@date_year';
+   </script>
+}

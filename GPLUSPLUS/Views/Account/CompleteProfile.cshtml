@@ -1,0 +1,211 @@
+﻿@model GPLUSPLUS.Models.ProfileModel
+
+@{
+    ViewBag.Title = "تکمیل مشخصات کاربری";
+}
+
+<div class="container" >
+    <!-- Title -->
+    <div class="row" >
+      
+        <div class="col-lg-12" >
+              <div class="signup-form">
+          <div style="margin:10px; border:2px solid black;-webkit-border-radius:15px;-moz-border-radius:15px;;border-radius:15px;padding:20px;background-color:#F0F0E9;">
+              <div class="row">
+                <div class="col-lg-12">
+                                      <div class="step-one">
+                                              <h2 class="heading" style="text-align:center;font-family:'B Nazanin',Tahoma;"> مشخصات کاربری</h2>
+                                              @if (ViewBag.TempAttention == "buyproduct")
+            {
+      
+                    <div  style="text-align:center;font-family:'B Nazanin',Tahoma;font-size:small;color:red">
+                        <h2  style="direction:rtl;text-align:center;font-family:'B Nazanin',Tahoma;font-size:small;color:red"> جهت دریافت هدیه بایستی مشخصات پستی خود را به صورت دقیق وارد نمایید.</h2>
+                    </div>
+
+          
+            }
+			</div>
+                </div>
+            </div>
+              </div>
+
+
+
+        
+
+
+
+                        <div style="border:1px solid black;-webkit-border-radius:15px; -moz-border-radius:15px;border-radius:15px;padding:20px">
+            <div class="row" style="border:1px solid black;-webkit-border-radius:15px; -moz-border-radius:15px;border-radius:15px;padding:20px;background-color:#FE980F">
+                <div class="col-lg-12">
+                    <div id="ModalDialog_TittleProduct" >
+                        <p style="text-align:center;font-family:'B Nazanin',Tahoma;">ااطلاعات حساب کاربری</p>
+                    </div>
+                </div>
+            </div>
+                                @using (Html.BeginForm())
+                                {     @Html.AntiForgeryToken()
+
+                <div class="row" style="margin-top:30px">
+                    <div class="col-sm-4  col-sm-offset-4" style="direction: rtl; text-align: right">
+
+                            <div class="row" style="border-bottom: 3px solid white;">
+                                  <div class="col-sm-4 col-sm-push-8">
+                                <div id="ModalDialogUser_FirstName_Tittle">
+                                    <p>نام</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-8 col-sm-pull-4" >
+                                <div id="ModalDialogUser_FirstName">
+                                    @Html.TextBoxFor(m => m.FirstName)
+                                    @Html.ValidationMessageFor(model => model.FirstName)
+                                </div>
+                            </div>
+                        </div>
+
+                            <div class="row" style="border-bottom: 3px solid white;" >
+                            <div class="col-sm-4 col-sm-push-8" >
+                                <div id="ModalDialogUser_LastName_Tittle">
+                                    <p>نام خانوادگی</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-8 col-sm-pull-4" >
+                                <div id="ModalDialogUser_LastName">
+                                    @Html.TextBoxFor(m => m.LastName)
+                                    @Html.ValidationMessageFor(model => model.LastName)
+                                </div>
+                            </div>
+                        </div>
+                         
+
+                              <div class="row" style="border-bottom: 3px solid white;">
+                            <div class="col-sm-4 col-sm-push-8">
+                                <div id="ModalDialogUser_Gender_Tittle">
+                                    <p>جنسیت </p>
+                                </div>
+                            </div>
+                            <div class="col-sm-8 col-sm-pull-4" >
+                                <div id="ModalDialogUser_Gender">
+                                        @Html.DropDownListFor(m => m.Gender, new[] {
+                                new SelectListItem() {Text = "انتخاب کنید",
+                                    Value = ""},  
+                                new SelectListItem() {Text = "مرد",
+                                Value = "مرد"},
+                                new SelectListItem() {Text = "زن",Value = "زن"}  }, new { @class = "myregisterDropdownlist" })
+
+                                    @Html.ValidationMessageFor(model => model.Gender)
+                                </div>
+                            </div>
+
+
+                        <div class="row" style="border-bottom: 3px solid white; ">
+                            <div class="col-sm-4 col-sm-push-8" >
+                                <div id="ModalDialogUser_NewState_Tittle">
+                                    <p>استان </p>
+                                </div>
+                            </div>
+                            <div class="col-sm-8 col-sm-pull-4" >
+                                <div id="ModalDialogUser_NewState">
+                                    @Html.DropDownListFor(m => m.State, ViewData["StateName"] as List<SelectListItem>, new { @style = "width: 132px;" })
+
+                                    @Html.ValidationMessageFor(model => model.State)
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row" style="border-bottom: 3px solid white;">
+                            <div class="col-sm-4 col-sm-push-8" >
+                                <div id="ModalDialogUser_NewCity_Tittle">
+                                    <p>شهرستان</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-8 col-sm-pull-4" >
+                                <div id="ModalDialogUser_NewCity">
+                                    @Html.DropDownListFor(m => m.City, new SelectList(string.Empty, "Value", "Text"), "شهرستان", new { @style = "width: 132px;" })
+                                    @Html.ValidationMessageFor(model => model.City)
+                                </div>
+                            </div>
+                        </div>
+
+     <div class="row" style="border-bottom: 3px solid white;">
+                            <div class="col-sm-4 col-sm-push-8">
+                                <div id="ModalDialogUser_NewPostalCode_Tittle">
+                                    <p>کد پستی</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-8 col-sm-pull-4" >
+                                <div id="ModalDialogUser_NewPostalCode">
+                                    @Html.TextBoxFor(m => m.PostalCode)
+                                    @Html.ValidationMessageFor(model => model.PostalCode)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="border-bottom: 3px solid white; ">
+                            <div class="col-sm-4 col-sm-push-8" >
+                                <div id="ModalDialogUser_NewAddress_Tittle">
+                                    <p>آدرس</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-8 col-sm-pull-4" >
+                                <div id="ModalDialogUser_NewAddress" >
+                                    @Html.TextAreaFor(m => m.Address, new  { style="width:100%;height:200px"})
+                                    @Html.ValidationMessageFor(model => model.Address)
+                                </div>
+                            </div>
+                        </div>
+
+                   
+                    </div>
+                </div>
+                    </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div id="ModalDialog_Submit_NewAddress" style="text-align: center; padding-top: 5px; margin-bottom: 10px; margin-top: 15px;">
+                            <button type="submit" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-ok"></span>ثبت اطلاعات</button>
+                        </div>
+                    </div>
+                </div>
+     
+                                }
+                            </div>
+
+
+
+
+            </div>
+            </div>
+        </div>
+    </div>
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        //Dropdownlist Selectedchange event
+        $("#State").change(function () {
+            $("#City").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetCity", "Agents")', // we are calling json method
+                dataType: 'json',
+                data: { id: $("#State").val() },
+                success: function (states) {
+                    // states contains the JSON formatted list
+                    // of states passed from the controller
+                    $.each(states, function (i, state) {
+                        $("#City").append('<option value="' + state.Value + '">' + state.Text + '</option>');
+                    }); // here we are adding option for States
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve states.' + ex);
+                }
+            });
+            return false;
+        });
+
+
+
+    });
+</script>

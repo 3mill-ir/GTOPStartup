@@ -1,0 +1,345 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title | تدبیرسازان امید تخفیف پدیده</title>
+    <meta name="description" content="کارت امتیازی G&G: هم خرید کنید هم امتیاز بگیرید" />
+    <meta name="keywords" content="G&G, G&G, کارت امتیاز, GTOP, تدبیر سازان ارمغان تخفیف پارسا, خرید کنید امتیاز بگیرید, امتیاز کارت" />
+    <meta name="author" content="سامانه گستر طرح اندیش" />
+    <link rel="shortcut icon" href="../favicon.ico">
+    @*    <link rel="stylesheet" type="text/css" href="~/Content/HomeContentUnAuth/css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/HomeContentUnAuth/css/demo.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/HomeContentUnAuth/css/effect1.css" />
+    <script src="~/Content/HomeContentUnAuth/js/modernizr.custom.js"></script>*@
+
+
+
+    <link href="~/Content/HomeContent/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/HomeContent/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/HomeContent/css/prettyPhoto.css" rel="stylesheet" />
+    <link href="~/Content/HomeContent/css/price-range.css" rel="stylesheet" />
+    <link href="~/Content/HomeContent/css/animate.css" rel="stylesheet" />
+    <link href="~/Content/HomeContent/css/main.css" rel="stylesheet" />
+    <link href="~/Content/HomeContent/css/responsive.css" rel="stylesheet" />
+
+
+    <link href="~/Content/HomeContentUnAuth/Price/style.css" media="screen" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    @* <link rel="shortcut icon" href="~/Content/HomeContent/images/ico/favicon.ico">*@
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="../../Content/HomeContent/images/ico/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../../Content/HomeContent/images/ico/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../../Content/HomeContent/images/ico/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../../Content/HomeContent/images/ico/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="../../Content/HomeContent/images/ico/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="../../Content/HomeContent/images/ico/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="../../Content/HomeContent/images/ico/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../Content/HomeContent/images/ico/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="../../Content/HomeContent/images/ico/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="../../Content/HomeContent/images/ico/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="../../Content/HomeContent/images/ico/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="../../Content/HomeContent/images/ico/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="../../Content/HomeContent/images/ico/favicon-128.png" sizes="128x128" />
+    <meta name="application-name" content="&nbsp;" />
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="../../Content/HomeContent/images/ico/mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="../../Content/HomeContent/images/ico/mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="../../Content/HomeContent/images/ico/mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="../../Content/HomeContent/images/ico/mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="../../Content/HomeContent/images/ico/mstile-310x310.png" />
+
+
+
+
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="~/Content/HomeContent/images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="~/Content/HomeContent/images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="~/Content/HomeContent/images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="~/Content/HomeContent/images/ico/apple-touch-icon-57-precomposed.png">
+</head>
+<body class="demo-1">
+    <header id="header">
+
+        <div class="header_top" style="position: fixed; width: 100%; z-index: 9999">
+            <!--header_top-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="contactinfo">
+                            <ul class="nav nav-pills">
+                                <li>
+                                    <a href="@Url.Action("register", "Account")" class="btn btn-warning">ثبت نام &nbsp; <span class="glyphicon glyphicon-plus-sign"></span></a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("login", "Account")" class="btn btn-warning">ورود &nbsp; <span class="glyphicon glyphicon-log-in"></span></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="social-icons pull-right">
+                            <h6 style="direction: rtl;">تمامی محصولات این سایت اورجینال می باشد.</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--header-->
+        @*        <div class="header_top" style="position: fixed; width: 100%; z-index: 9999">
+                <!--header_top-->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="contactinfo">
+                                <ul class="nav nav-pills">
+                                    <li>@Html.ActionLink("ثبت نام", "register", "Account")</li>
+                                    <li>@Html.ActionLink("ورود", "login", "Account")</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="social-icons pull-right">
+                                <h6 style="direction: rtl;">تمامی محصولات این سایت اورجینال می باشد.</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+        <!--/header_top-->
+
+        <div class="header-middle">
+            <!--header-middle-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="logo pull-left">
+                        </div>
+
+                    </div>
+                    <div class="col-sm-8" style="direction: rtl; text-align: right;">
+                    </div>
+                </div>
+            </div>
+            <div id="custom-bootstrap-menu" class="navbar navbar-default " role="navigation" style="position: fixed; width: 100%; z-index: 999; margin-top: -5px">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="/home" style="padding-bottom:0px;padding-top:0px;">
+                            <img src="../../Images/newlogo.png" alt="" height="60" />
+                        </a>
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menubuilder">
+                            <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div class="collapse navbar-collapse navbar-menubuilder">
+                        <ul class="nav navbar-nav navbar-right" style="direction:rtl;">
+                            <li style=" border-left:2px solid #00a99d;">
+                                <a href="/agents/agentregister">پیوستن به مراکز طرف قرارداد</a>
+                            </li>
+                            <li>
+                                <a href="#">آرشیو نشریه اختصاصی</a>
+                            </li>
+                            <li>
+                                <a href="/seller/home">مراکز طرف قرارداد</a>
+                            </li>
+                            <li>
+                                <a href="/eshop/home">فروشگاه G&G</a>
+                            </li>
+                            <li class="active">
+                                <a href="/home">خانه</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/header-middle-->
+    </header>
+    @*<div style="position:fixed;margin-top:100px;right:0" id="myBonyadKoodakRight">
+        <a href="https://www.childf.com/" target="_blank">
+            <i class=" bonyadkoodak">
+                <img src="~/Images/BonyadKoodak.gif" width="200"  />
+            </i>
+        </a>
+        <p style="position: relative;
+	width: 200px;
+	height: 100px;
+	text-align: center;
+	line-height: 50px;
+	background-color: #fff;
+	border: 8px solid #666;
+	-webkit-border-radius: 30px;
+	-moz-border-radius: 30px;
+	border-radius: 30px;
+	-webkit-box-shadow: 2px 2px 4px #888;
+	-moz-box-shadow: 2px 2px 4px #888;
+	box-shadow: 2px 2px 4px #888;direction:rtl">امتیاز اهدایی به بنیاد کودک : <br/> <span id="BonyadKoodakEmtiaz"> @ViewBag.BonyadKoodakScore امتیاز </span></p>
+    </div>*@
+
+
+
+                <!--/header-->
+                @*    <!--header-->
+                    <div class="header_top" style="width: 100%; background-color: #64d8bc; margin-top: -5px">
+
+                        <div class="header-bottom">
+                            <!--header-bottom-->
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-sm-9">
+                                        <div class="navbar-header">
+                                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                                <span class="sr-only">هدایت</span>
+                                                <span class="icon-bar"></span>
+                                                <span class="icon-bar"></span>
+                                                <span class="icon-bar"></span>
+                                            </button>
+                                        </div>
+                                        <div class="mainmenu pull-right">
+                                            <ul class="nav navbar-nav collapse navbar-collapse" style="direction: rtl; text-align: right;">
+                                                <li class="dropdown"><a href="#">امور مراکز طرف قرارداد<i class="fa fa-angle-down"></i></a>
+                                                    <ul role="menu" class="sub-menu">
+                                                        <li><a href="~/Agents/AgentRegister">پیوستن به مراکز طرف قرارداد</a></li>
+                                                        <li><a href="~/Agents/LocalAdvertise">آرشیو نشریه اختصاصی</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li><a href="~/Seller/Home">مراکز طرف قرارداد</a></li>
+                                                <li><a href="~/Eshop/Home">فروشگاه GPLUS</a></li>
+                                                <li><a href="~/Home/Index" class="active">خانه</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!--/header-bottom-->
+                    </div>*@
+
+
+
+
+                @*    <div id="ip-container" class="ip-container" style="text-align: center">
+                        <!-- initial header -->
+                        <header class="ip-header">
+                            <h1 class="ip-logo">
+                                <svg class="ip-inner" width="100%" height="100%" viewBox="0 0 619 792" preserveAspectRatio="xMidYMin meet" aria-labelledby="logo_title">
+                                    <title id="logo_title">تدبیر سازان ارمغان تخفیف پارسا</title>
+                                    <image overflow="visible" width="151" height="161" xlink:href="data:image/png;base64,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/GMzLdsAADrraVRYdFhNTDpjb20uYWRvYmUueG1wAAAAAAA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/Pgo8eDp4bXBtZXRhIHhtbG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJBZG9iZSBYTVAgQ29yZSA1LjUtYzAxNCA3OS4xNTE0ODEsIDIwMTMvMDMvMTMtMTI6MDk6MTUgICAgICAgICI+CiAgIDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+CiAgICAgIDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiCiAgICAgICAgICAgIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIKICAgICAgICAgICAgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIgogICAgICAgICAgICB4bWxuczpwaG90b3Nob3A9Imh0dHA6Ly9ucy5hZG9iZS5jb20vcGhvdG9zaG9wLzEuMC8iCiAgICAgICAgICAgIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIgogICAgICAgICAgICB4bWxuczpzdEV2dD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlRXZlbnQjIgogICAgICAgICAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyIKICAgICAgICAgICAgeG1sbnM6ZXhpZj0iaHR0cDovL25zLmFkb2JlLmNvbS9leGlmLzEuMC8iPgogICAgICAgICA8eG1wOkNyZWF0b3JUb29sPkFkb2JlIFBob3Rvc2hvcCBDQyAoV2luZG93cyk8L3htcDpDcmVhdG9yVG9vbD4KICAgICAgICAgPHhtcDpDcmVhdGVEYXRlPjIwMTUtMDgtMDhUMTc6MDA6NTYrMDQ6MzA8L3htcDpDcmVhdGVEYXRlPgogICAgICAgICA8eG1wOk1vZGlmeURhdGU+MjAxNS0wOC0wOFQxNzowMjo0NSswNDozMDwveG1wOk1vZGlmeURhdGU+CiAgICAgICAgIDx4bXA6TWV0YWRhdGFEYXRlPjIwMTUtMDgtMDhUMTc6MDI6NDUrMDQ6MzA8L3htcDpNZXRhZGF0YURhdGU+CiAgICAgICAgIDxkYzpmb3JtYXQ+aW1hZ2UvcG5nPC9kYzpmb3JtYXQ+CiAgICAgICAgIDxwaG90b3Nob3A6Q29sb3JNb2RlPjI8L3Bob3Rvc2hvcDpDb2xvck1vZGU+CiAgICAgICAgIDxwaG90b3Nob3A6SUNDUHJvZmlsZT5zUkdCIElFQzYxOTY2LTIuMTwvcGhvdG9zaG9wOklDQ1Byb2ZpbGU+CiAgICAgICAgIDx4bXBNTTpJbnN0YW5jZUlEPnhtcC5paWQ6YmI0ZTVlNGMtZTIwMi1kMDQ5LTlhN2ItNjgxY2U3OWEwMDZmPC94bXBNTTpJbnN0YW5jZUlEPgogICAgICAgICA8eG1wTU06RG9jdW1lbnRJRD54bXAuZGlkOjFlNTY0ZWQ2LTdjYmEtYmE0OC1hN2Y5LTgxOTgxNjE3YmQ1ZjwveG1wTU06RG9jdW1lbnRJRD4KICAgICAgICAgPHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD54bXAuZGlkOjFlNTY0ZWQ2LTdjYmEtYmE0OC1hN2Y5LTgxOTgxNjE3YmQ1ZjwveG1wTU06T3JpZ2luYWxEb2N1bWVudElEPgogICAgICAgICA8eG1wTU06SGlzdG9yeT4KICAgICAgICAgICAgPHJkZjpTZXE+CiAgICAgICAgICAgICAgIDxyZGY6bGkgcmRmOnBhcnNlVHlwZT0iUmVzb3VyY2UiPgogICAgICAgICAgICAgICAgICA8c3RFdnQ6YWN0aW9uPmNyZWF0ZWQ8L3N0RXZ0OmFjdGlvbj4KICAgICAgICAgICAgICAgICAgPHN0RXZ0Omluc3RhbmNlSUQ+eG1wLmlpZDoxZTU2NGVkNi03Y2JhLWJhNDgtYTdmOS04MTk4MTYxN2JkNWY8L3N0RXZ0Omluc3RhbmNlSUQ+CiAgICAgICAgICAgICAgICAgIDxzdEV2dDp3aGVuPjIwMTUtMDgtMDhUMTc6MDA6NTYrMDQ6MzA8L3N0RXZ0OndoZW4+CiAgICAgICAgICAgICAgICAgIDxzdEV2dDpzb2Z0d2FyZUFnZW50PkFkb2JlIFBob3Rvc2hvcCBDQyAoV2luZG93cyk8L3N0RXZ0OnNvZnR3YXJlQWdlbnQ+CiAgICAgICAgICAgICAgIDwvcmRmOmxpPgogICAgICAgICAgICAgICA8cmRmOmxpIHJkZjpwYXJzZVR5cGU9IlJlc291cmNlIj4KICAgICAgICAgICAgICAgICAgPHN0RXZ0OmFjdGlvbj5jb252ZXJ0ZWQ8L3N0RXZ0OmFjdGlvbj4KICAgICAgICAgICAgICAgICAgPHN0RXZ0OnBhcmFtZXRlcnM+ZnJvbSBpbWFnZS9naWYgdG8gaW1hZ2UvcG5nPC9zdEV2dDpwYXJhbWV0ZXJzPgogICAgICAgICAgICAgICA8L3JkZjpsaT4KICAgICAgICAgICAgICAgPHJkZjpsaSByZGY6cGFyc2VUeXBlPSJSZXNvdXJjZSI+CiAgICAgICAgICAgICAgICAgIDxzdEV2dDphY3Rpb24+c2F2ZWQ8L3N0RXZ0OmFjdGlvbj4KICAgICAgICAgICAgICAgICAgPHN0RXZ0Omluc3RhbmNlSUQ+eG1wLmlpZDpiYjRlNWU0Yy1lMjAyLWQwNDktOWE3Yi02ODFjZTc5YTAwNmY8L3N0RXZ0Omluc3RhbmNlSUQ+CiAgICAgICAgICAgICAgICAgIDxzdEV2dDp3aGVuPjIwMTUtMDgtMDhUMTc6MDI6NDUrMDQ6MzA8L3N0RXZ0OndoZW4+CiAgICAgICAgICAgICAgICAgIDxzdEV2dDpzb2Z0d2FyZUFnZW50PkFkb2JlIFBob3Rvc2hvcCBDQyAoV2luZG93cyk8L3N0RXZ0OnNvZnR3YXJlQWdlbnQ+CiAgICAgICAgICAgICAgICAgIDxzdEV2dDpjaGFuZ2VkPi88L3N0RXZ0OmNoYW5nZWQ+CiAgICAgICAgICAgICAgIDwvcmRmOmxpPgogICAgICAgICAgICA8L3JkZjpTZXE+CiAgICAgICAgIDwveG1wTU06SGlzdG9yeT4KICAgICAgICAgPHRpZmY6T3JpZW50YXRpb24+MTwvdGlmZjpPcmllbnRhdGlvbj4KICAgICAgICAgPHRpZmY6WFJlc29sdXRpb24+NzIwMDAwLzEwMDAwPC90aWZmOlhSZXNvbHV0aW9uPgogICAgICAgICA8dGlmZjpZUmVzb2x1dGlvbj43MjAwMDAvMTAwMDA8L3RpZmY6WVJlc29sdXRpb24+CiAgICAgICAgIDx0aWZmOlJlc29sdXRpb25Vbml0PjI8L3RpZmY6UmVzb2x1dGlvblVuaXQ+CiAgICAgICAgIDxleGlmOkNvbG9yU3BhY2U+MTwvZXhpZjpDb2xvclNwYWNlPgogICAgICAgICA8ZXhpZjpQaXhlbFhEaW1lbnNpb24+MjUwPC9leGlmOlBpeGVsWERpbWVuc2lvbj4KICAgICAgICAgPGV4aWY6UGl4ZWxZRGltZW5zaW9uPjEzMzwvZXhpZjpQaXhlbFlEaW1lbnNpb24+CiAgICAgIDwvcmRmOkRlc2NyaXB0aW9uPgogICA8L3JkZjpSREY+CjwveDp4bXBtZXRhPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgIAo8P3hwYWNrZXQgZW5kPSJ3Ij8+Y9NAsgAAACBjSFJNAAB6JQAAgIMAAPn/AACA6QAAdTAAAOpgAAA6mAAAF2+SX8VGAAADAFBMVEUFBAQIBwcNDAwQDw8QEBAVFRUYFxcYGBcYFxgXGBgYGBggHx8gIB8fICAjIiIoKCcrKyswMC81NTU4ODc7Ozs/QD9ERENHSEdMTExPUE9UVFRYWFdbW1tgYF9jY2NoaGdsbGtwcG9zc3N4d3d8fHyAf38Ejn4TjHsBk34ukH+AgH8DjoMSjoMBlYULlIUAmoYMmYYAlooLlooAmooLmowSk4UXl4gSm4wcm4wBl5IBnJEKnJESnJEUmZYbnZIqj4gmloYjm4wrm4w1mosnnZI1npIVoY4HoZQWo5ceopYnoI43oY4kopUpo5YlpZotpZosqJs0o5Q7pJU6qZY0pps7ppo0qZw9qp0YqKMxraM4qqJJmopsk4lCo5VIppdHrJlDqpxMq5xUq5xYqJlYsZ5kqZpurppGraFLraJUrqNbrqNJsqZcsqRYtKhVuK9Mt7VburJqraJjs6Vks6lrtqllua13uKl0u6xpvLR4vbN3wa1twbl9wrN3wrl6xMKEhISHiIeMjIyPkI+PkJCTlJSXmJeXmJibnJugn5+Frp2foJ+foKCFuquVvKuFvrSkpKSnqKesrKuwsK+usbC0tLO4uLe8vLvAv7+IwayIxLeDxLuMxLqWx7uky7yszr3AwL+JycSUzMObzcOYzMid0cSV0cyd08ue0tKizcOnzsi4x8Kj0sSr08Sk08yr1Muu2Mux1sq32cul1dGs1NGr2Na01dK02tO83NSz29q73du+4Ny83+PExMPIx8fIyMfMzMvQz87E3MzQ0M/C3dbD3trU1NPY19bS2NHZ2Nfc3Nvg397G4M3D4dXL5NXE4dzL5NzV5tXS5tvU6dzb693h4N/i7t7q8d3N5eLI5eXS5+PY5OPU6uPc7eTU6urc7evV6/Pd7PDd8PDk5OPo5+bi7+bp6Ofi7+rs6+rw7+797ejm8eXq8+Xk8ezr9Oz49eXx7vLl8vLs9fPp9vkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADuCdilAAAA9HRSTlP///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////8AGOD3FwAAGVpJREFUeNrsnXucZFV17797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" transform="matrix(0.9999 0 0 0.9999 231 315)">
+                                    </image>
+                                </svg>
+                            </h1>
+                            <div class="ip-loader">
+                                <svg class="ip-inner" width="60px" height="60px" viewBox="0 0 80 80">
+                                    <path class="ip-loader-circlebg" d="M40,10C57.351,10,71,23.649,71,40.5S57.351,71,40.5,71 S10,57.351,10,40.5S23.649,10,40.5,10z" />
+                                    <path id="ip-loader-circle" class="ip-loader-circle" d="M40,10C57.351,10,71,23.649,71,40.5S57.351,71,40.5,71 S10,57.351,10,40.5S23.649,10,40.5,10z" />
+                                </svg>
+                            </div>
+                        </header>
+                        <!-- top bar -->
+
+
+
+                    </div>*@
+                <!-- /container -->
+                @RenderBody()
+
+
+                <footer id="footer" style="direction: rtl; text-align: right;">
+                    <!--Footer-->
+                    <div class="footer-top">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="contactinfo" style="margin-top: 57px;">
+                                        <ul class="nav nav-pills" style="direction: ltr">
+                                            <li><a href="tel:+984432256020">044 - 32256020 <i class="fa fa-phone"></i></a></li>
+                                            <li><a href="mailto:Info@gtop.com?Subject=Hello%20again">Info@gtop.com <i class="fa fa-envelope"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="companyinfo">
+                                        <h2>۷ روز هفته، ۲۴ ساعته پاسخگوی شما هستیم.</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="footer-widget">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="single-widget">
+                                                <h2>ما را در شبکه های اجتماعی دنبال کنید</h2>
+                                                <div class="social-icons">
+                                                    <ul class="nav nav-pills nav-stacked">
+                                                        <li><a href="https://instagram.com/gplusplus.co/"><i class="fa fa-instagram"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="single-widget">
+                                        <h2>راهنمای امتیاز بندی جوایز فروشگاه G&G</h2>
+                                        <ul class="nav nav-pills nav-stacked">
+                                            <li><a href="/UserManual/NormalGifts">جوایز عادی</a></li>
+                                            <li><a href="/UserManual/BoronzeGifts">جوایز برنزی</a></li>
+                                            <li><a href="/UserManual/SilverGifts">جوایز نقره ایی</a></li>
+                                            <li><a href="/UserManual/GoldGifts">جوایز طلایی</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="single-widget">
+                                        <h2>راهنمای خرید از فروشگاه G&G</h2>
+                                        <ul class="nav nav-pills nav-stacked">
+                                            <li><a href="/UserManual/GetGift">چطور کالای مورد نظرم را انتخاب کنم؟</a></li>
+                                            <li><a href="/UserManual/GiftDelivery">چطور سفارش برای من ارسال می شود؟</a></li>
+                                            <li><a href="/UserManual/PaymentTerms">آیا هزینه ایی بابت خرید کالا باید پرداخت کنم؟</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="footer-bottom" style="direction: ltr; text-align: center">
+                        <div class="container">
+                            <div class="row">
+                                <p><span><a href="http://www.gtopmarketing.ir">G&G © (2015)</a></span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                </footer>
+                <!--/Footer-->
+                @*    <script src="~/Content/HomeContentUnAuth/js/classie.js"></script>
+                    <script src="~/Content/HomeContentUnAuth/js/pathLoader.js"></script>
+                    <script src="~/Content/HomeContentUnAuth/js/main.js"></script>*@
+
+                <script src="~/Content/HomeContent/js/jquery.js"></script>
+                <script src="~/Content/HomeContent/js/bootstrap.min.js"></script>
+                <script src="~/Content/HomeContent/js/jquery.scrollUp.min.js"></script>
+                <script src="~/Content/HomeContent/js/price-range.js"></script>
+                <script src="~/Content/HomeContent/js/jquery.prettyPhoto.js"></script>
+                <script src="~/Content/HomeContent/js/main.js"></script>
+</body>
+</html>

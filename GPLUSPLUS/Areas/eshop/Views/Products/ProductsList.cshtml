@@ -1,0 +1,719 @@
+﻿@model PagedList.IPagedList<GPLUSPLUS.Models.Product>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "لیست کالاهای GPLUSPLUS";
+    var HeaderClass = "Normal";
+    if (@ViewBag.ProductScoreBase == "جوایز عادی")
+    {
+        HeaderClass = "Normal";
+    }
+    else if (@ViewBag.ProductScoreBase == "جوایز برنزی")
+    {
+        HeaderClass = "Boronz";
+    }
+    else if (@ViewBag.ProductScoreBase == "جوایز نقره ایی")
+    {
+        HeaderClass = "Silver";
+    }
+    else if (@ViewBag.ProductScoreBase == "جوایز طلایی")
+    {
+        HeaderClass = "Gold";
+    }
+}
+
+	<section id="advertisement">
+		<div class="container">
+		   <!-- Title -->
+    <div class="row @HeaderClass" style=" font-family: 'B Koodak','B Nazanin',Arial; -moz-border-radius: 50px 50px 0px 0px; -webkit-border-radius: 50px 50px 0px 0px; border-radius: 50px 50px 0px 0px;">
+        <div class="col-lg-12">
+            <div style="direction:rtl;text-align:center">
+            <h3>@ViewBag.ProductScoreBase</h3>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+    <!-- Title -->
+
+    <div class="row" style="background-color:#dddcdc; font-family: 'B Koodak','B Nazanin',Arial, 'DejaVu Sans', 'Liberation Sans', Freesans, sans-serif;">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                @using (Html.BeginForm("ProductsList", "Products", new { ScoreBase = @ViewBag.ScoreBaseParam, Category = @ViewBag.CatBaseParam, sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter }))
+                {
+                    <style>
+                        #SearchBoxTable {
+                            background-color: white;
+                            border: 1px solid white;
+                            -moz-border-radius: 2px;
+                            -webkit-border-radius: 2px;
+                            border-radius: 2px;
+                            margin-top: 15px;
+                            margin-bottom: 15px;
+                            display: table;
+                            width: 100%;
+                        }
+
+                        #SearchBoxButton {
+                            display: table-cell;
+                        }
+
+                            #SearchBoxButton:focus {
+                                outline: none;
+                            }
+
+                            #SearchBoxButton:hover {
+                                background-color: red;
+                            }
+
+                        #SearchBox {
+                            direction: rtl;
+                            border: none;
+                            width: 100%;
+                        }
+
+                            #SearchBox:focus {
+                                outline: none;
+                            }
+
+                        #sreachBoxSpan {
+                            display: table-cell;
+                            width: 100%;
+                            padding: 0px 10px;
+                        }
+
+                        #SortingBoxTable {
+                            direction: rtl;
+                            display: table;
+                            width: 100%;
+                        }
+
+                        #SortingBoxLabel {
+                            display: table-cell;
+                        }
+
+                        #SortingBoxType {
+                            display: table-cell;
+                            width: 50%;
+                            padding: 0px 10px;
+                        }
+
+                        #SortingBoxRole {
+                            display: table-cell;
+                            width: 50%;
+                            padding: 0px 10px;
+                        }
+                    </style>
+                    <div id="SearchBoxTable">
+                        <input type="image" id="SearchBoxButton" src="~/images/active-search-min.png" alt="Submit" width="15" height="15" />
+                        <span id="sreachBoxSpan">@Html.TextBox("SearchString", null, new { @placeholder = "جستجو...", Id = "SearchBox" })
+                        </span>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="row" style="margin-bottom: 15px; color: #7a7a7a">
+            <div class="col-md-4 col-md-offset-4">
+                <div id="SortingBoxTable">
+                    @Html.Label("مرتب سازی بر اساس  ", new { Id = "SortingBoxLabel" })
+                    @Html.DropDownList("SortBase", (IEnumerable<SelectListItem>)@ViewBag.SortBaseList, new { Id = "SortingBoxType", @class = "selectpicker" })
+                    @Html.DropDownList("SortType", (IEnumerable<SelectListItem>)@ViewBag.SortTypeList, new { Id = "SortingBoxRole" })
+
+                </div>
+            </div>
+
+            @Html.ActionLink("بر اساس نام کاهشی", "ProductsList", "Products", new { ScoreBase = @ViewBag.ScoreBaseParam, Category = @ViewBag.CatBaseParam, sortOrder = "name_desc", currentFilter = ViewBag.CurrentFilter }, new { Id = "NameBaseLinkDec", @style = "display:none" })
+            @Html.ActionLink("بر اساس نام صعودی", "ProductsList", "Products", new { ScoreBase = @ViewBag.ScoreBaseParam, Category = @ViewBag.CatBaseParam, sortOrder = "", currentFilter = ViewBag.CurrentFilter }, new { Id = "NameBaseLinkAsc", @style = "display:none" })
+
+
+            @Html.ActionLink("بر اساس امتیاز کاهشی", "ProductsList", "Products", new { ScoreBase = @ViewBag.ScoreBaseParam, Category = @ViewBag.CatBaseParam, sortOrder = "score_desc", currentFilter = ViewBag.CurrentFilter }, new { Id = "ScoreBaseLinkDec", @style = "display:none" })
+            @Html.ActionLink("بر اساس امتیاز صعودی", "ProductsList", "Products", new { ScoreBase = @ViewBag.ScoreBaseParam, Category = @ViewBag.CatBaseParam, sortOrder = "Score", currentFilter = ViewBag.CurrentFilter }, new { Id = "ScoreBaseLinkAsc", @style = "display:none" })
+
+        </div>
+        <div class="row" style="margin-bottom: 15px; color: lightblue">
+            <div class="col-sm-12">
+                <div id="SortingProductLoading" style="display: none; text-align: center">
+                    <img src="/Images/ajax-loader.gif" style="width:32px;height:auto">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+		</div>
+	</section>
+
+ <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3 col-sm-push-9">
+               @Html.Action("ProductTypesList", "Products")
+                </div>
+
+                <div class="col-sm-9 col-sm-pull-3 padding-right" style="direction: rtl; text-align: right">
+ 
+                    <div class="features_items">
+                        <!--features_items-->
+                        <h2 class="title text-center">@ViewBag.ProductCategoryBase</h2>
+                            @if (Request.IsAuthenticated)
+                            {
+                                foreach (var q in Model)
+                                {
+                                    if (q.ProductImages.Count() == 0)
+                                    {
+                                        break;
+                                    }
+                                    var ScoreClass = "Normal";
+                                    if (q.P_ScoreCost <= 1000)
+                                    {
+                                        ScoreClass = "Normal";
+                                    }
+                                    else if (q.P_ScoreCost > 1000 && q.P_ScoreCost <= 5000)
+                                    {
+                                        ScoreClass = "Boronz";
+                                    }
+                                    else if (q.P_ScoreCost > 5000 && q.P_ScoreCost <= 15000)
+                                    {
+                                        ScoreClass = "Silver";
+                                    }
+                                    else if (q.P_ScoreCost > 15000)
+                                    {
+                                        ScoreClass = "Gold";
+                                    }
+                            
+                            <div class="col-sm-4">
+                                <div class="product-image-wrapper">
+                                    <div class="single-products">
+                                        <div class="productinfo text-center">
+                                            <img src="data:image;base64,@System.Convert.ToBase64String(q.ProductImages.FirstOrDefault(u => u.F_P_ID == q.P_ID).PI_Thumb)" alt="" class="img-responsive center-block" style="width: auto; height:150px"/>
+                                            <h2>@q.P_Cost تومان</h2>
+                                            <p style="direction: rtl; white-space: nowrap; width: 95%; overflow: hidden; -ms-text-overflow: ellipsis; -o-text-overflow: ellipsis; text-overflow: ellipsis; text-align: center">
+                                                @q.P_Brand - @q.P_ModelName
+                                            </p>
+                                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>دریافت</a>
+                                        </div>
+                                        <div class="product-overlay">
+                                            <div class="overlay-content @ScoreClass">
+                                                <h2>@q.P_Cost تومان</h2>
+                                                <p style="direction: rtl; white-space: nowrap; width: 95%; overflow: hidden; -ms-text-overflow: ellipsis; -o-text-overflow: ellipsis; text-overflow: ellipsis; text-align: center">
+                                                    @q.P_Brand - @q.P_ModelName
+                                                </p>
+                                                <a href="#openModalbuyProduct" id="ProductBuy_@q.P_ID" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>دریافت</a>
+                                                <a href="#openModal" id="Product_@q.P_ID" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>توضیحات بیشتر</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                                }
+                            }
+                            else
+                            {
+                                foreach (var q in Model)
+                                {
+                                    if (q.ProductImages.Count() == 0)
+                                    {
+                                        break;
+                                    }
+                                    string ScoreClass = "Normal";
+                                    if (q.P_ScoreCost <= 1000)
+                                    {
+                                        ScoreClass = "Normal";
+                                    }
+                                    else if (q.P_ScoreCost > 1000 && q.P_ScoreCost <= 5000)
+                                    {
+                                        ScoreClass = "Boronz";
+                                    }
+                                    else if (q.P_ScoreCost > 5000 && q.P_ScoreCost <= 15000)
+                                    {
+                                        ScoreClass = "Silver";
+                                    }
+                                    else if (q.P_ScoreCost > 15000)
+                                    {
+                                        ScoreClass = "Gold";
+                                    }
+                            
+                            <div class="col-sm-4">
+                                <div class="product-image-wrapper">
+                                    <div class="single-products">
+                                        <div class="productinfo text-center">
+                                            <img src="data:image;base64,@System.Convert.ToBase64String(q.ProductImages.FirstOrDefault(u => u.F_P_ID == q.P_ID).PI_Thumb)" alt="" class="img-responsive center-block" style="width: auto; height:150px"/>
+                                            <h2>@q.P_Cost  تومان</h2>
+                                            <p style="direction: rtl; white-space: nowrap; width: 95%; overflow: hidden; -ms-text-overflow: ellipsis; -o-text-overflow: ellipsis; text-overflow: ellipsis; text-align: center">
+                                                @q.P_Brand - @q.P_ModelName
+                                            </p>
+                                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>دریافت</a>
+                                        </div>
+                                        <div class="product-overlay">
+                                            <div class="overlay-content @ScoreClass">
+                                                <h2>@q.P_Cost تومان</h2>
+                                                <p style="direction: rtl; white-space: nowrap; width: 95%; overflow: hidden; -ms-text-overflow: ellipsis; -o-text-overflow: ellipsis; text-overflow: ellipsis; text-align: center">
+                                                    @q.P_Brand - @q.P_ModelName
+                                                </p>
+                                                <a href="#No_openModalbuyProduct"  id="No_ProductBuy_@q.P_ID" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>دریافت</a>
+                                                <a href="#openModal" id="No_Product_@q.P_ID" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>توضیحات بیشتر</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                                }
+
+                            }
+                   
+                         <br />
+                        <div class="row"><div class="col-sm-12">
+					<div  style="text-align:center;direction:ltr">		 
+    صفحه @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) از @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("ProductsList", "Products",
+    new { ScoreBase = @ViewBag.ScoreBaseParam, Category = @ViewBag.CatBaseParam, page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+                        </div>
+                            </div></div>
+					</div><!--features_items-->
+                    </div>
+                    <!--features_items-->
+
+              
+                </div>
+            </div>
+    </section>
+
+
+
+
+<!-- MOdal !-->
+
+<style>
+    .mynewmodalist {
+        position: fixed;
+        font-family: Arial, Helvetica, sans-serif;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: rgba(0,0,0,0.8);
+        z-index: 99999;
+        opacity: 0;
+        -webkit-transition: opacity 400ms ease-in;
+        -moz-transition: opacity 400ms ease-in;
+        transition: opacity 400ms ease-in;
+        pointer-events: none;
+    }
+
+        .mynewmodalist:target {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .mynewmodalist > div {
+            width: 100%;
+            position: relative;
+            margin: 10% auto;
+            padding: 5px 20px 13px 20px;
+            border-radius: 10px;
+            background: #fff;
+            background: -moz-linear-gradient(#fff, #999);
+            background: -webkit-linear-gradient(#fff, #999);
+            background: -o-linear-gradient(#fff, #999);
+            height: 70%;
+        }
+
+    .close {
+        background: #606061;
+        color: #FFFFFF;
+        line-height: 25px;
+        position: absolute;
+        right: -12px;
+        text-align: center;
+        top: -10px;
+        width: 24px;
+        text-decoration: none;
+        font-weight: bold;
+        -webkit-border-radius: 12px;
+        -moz-border-radius: 12px;
+        border-radius: 12px;
+        -moz-box-shadow: 1px 1px 3px #000;
+        -webkit-box-shadow: 1px 1px 3px #000;
+        box-shadow: 1px 1px 3px #000;
+    }
+
+        .close:hover {
+            background: #00d9ff;
+        }
+
+    .mdd > img {
+        height: inherit;
+    }
+</style>
+
+<div class="container mynewmodalist " id="openModal">
+    <!-- Title -->
+    <div class="row" style="overflow: auto">
+        <div class="col-lg-12" style="height: inherit;">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div id="openModalDesc"  style="direction:rtl;text-align:center">
+                        <a href="#close" title="Close" class="close">X</a>
+                        <h2>اطلاعات بیشتر</h2>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12" style="direction:rtl;text-align:center">
+                    <div id="ModalDialog_LoadingProduct">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-8">
+                    <div id="ModalDialogDescimage">
+                    </div>
+                </div>
+                <div class="col-sm-4" style="direction: rtl; text-align: right">
+
+                    <div class="row" style="border-bottom: 3px solid white; background-color: #3b3c3c">
+                        <div class="col-sm-4 col-sm-push-8" style="background-color: #3b3c3c; color: white">
+                            <div id="ModalDialogDesc_name_Tittle">
+                                <p>نام </p>
+                            </div>
+                        </div>
+                        <div class="col-sm-8 col-sm-pull-4" style="background-color: #b8b8b8; color: black">
+                            <div id="ModalDialogDesc_name">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row" style="border-bottom: 3px solid white; background-color: #3b3c3c">
+                        <div class="col-sm-4 col-sm-push-8" style="background-color: #3b3c3c; color: white">
+                            <div id="ModalDialogDesc_Brand_Tittle">
+                                <p>برند</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-8 col-sm-pull-4" style="background-color: #b8b8b8; color: black">
+                            <div id="ModalDialogDesc_Brand">
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="row" style="border-bottom: 3px solid white; background-color: #3b3c3c">
+                        <div class="col-sm-4 col-sm-push-8" style="background-color: #3b3c3c; color: white">
+                            <div id="ModalDialogDesc_Modelname_Tittle">
+                                <p>مدل </p>
+                            </div>
+                        </div>
+                        <div class="col-sm-8 col-sm-pull-4" style="background-color: #b8b8b8; color: black">
+                            <div id="ModalDialogDesc_Modelname">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row" style="border-bottom: 3px solid white; background-color: #3b3c3c">
+                        <div class="col-sm-4 col-sm-push-8" style="background-color: #3b3c3c; color: white">
+                            <div id="ModalDialogDesc_Desc_Tittle">
+                                <p>جزییات</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-8 col-sm-pull-4" style="background-color: #b8b8b8; color: black">
+                            <div id="ModalDialogDesc_Desc">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row" style="border-bottom: 3px solid white; background-color: #3b3c3c">
+                        <div class="col-sm-4 col-sm-push-8" style="background-color: #3b3c3c; color: white">
+                            <div id="ModalDialogDesc_Score_Tittle">
+                                <p>امتیاز لازم</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-8 col-sm-pull-4" style="background-color: #b8b8b8; color: black">
+                            <div id="ModalDialogDesc_Score">
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+<div class="container mynewmodalist " id="openModalbuyProduct">
+    <!-- Title -->
+    <div class="row" style="overflow: auto">
+        <div class="col-lg-12" style="height: inherit; direction: rtl;text-align:center">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div id="openModalDescbuyProduct">
+                        <a href="#close" title="Close" class="close">X</a>
+                        <h2>دریافت</h2>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div id="ModalDialog_LoadingProductBuy">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row" style="margin-top: 30px; margin-bottom: 30px">
+                <div class="col-lg-12">
+                    <div id="ModalDialogBuy_status_Pic">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="row" style="border-bottom: 3px solid white; background-color: #3b3c3c">
+                    <div class="col-sm-4 col-sm-push-8" style="background-color: #3b3c3c; color: white">
+                        <div id="ModalDialogBuy_status_Tittle">
+                            <p>وضعیت </p>
+                        </div>
+                    </div>
+                    <div class="col-sm-8 col-sm-pull-4" style="background-color: #b8b8b8; color: black">
+                        <div id="ModalDialogBuy_Status">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row" style="border-bottom: 3px solid white; background-color: #3b3c3c">
+                    <div class="col-sm-4 col-sm-push-8" style="background-color: #3b3c3c; color: white">
+                        <div id="ModalDialogBuy_yourScore_Tittle">
+                        </div>
+                    </div>
+                    <div class="col-sm-8 col-sm-pull-4" style="background-color: #b8b8b8; color: black">
+                        <div id="ModalDialogBuy_yourScore">
+                        </div>
+                    </div>
+
+                </div>
+                            <div class="row" >
+                <div class="col-sm-12" style="margin-top: 15px; text-align: center">
+                    <div id="ModalDialogBuy_Link">
+                    </div>
+                </div>
+            </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+<div class="container mynewmodalist " id="No_openModalbuyProduct">
+    <!-- Title -->
+    <div class="row" style="overflow: auto;">
+        <div class="col-lg-12" style="height: inherit;">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div id="No_openModalDescbuyProduct" style="direction:rtl;text-align:center">
+                        <a href="#close" title="Close" class="close">X</a>
+                        <h2>شما وارد سایت نشده اید .</h2>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row" >
+                <div class="col-lg-12"  style="direction:rtl;text-align:center">
+                    <img src="~/Content/gtopcontent/img/slider/gslide03.png" alt="" />
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-lg-12"  style="direction:rtl;text-align:center">
+                    <a href="/account/login" class="btn btn-primary">ورود / ثبت نام</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+@Scripts.Render("~/bundles/jquery")
+ @Scripts.Render("~/bundles/jqueryval")
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("a[id^='ProductBuy_']").click(function () {
+            var temp = $(this).attr('id').split("_");
+            var myid = temp[1];
+            $("#ModalDialog_LoadingProductBuy").append('  <img src="/Images/ajax-loader List.gif">');
+            $("#ModalDialogBuy_Status").empty();
+            $("#ModalDialogBuy_yourScore").empty();
+            $("#ModalDialogBuy_yourScore_Tittle").empty();
+            $("#ModalDialogBuy_status_Pic").empty();
+            $("#ModalDialogBuy_Link").empty();
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetProductBuy", "Products")', // we are calling json method
+                dataType: 'json',
+                data: "id=" + myid,
+                success:
+                     function (response) {
+                         if (response[0] == "OK") {
+                             $("#ModalDialogBuy_status_Pic").append('  <img src="/Images/happy.png">');
+                             $("#ModalDialogBuy_Status").append('<p>' + "تبریک! شما قادر به دریافت رایگان این محصول از GPLUS هستید." + '</p>');
+                             $("#ModalDialogBuy_yourScore_Tittle").append('<p>' + "امتیاز شما بعد از دریافت : " + '</p>');
+                             $("#ModalDialogBuy_yourScore").append('<p>' + response[1] + '</p>');
+                             $("#ModalDialogBuy_Link").append('<a href="BuyProduct?product=' + myid + '" class="btn btn-success" role="button">' + "ادامه دریافت" + '</a>');
+
+                             $("#ModalDialog_LoadingProductBuy").empty();
+                         }
+                         else if (response[0] = "NOK") {
+                             $("#ModalDialogBuy_status_Pic").append('  <img src="/Images/sorry.png">');
+                             $("#ModalDialogBuy_Status").append('<p>' + "متاسفیم! امتیاز شما جهت دریافت رایگان این کالا کافی نمی باشد." + '</p>');
+                             $("#ModalDialogBuy_yourScore_Tittle").append('<p>' + "مقدار امتیاز لازم : " + '</p>');
+                             $("#ModalDialogBuy_yourScore").append('<p>' + response[1] + '</p>');
+                             $("#ModalDialogBuy_Link").append('<a href="#" class="btn btn-danger" role="button">' + "بازگشت" + '</a>');
+                             $("#ModalDialog_LoadingProductBuy").empty();
+                         }
+                     },
+                error: function (ex) {
+                    alert('Failed to retrieve states.' + ex);
+                }
+            });
+
+           });
+        //Dropdownlist Selectedchange event
+        $("a[id^='Product_']").click(function () {
+            var temp = $(this).attr('id').split("_");
+            var myid = temp[1];
+            $("#ModalDialog_LoadingProduct").append('  <img src="/Images/ajax-loader List.gif">');
+            $("#ModalDialogDesc_name").empty();
+            $("#ModalDialogDesc_Modelname").empty();
+            $("#ModalDialogDesc_Brand").empty();
+            $("#ModalDialogDesc_Desc").empty();
+            $("#ModalDialogDesc_Score").empty();
+            $("#ModalDialogDescimage").empty();
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetProductDesc", "Products")', // we are calling json method
+                dataType: 'json',
+                data: "id=" + myid,
+                success:
+                     function (response) {
+                         $("#ModalDialogDesc_name").append('<p>' + response[0] + '</p>');
+                         $("#ModalDialogDesc_Brand").append('<p>' + response[1] + '</p>');
+                         $("#ModalDialogDesc_Modelname").append('<p>' + response[2] + '</p>');
+                         $("#ModalDialogDesc_Desc").append('<p>' + response[3] + '</p>');
+                         $("#ModalDialogDesc_Score").append('<p>' + response[4] + '</p>');
+                         //$.each(response, function (i, resp) {
+                         //    $("#ModalDialogDesc").append('<p>' + resp + '</p>');
+                         //}); // here we are adding option for States
+                         for (var i = 5; i < response.length; i++) {
+                             $("#ModalDialogDescimage").append('  <img  src="data:image;base64,' + response[i] + '" class="img-responsive"  alt="hi">');
+                         }
+                         $("#ModalDialog_LoadingProduct").empty();
+                     },
+                error: function (ex) {
+                    alert('Failed to retrieve states.' + ex);
+                }
+            });
+
+        });
+
+
+
+        $("a[id^='No_Product_']").click(function () {
+            var temp = $(this).attr('id').split("_");
+            var myid = temp[2];
+            $("#ModalDialog_LoadingProduct").append('  <img src="/Images/ajax-loader List.gif">');
+            $("#ModalDialogDesc_Modelname").empty();
+            $("#ModalDialogDesc_name").empty();
+            $("#ModalDialogDesc_Brand").empty();
+            $("#ModalDialogDesc_Desc").empty();
+            $("#ModalDialogDesc_Score").empty();
+            $("#ModalDialogDescimage").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetProductDesc", "Products")', // we are calling json method
+                dataType: 'json',
+                data: "id=" + myid,
+                success:
+                     function (response) {
+                         $("#ModalDialogDesc_name").append('<p>' + response[0] + '</p>');
+                         $("#ModalDialogDesc_Brand").append('<p>' + response[1] + '</p>');
+                         $("#ModalDialogDesc_Modelname").append('<p>' + response[2] + '</p>');
+                         $("#ModalDialogDesc_Desc").append('<p>' + response[3] + '</p>');
+                         $("#ModalDialogDesc_Score").append('<p>' + response[4] + '</p>');
+                         //$.each(response, function (i, resp) {
+                         //    $("#ModalDialogDesc").append('<p>' + resp + '</p>');
+                         //}); // here we are adding option for States
+                         for (var i = 5; i < response.length; i++) {
+                             $("#ModalDialogDescimage").append('  <img  src="data:image;base64,' + response[i] + '" class="img-responsive"  alt="hi">');
+                         }
+                         $("#ModalDialog_LoadingProduct").empty();
+
+                     },
+                error: function (ex) {
+                    alert('Failed to retrieve states.' + ex);
+                }
+            });
+
+        });
+
+
+
+
+        $('#SearchBox').focusin(
+function () {
+    $("#SearchBoxTable").css('border', '1px solid cyan');
+});
+        $('#SearchBox').focusout(
+        function () {
+            $("#SearchBoxTable").css('border', '1px solid white');
+        });
+
+
+        $('#SortingBoxType').change(function () {
+            $('#SortingProductLoading').css('display', '');
+            SelectActionLink();
+        });
+        $('#SortingBoxRole').change(function () {
+            $('#SortingProductLoading').css('display', '');
+            SelectActionLink();
+        });
+
+
+        function SelectActionLink() {
+            var SortBase = $('#SortingBoxType').val();
+            var SortRole = $('#SortingBoxRole').val();
+            if (SortBase == "Name" && SortRole == "Dec") {
+                $('#NameBaseLinkDec').get(0).click();
+            }
+            if (SortBase == "Name" && SortRole == "Asc") {
+                $('#NameBaseLinkAsc').get(0).click();
+            }
+            if (SortBase == "Score" && SortRole == "Dec") {
+                $('#ScoreBaseLinkDec').get(0).click();
+            }
+            if (SortBase == "Score" && SortRole == "Asc") {
+                $('#ScoreBaseLinkAsc').get(0).click();
+            }
+        };
+
+
+    });
+</script>

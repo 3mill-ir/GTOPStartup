@@ -1,0 +1,7 @@
+﻿@model GPLUSPLUS.Models.HomeModel
+
+@using (Html.BeginForm()) {
+
+      @Html.TextBoxFor(m => m.UserName, new { @placeholder = "شماره همراه" })
+      <input type="submit" value="ورود" name="submitValue" />
+}

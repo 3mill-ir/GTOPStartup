@@ -1,0 +1,46 @@
+﻿
+
+
+
+
+
+
+<div style="width: 100%; background: #827b00; -moz-border-radius: 10px 10px 10px 10px; -webkit-border-radius: 10px 10px 10px 10px; border-radius: 10px 10px 10px 10px; overflow: hidden; direction: rtl; text-align: center">
+    <div style="background: #406618; padding: 5px;">
+        <h2>کالاهای نزدیک به امتیاز شما</h2>
+
+    </div>
+    <div class="myPanel" style="padding-top: 10px; height: 330px;">
+        <div id="rotatescroll" style="margin: 0px auto">
+            <div class="viewport" style="margin: 0px auto">
+                <ul class="overview" style="margin: 0px auto">
+                    @{
+                        var ScoreHighproducts = (List<byte[]>)ViewBag.ScoreHighproducts;
+                    foreach (var q in ScoreHighproducts)
+                    { 
+                        <li><a href="http://www.baijs.com">
+                            <img src="data:image;base64,@System.Convert.ToBase64String(@q)" height="300" width="300"/></a></li>
+                    }
+                    }
+                </ul>
+            </div>
+
+            <div class="dot" style="margin: 0px auto"></div>
+            <div class="overlay" style="margin: 0px auto"></div>
+            <div class="thumb"  style="margin: 0px auto"></div>
+        </div>
+    </div>
+</div>
+
+
+<link rel="stylesheet" href="~/Content/HomeContentCircularSlider/css/tinycircleslider.css" type="text/css" media="screen" />
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<!-- build:js jquery.tinycircleslider.js -->
+<script src="~/Content/HomeContentCircularSlider/js/jquery.tinycircleslider.min.js"></script>
+<!-- /build -->
+<script type="text/javascript">
+    var jq = $.noConflict();
+    jq(document).ready(function () {
+        jq('#rotatescroll').tinycircleslider({ interval: true, dotsSnap: true, dotsHide: false });
+    });
+</script>

@@ -1,0 +1,160 @@
+﻿
+
+
+
+
+@Scripts.Render("~/bundles/jquerypercentage")
+@Styles.Render("~/Content/percentagecss")
+
+
+
+
+<div class="col-sm-4 col-md-4 myCol"  >
+    <div style="width: 100%; background: #00a99d; -moz-border-radius: 10px 10px 10px 10px; -webkit-border-radius: 10px 10px 10px 10px; border-radius: 10px 10px 10px 10px; overflow: hidden; direction: rtl; text-align: center">
+        <div style="background: #068980; padding: 5px;">
+            <h2>امتیاز شما در کل</h2>
+
+        </div>
+        <div class="myPanel" style="padding-top: 10px">
+            <div id="topLoader_Left">
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+    <script>
+        $(function () {
+            var $topLoader = $("#topLoader_Left").percentageLoader({
+                width: 256, height: 256, controllable: true, progress: '@ViewBag.PercentageScore', value: '@ViewBag.TotalScore', onProgressUpdate: function (val) {
+                    $topLoader.setValue(Math.round(val * 100.0));
+                }
+            });
+
+            var topLoaderRunning = false;
+
+            if (topLoaderRunning) {
+                return;
+            }
+            topLoaderRunning = true;
+            $topLoader.setProgress('@ViewBag.PercentageScore');
+                            $topLoader.setValue('@ViewBag.TotalScore');
+            var kb = parseFloat('@ViewBag.PercentageScore');
+            var totalKb = '@ViewBag.NewPercentageScore';
+
+            var animateFunc = function () {
+
+                $topLoader.setProgress(kb);
+                $topLoader.setValue('@ViewBag.NewTotalScore');
+
+                                if (kb < totalKb) {
+                                    kb += 0.00001;
+                                    setTimeout(animateFunc, 250);
+                                } else {
+                                    topLoaderRunning = false;
+                                }
+
+                            }
+
+            setTimeout(animateFunc, 250);
+
+
+        });
+      </script>
+
+
+
+</div>
+
+    <div class="col-sm-4 col-md-4 myCol"  >
+                    <div style="width: 100%; background: #39b54a; -moz-border-radius: 10px 10px 10px 10px; -webkit-border-radius: 10px 10px 10px 10px; border-radius: 10px 10px 10px 10px; overflow: hidden; direction: rtl; text-align: center">
+                        <div style="background: #007236; padding: 5px;">
+                            <h2>امتیاز قرعه کشی</h2>
+
+                        </div>
+                        <div class="myPanel" style="padding-top:10px;">
+                    <div class="myPanel" >
+                        <div class="wrap" style="margin-top:auto;margin-bottom:auto;">
+                            <div class="in" style="text-align:center;font-size:xx-large;">@ViewBag.LotteryScore</div>
+                        </div>
+
+
+                        @*<div style="width: 100%; background: #39b54a; -moz-border-radius: 10px 10px 10px 10px; -webkit-border-radius: 10px 10px 10px 10px; border-radius: 10px 10px 10px 10px; overflow: hidden; direction: rtl; text-align: center;margin-top:80px">
+                            <div style="background: #007236; padding: 5px;">
+                                <h2>امتیاز بنیاد کودک </h2>
+
+                            </div>
+                            <div>
+                                <div class="Scorewrap" style="margin-top:auto;margin-bottom:auto;">
+                                    <div class="Scorein" style="text-align:center;font-size:xx-large;">@ViewBag.BonyadKoodakScore </div>
+                                </div>
+                            </div>
+                        </div>*@
+                    </div>
+                        </div>
+                    </div>
+                </div>
+
+<div class="col-sm-4 col-md-4 myCol"  >
+    <div style="width: 100%; background: #f7941d; -moz-border-radius: 10px 10px 10px 10px; -webkit-border-radius: 10px 10px 10px 10px; border-radius: 10px 10px 10px 10px; overflow: hidden; direction: rtl; text-align: center">
+        <div style="background: #f26522; padding: 5px;">
+            <h2>امتیاز شما در جزء</h2>
+
+        </div>
+        <div class="myPanel" style="padding-top: 10px">
+            <div id="topLoader_Right">
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+    <script>
+        $(function () {
+            var $topLoader = $("#topLoader_Right").percentageLoader({
+                width: 256, height: 256, controllable: true, progress: '@ViewBag.PercentageScore_part', value: '@ViewBag.TotalScore', onProgressUpdate: function (val) {
+                    $topLoader.setValue(Math.round(val * 100.0));
+                }
+            });
+
+            var topLoaderRunning = false;
+
+            if (topLoaderRunning) {
+                return;
+            }
+            topLoaderRunning = true;
+            $topLoader.setProgress('@ViewBag.PercentageScore_part');
+                          $topLoader.setValue('@ViewBag.TotalScore');
+            var kb = parseFloat('@ViewBag.PercentageScore_part');
+            var totalKb = '@ViewBag.NewPercentageScore_part';
+
+            var animateFunc = function () {
+
+                $topLoader.setProgress(kb);
+                $topLoader.setValue('@ViewBag.NewTotalScore');
+
+                              if (kb < totalKb) {
+                                  kb += 0.001;
+                                  setTimeout(animateFunc, 250);
+                              } else {
+                                  topLoaderRunning = false;
+                              }
+
+                          }
+
+            setTimeout(animateFunc, 250);
+
+
+        });
+      </script>
+
+</div>
+
+                <input type="hidden" value="@ViewBag.MyCodeNumberResult" id="MyCodeNumberResult" />
+                
+
+

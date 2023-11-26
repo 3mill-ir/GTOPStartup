@@ -1,0 +1,286 @@
+﻿@model GPLUSPLUS.Models.ProductCustomDetails
+
+@{
+    ViewBag.Title = "جزییات محصول";
+    ViewBag.P_Category = Model.P_Category;
+    ViewBag.P_ID = Model.P_ID;
+}
+<style>
+    .datagrid {
+      margin:auto;
+   margin:30px auto 20px auto;
+  font-family:B Koodak,Arial, sans-serif;
+    direction:rtl;
+    width:50%;
+    }
+
+    .Actionlink_style {
+    color:blue;
+    font: normal 12px/150% ,B Koodak,Arial, sans-serif;
+    }
+     .Actionlink_style:hover {
+    color:orange;
+    text-decoration:underline;
+    }
+    .datagrid table { border-collapse: collapse; text-align: center; width: 100%; } 
+    .datagrid {font: normal 12px/150% ,B Koodak,Arial, sans-serif; background: #fff; overflow: hidden; border: 1px solid #36752D; -webkit-border-radius: 7px; -moz-border-radius: 7px; border-radius: 7px; }
+    .datagrid table td, .datagrid table th { padding: 3px 2px;text-align:center;width:auto; }
+    .datagrid table thead th {background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #36752D), color-stop(1, #275420) );background:-moz-linear-gradient( center top, #36752D 5%, #275420 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#36752D', endColorstr='#275420');background-color:#36752D; color:#FFFFFF; font-size: 18px; font-weight: bold; border-left: 1px solid #36752D; } 
+    .datagrid table thead th:first-child { border: none; }
+    .datagrid table tbody td { color: #275420; border-left: 1px solid #C6FFC2;font-size: 12px;border-bottom: 1px solid #E1EEF4;font-weight: normal; }
+    .datagrid table tbody .alt td { background: #DFFFDE; color: #275420; }
+    .datagrid table tbody td:first-child { border-left: none; }
+    
+    .datagrid table tfoot td div { border: 1px solid #36752D;background: #DFFFDE;} 
+    .datagrid table tfoot td { padding: 0; font-size: 12px } 
+    .datagrid table tfoot td div{ padding: 2px; }
+    .datagrid table tfoot td ul { margin: 0; padding:0; list-style: none; text-align: right; }
+    .datagrid table tfoot  li { display: inline; }
+    .datagrid table tfoot li a { text-decoration: none; display: inline-block;  padding: 2px 8px; margin: 1px;color: #FFFFFF;border: 1px solid #36752D;-webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #36752D), color-stop(1, #275420) );background:-moz-linear-gradient( center top, #36752D 5%, #275420 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#36752D', endColorstr='#275420');background-color:#36752D; }
+    .datagrid table tfoot ul.active, .datagrid table tfoot ul a:hover { text-decoration: none;border-color: #275420; color: #FFFFFF; background: none; background-color:#36752D;}
+    div.dhtmlx_window_active, div.dhx_modal_cover_dv { position: fixed !important; }
+
+        .button_link {
+            font-family:B Koodak,Arial, sans-serif;
+             font: normal 12px/150% ,B Koodak,Arial, sans-serif;
+          margin:auto;
+    padding: 10px 15px;
+    background-color:#36752D;
+    color: #FFF;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    border: solid 1px #20538D;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+    -webkit-transition-duration: 0.2s;
+    -moz-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+    width:150px;
+
+}
+.button_link:hover {
+    background: #28d288;
+    border: solid 1px #2A4E77;
+    text-decoration: none;
+   color:white;
+}
+.button_link:active {
+    -webkit-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+    -moz-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+    background: #2E5481;
+    border: solid 1px #203E5F;
+}
+
+	
+.mydeleteButton {
+     font-family:B Koodak,Arial, sans-serif;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #cc3737), color-stop(1, #c73030));
+	background:-moz-linear-gradient(top, #cc3737 5%, #c73030 100%);
+	background:-webkit-linear-gradient(top, #cc3737 5%, #c73030 100%);
+	background:-o-linear-gradient(top, #cc3737 5%, #c73030 100%);
+	background:-ms-linear-gradient(top, #cc3737 5%, #c73030 100%);
+	background:linear-gradient(to bottom, #cc3737 5%, #c73030 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#cc3737', endColorstr='#c73030',GradientType=0);
+	background-color:#cc3737;
+	-moz-border-radius:28px;
+	-webkit-border-radius:28px;
+	border-radius:28px;
+	border:1px solid #18ab29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	
+	padding:6px 14px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+}
+.mydeleteButton:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #c73030), color-stop(1, #cc3737));
+	background:-moz-linear-gradient(top, #c73030 5%, #cc3737 100%);
+	background:-webkit-linear-gradient(top, #c73030 5%, #cc3737 100%);
+	background:-o-linear-gradient(top, #c73030 5%, #cc3737 100%);
+	background:-ms-linear-gradient(top, #c73030 5%, #cc3737 100%);
+	background:linear-gradient(to bottom, #c73030 5%, #cc3737 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#c73030', endColorstr='#cc3737',GradientType=0);
+	background-color:#c73030;
+}
+.mydeleteButton:active {
+	position:relative;
+	top:1px;
+}
+
+</style>
+ <div style="padding-top:80px"></div>
+@using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+ @Html.AntiForgeryToken()
+ @Html.ValidationSummary(true)
+    <div class="datagrid">
+<table>
+    <thead>
+        <tr>
+         <th colspan="2">
+              @Html.Label("جزییات محصول")
+        </th>
+        </tr>
+    </thead>
+  <tbody>
+        <tr>
+          <td>
+             <div class="editor-label">
+                 @Html.Label("شناسه محصول")
+             </div>
+          </td>
+          <td>
+            <div class="editor-field">
+              @Html.DisplayFor(model => model.P_ID)
+            </div>
+          </td>
+      </tr>
+           <tr>
+          <td>
+             <div class="editor-label">
+              @Html.Label("نام محصول")
+             </div>
+          </td>
+          <td>
+            <div class="editor-field">
+             @Html.DisplayFor(model => model.P_Name)
+            </div>
+          </td>
+      </tr>
+        <tr>
+          <td>
+             <div class="editor-label">
+              @Html.Label("مدل محصول")
+             </div>
+          </td>
+          <td>
+            <div class="editor-field">
+             @Html.DisplayFor(model => model.P_ModelName)
+            </div>
+          </td>
+      </tr>
+        <tr>
+          <td>
+           <div class="editor-label">
+           @Html.Label("برند")
+           </div>
+          </td>
+          <td>
+            <div class="editor-field">
+            @Html.DisplayFor(model => model.P_Brand)
+            </div>
+          </td>
+      </tr>
+        <tr>
+          <td>
+               <div class="editor-label">
+            @Html.Label("دسته بندی")
+        </div>
+        
+          </td>
+          <td>
+           <div class="editor-field">
+             @Html.DisplayFor(model => model.P_Category)
+        </div>
+          </td>
+      </tr>
+        <tr>
+          <td>
+          <div class="editor-label">
+           @Html.Label("قیمت")
+           </div>
+          </td>
+          <td>
+            <div class="editor-field">
+            @Html.DisplayFor(model => model.P_Cost)
+        </div>
+          </td>
+      </tr>
+            <tr>
+          <td>
+          <div class="editor-label">
+           @Html.Label("امتیاز لازم")
+           </div>
+          </td>
+          <td>
+            <div class="editor-field">
+            @Html.DisplayFor(model => model.P_ScoreCost)
+        </div>
+          </td>
+      </tr>
+        <tr>
+          <td>
+            <div class="editor-label">
+            @Html.Label("توضیحات")
+            </div>
+          </td>
+          <td>
+            <div class="editor-field">
+         @Html.DisplayFor(model => model.P_Description)
+        </div>
+          </td>
+      </tr>
+      
+      
+      
+
+  </tbody>
+ 
+
+</table>
+    </div>
+
+  <div class="datagrid">
+<table>
+     <thead>
+        <tr>
+         <th colspan="2">
+              @Html.Label("لیست تصاویر محصول")
+        </th>
+        </tr>
+    </thead>
+    <tbody>
+         @for (var i = 0; i < Model.ImageThumb.Count();i++ )
+    {
+        <tr>
+            <td>
+                <img src="@Url.Content(Model.ImageThumb[i])"  />
+            </td>
+            <td>
+                @Html.ActionLink("حذف", "PicDelete", new { id = Model.ImageThumbID[i]}, new { @class = "mydeleteButton"}) 
+            </td>
+        </tr>
+    
+    } 
+         <tr>
+            <td>
+                <div style="margin-right:10px;">
+                @Html.TextBoxFor(model => model.PI_Image, new { type = "file" })
+                @Html.ValidationMessageFor(model => model.PI_Image)
+                </div>
+            </td>
+            <td>
+                <input class="button_link" type="submit" value="اضافه کردن عکس جدید" />
+            </td>
+        </tr>
+        </tbody>
+    </table>
+          </div>
+}
+
+<div class="datagrid" style="text-align:center;padding:10px;">
+    <div style="margin:10px;">
+    @Html.ActionLink("ویرایش", "ProductEdit", new { id=Model.P_ID},new { @class = "button_link"}) 
+    @Html.ActionLink("بازگشت به لیست", "ProductsList",new { /* id=Model.PrimaryKey */ },new { @class = "button_link"})
+        </div>
+</div>

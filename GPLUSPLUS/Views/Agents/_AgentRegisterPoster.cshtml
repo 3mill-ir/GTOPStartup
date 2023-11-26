@@ -1,0 +1,335 @@
+﻿@model GPLUSPLUS.Models.AgentRegister
+
+<style>
+    .datagrid {
+        margin: auto;
+        margin: 40px auto 40px auto;
+        font-family: B Koodak,Arial, sans-serif;
+        direction: rtl;
+        width: 50%;
+        border: 1px solid #ff9600;
+    }
+
+    .Actionlink_style {
+        color: blue;
+        font: normal 12px/150%,B Koodak,Arial, sans-serif;
+    }
+
+        .Actionlink_style:hover {
+            color: orange;
+            text-decoration: underline;
+        }
+
+    .datagrid table {
+        border-collapse: collapse;
+        text-align: center;
+        width: 100%;
+    }
+
+    .datagrid {
+        font: normal 12px/150%,B Koodak,Arial, sans-serif;
+        background: #fff;
+        overflow: hidden;
+        border: 2px solid #ff9600;
+        -webkit-border-radius: 7px;
+        -moz-border-radius: 7px;
+        border-radius: 7px;
+    }
+
+        .datagrid table td, .datagrid table th {
+            padding: 3px 2px;
+            text-align: center;
+            width: auto;
+        }
+
+        .datagrid table thead th {
+            background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #000), color-stop(1, #000) );
+            background: -moz-linear-gradient( center top, #36752D 5%, #275420 100% );
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#36752D', endColorstr='#275420');
+            background-color: black;
+            color: #ff9600;
+            font-size: 18px;
+            font-weight: bold;
+            border-left: 1px solid #36752D;
+        }
+
+            .datagrid table thead th:first-child {
+                border: none;
+            }
+
+        .datagrid table tbody td {
+            color: #000;
+            font-size: 12px;
+            border-bottom: 1px solid #E1EEF4;
+            font-weight: normal;
+        }
+
+        .datagrid table tbody .alt td {
+            background: #DFFFDE;
+            color: #8D8E8F;
+        }
+
+        .datagrid table tbody td:first-child {
+            border-left: none;
+        }
+
+        .datagrid table tfoot td div {
+            border: 1px solid #36752D;
+            background: #DFFFDE;
+        }
+
+        .datagrid table tfoot td {
+            padding: 0;
+            font-size: 12px;
+        }
+
+            .datagrid table tfoot td div {
+                padding: 2px;
+            }
+
+            .datagrid table tfoot td ul {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+                text-align: right;
+            }
+
+        .datagrid table tfoot li {
+            display: inline;
+        }
+
+            .datagrid table tfoot li a {
+                text-decoration: none;
+                display: inline-block;
+                padding: 2px 8px;
+                margin: 1px;
+                color: #FFFFFF;
+                border: 1px solid #36752D;
+                -webkit-border-radius: 3px;
+                -moz-border-radius: 3px;
+                border-radius: 3px;
+                background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #36752D), color-stop(1, #275420) );
+                background: -moz-linear-gradient( center top, #36752D 5%, #275420 100% );
+                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#36752D', endColorstr='#275420');
+                background-color: #36752D;
+            }
+
+        .datagrid table tfoot ul.active, .datagrid table tfoot ul a:hover {
+            text-decoration: none;
+            border-color: #275420;
+            color: #FFFFFF;
+            background: none;
+            background-color: #36752D;
+        }
+
+    div.dhtmlx_window_active, div.dhx_modal_cover_dv {
+        position: fixed !important;
+    }
+
+    .button_link {
+        font-family: B Koodak,Arial, sans-serif;
+        font: normal 12px/150%,B Koodak,Arial, sans-serif;
+        margin: auto;
+        padding: 10px 15px;
+        background-color: #000;
+        color: #FFF;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+        border: solid 1px #20538D;
+        text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
+        -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+        -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+        -webkit-transition-duration: 0.2s;
+        -moz-transition-duration: 0.2s;
+        transition-duration: 0.2s;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        width: 100px;
+    }
+
+        .button_link:hover {
+            background: #28d288;
+            border: solid 1px #2A4E77;
+            text-decoration: none;
+            color: white;
+        }
+
+        .button_link:active {
+            -webkit-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+            -moz-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+            box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+            background: #2E5481;
+            border: solid 1px #203E5F;
+        }
+
+    #tr1 {
+        background-color: lightgreen;
+    }
+</style>
+
+
+
+
+<div class="container" style="background-color: #cdcdcf; margin-top: 25px; -moz-border-radius: 50px; -webkit-border-radius: 50px; border-radius: 50px;">
+        <div class="row" >
+
+    <!-- Title -->
+    <div class="row" style="background-color: gray; -moz-border-radius: 50px 50px 0px 0px; -webkit-border-radius: 50px 50px 0px 0px; border-radius: 50px 50px 0px 0px;">
+           <div class="col-lg-12">
+            <h3 style="direction:rtl;text-align:center">   @Html.Label("پوستر طراحی شده برای مرکز طرف قرارداد")</h3>
+        </div>
+    </div>
+             <div class="row" style="background-color: #e4e4e7; -moz-border-radius: 0px 0px 50px 50px; -webkit-border-radius: 0px 0px 50px 50px; border-radius: 0px 0px 50px 50px;">
+           <div class="col-lg-12">
+            @using (Ajax.BeginForm("AgentRegisterSubmit", "Agents", new AjaxOptions
+{
+    HttpMethod = "Post",
+    InsertionMode = InsertionMode.Replace,
+    LoadingElementId = "AgentRegisterContractLoading",
+    UpdateTargetId = "AgentRegisterContractForm",
+    LoadingElementDuration = 100000,
+    OnSuccess = "OnEndGoTOAgentContract",
+
+}))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+  
+    @Html.HiddenFor(m => m.FirstName)
+    @Html.HiddenFor(m => m.LastName)
+    @Html.HiddenFor(m => m.Mobile)
+    @Html.HiddenFor(m => m.Price)
+    @Html.HiddenFor(m => m.ShopAddress)
+    @Html.HiddenFor(m => m.ShopCity)
+    @Html.HiddenFor(m => m.ShopDescription)
+    @Html.HiddenFor(m => m.ShopName)
+    @Html.HiddenFor(m => m.ShopPoster)
+    @Html.HiddenFor(m => m.ShopState)
+    @Html.HiddenFor(m => m.ShopTell)
+    @Html.HiddenFor(m => m.ShopType)
+    @Html.HiddenFor(m => m.AcceptBannerDesign)
+    @Html.HiddenFor(m => m.AcceptGPLUSCode)
+    @Html.HiddenFor(m => m.AcceptWebDesign)
+    @Html.HiddenFor(m => m.ShopQuotes)
+    @Html.HiddenFor(m => m.ShopQuotes_firstbox)
+    @Html.HiddenFor(m => m.ShopQuotes_secondbox)
+    @Html.HiddenFor(m => m.ShopQuotesfinal)
+     @Html.HiddenFor(m => m.AcceptInstagram)
+    @Html.HiddenFor(m => m.InstagramAddress)
+        @Html.HiddenFor(m => m.PersonalSiteAddress)
+       @Html.HiddenFor(m => m.ShopEmail)
+        @Html.HiddenFor(m => m.ShopFax)
+                <div style="text-align:center">
+                   <img src="data:image;base64,@System.Convert.ToBase64String(Model.ShopPoster)" class="img-responsive" />
+                    </div>
+                    <div style="text-align: center; padding-top: 5px; margin-bottom: 10px;margin-top:15px;">
+                        <button type="submit" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-ok"></span> ثبت نهایی</button>
+    </div>
+    <div id="AgentRegisterContractLoading" style="display: none; margin-left: auto; margin-right: auto; text-align: center;">
+        <img src="/Images/ajax-loader.gif">
+    </div>
+    
+}
+
+
+        </div>
+    </div>
+    </div>
+    </div>
+
+<div id="AgentRegisterContractForm">
+</div>
+
+
+
+@*@using (Ajax.BeginForm("AgentRegisterContract", "Agents", new AjaxOptions
+{
+    HttpMethod = "Post",
+    InsertionMode = InsertionMode.Replace,
+    LoadingElementId = "AgentRegisterContractLoading",
+    UpdateTargetId = "AgentRegisterContractForm",
+    LoadingElementDuration = 100000,
+    OnSuccess = "OnEndGoTOAgentContract",
+
+}))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+  
+    @Html.HiddenFor(m => m.FirstName)
+    @Html.HiddenFor(m => m.LastName)
+    @Html.HiddenFor(m => m.Mobile)
+    @Html.HiddenFor(m => m.Price)
+    @Html.HiddenFor(m => m.ShopAddress)
+    @Html.HiddenFor(m => m.ShopCity)
+    @Html.HiddenFor(m => m.ShopDescription)
+    @Html.HiddenFor(m => m.ShopName)
+    @Html.HiddenFor(m => m.ShopPoster)
+    @Html.HiddenFor(m => m.ShopState)
+    @Html.HiddenFor(m => m.ShopTell)
+    @Html.HiddenFor(m => m.ShopType)
+    @Html.HiddenFor(m => m.AcceptBannerDesign)
+    @Html.HiddenFor(m => m.AcceptGPLUSCode)
+    @Html.HiddenFor(m => m.AcceptWebDesign)
+    @Html.HiddenFor(m => m.ShopQuotes)
+    @Html.HiddenFor(m => m.ShopQuotes_firstbox)
+    @Html.HiddenFor(m => m.ShopQuotes_secondbox)
+    @Html.HiddenFor(m => m.ShopQuotesfinal)
+     @Html.HiddenFor(m => m.AcceptInstagram)
+    @Html.HiddenFor(m => m.InstagramAddress)
+        @Html.HiddenFor(m => m.PersonalSiteAddress)
+       @Html.HiddenFor(m => m.ShopEmail)
+        @Html.HiddenFor(m => m.ShopFax)
+    <div class="datagrid">
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="2">
+                        @Html.Label("پوستر طراحی شده برای مرکز طرف قرارداد")
+                    </th>
+                </tr>
+            </thead>
+            <tbody style="overflow: auto">
+                <tr>
+
+                    <td>
+                        <div class="editor-field">
+                            <div class="PrintArea area2 all" style="border-color: #999;">
+                                <img src="data:image;base64,@System.Convert.ToBase64String(Model.ShopPoster)"  />
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+            </tbody>
+
+
+        </table>
+    </div>
+                       
+    
+    <div style="text-align: center; padding-top: 5px; margin-bottom: 10px;">
+        <input class="button_link" type="submit" value="پوستر مرحله بعد" />
+    </div>
+    <div id="AgentRegisterContractLoading" style="display: none; margin-left: auto; margin-right: auto; text-align: center;">
+        <img src="/Images/ajax-loader.gif">
+    </div>
+    
+}
+
+<div id="AgentRegisterContractForm">
+</div>*@
+
+
+<script>
+    function OnEndGoTOAgentContract() {
+        $('html, body').animate({
+            scrollTop: $("#AgentRegisterContractForm").offset().top - $("#headerArea").height()
+        }, 1500);
+
+    }
+</script>

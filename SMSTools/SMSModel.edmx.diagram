@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e16953f3a0db40aaa03f12fba8f98842" Name="Diagram1">
+        <EntityTypeShape EntityType="SMSDBModel.SMS_Inbox_Outbox_Mapping" Width="1.5" PointX="5.25" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SMSDBModel.SMS_Inbox_Pattern_Mapping" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SMSDBModel.SMS_Outbox_Operation_Mapping" Width="1.5" PointX="5.25" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SMSDBModel.SMSInbox" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SMSDBModel.SMSOperation" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SMSDBModel.SMSOutbox" Width="1.5" PointX="3" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SMSDBModel.SMSPattern" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SMSDBModel.SMSTemplate" Width="1.5" PointX="5.25" PointY="10.125" IsExpanded="true" />
+        <AssociationConnector Association="SMSDBModel.FK_SMS_Inbox_Outbox_Mapping_SMS_Outbox" ManuallyRouted="false" />
+        <AssociationConnector Association="SMSDBModel.FK_SMS_Inbox_Outbox_Mapping_SMSInbox" ManuallyRouted="false" />
+        <AssociationConnector Association="SMSDBModel.FK_SMS_Inbox_Pattern_Mapping_SMSInbox" ManuallyRouted="false" />
+        <AssociationConnector Association="SMSDBModel.FK_SMS_Inbox_Pattern_Mapping_SMSPattern" ManuallyRouted="false" />
+        <AssociationConnector Association="SMSDBModel.FK_SMS_Outbox_Operation_Mapping_SMS_Outbox" ManuallyRouted="false" />
+        <AssociationConnector Association="SMSDBModel.FK_SMS_Outbox_Operation_Mapping_SMSOperation" ManuallyRouted="false" />
+        <AssociationConnector Association="SMSDBModel.FK_SMSOperation_SMSPattern" ManuallyRouted="false" />
+        <AssociationConnector Association="SMSDBModel.FK_SMSTemplate_SMSOperation" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

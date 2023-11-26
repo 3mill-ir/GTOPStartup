@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "اخطار | محصولی یافت نشد";
+}
+
+
+
+	<div class="container text-center" style="direction:rtl;text-align:center">
+		<div class="logo-404">
+			<a href="index.html"><img src="~/Areas/eshop/Content/images/home/logo.png" alt="" /></a>
+		</div>
+		<div class="content-404">
+			<img src="~/Areas/eshop/Content/images/404/404.png" class="img-responsive" alt="" />
+			<h1>متاسفانه محصولی با شناسه مربوطه یافت نشد!</h1>
+                   <p>شما بعد از 60 ثانیه به صورت خودکار به صفحه خانگی منتقل خواهید شد.</p>
+			<h2>@Html.ActionLink("صفحه خانگی","Index", "Home")</h2>
+		</div>
+	</div>
+
+
+@*<div class="container" >
+    <div class="row" >
+        <div class="col-lg-12" >
+            <div style="text-align: center; direction: rtl;font-size:x-large; background-color: yellow; -moz-border-radius: 50px; -webkit-border-radius: 50px; border-radius: 50px;margin-top:20%">
+                <p>
+                    محصولی با شناسه مربوطه یافت نشد!
+                </p>
+            </div>
+            </div>
+        </div>
+
+     <div class="row" >
+        <div class="col-lg-12" >
+            <div style="text-align: center; direction: rtl;font-size:large; background-color: yellowgreen; -moz-border-radius: 50px; -webkit-border-radius: 50px; border-radius: 50px;margin-top:5px">
+                   <p id="footer_SMSNotSend" >شما بعد از 60 ثانیه به صورت خودکار به صفحه خانگی منتقل خواهید شد. در غیر این صورت بر روی @Html.ActionLink("صفحه خانگی","Index", "Home",null,new { @style=" color:green;" })  کلیک نمایید.</p>
+            </div>
+            </div>
+        </div>
+        </div>*@
+ <script>
+            setTimeout(function(){
+                window.location.href="/Home"; // The URL that will be redirected too.
+            }, 60000); // The bigger the number the longer the delay.
+        </script>

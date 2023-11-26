@@ -1,0 +1,157 @@
+﻿@model GPLUSPLUS.Areas.eshop.Models.ProductTypes
+@{
+    ViewBag.Title = "_CategoryPanel";
+}
+
+   <div class="left-sidebar" style="direction: rtl; text-align: right">
+                        <div class="brands_products" style="margin-bottom: 50px">
+                            <!--brands_products-->
+                            <h2>امتیاز بندی</h2>
+                            <div class="brands-name">
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li><a style="background-color: #22cb54" href="@Url.Action("ProductsList","Products",new {ScoreBase = "normal",Category="All" })"><span class="pull-left">(@Model.Types_Normal)</span>جوایز عادی</a></li>
+                                    <li><a style="background-color: #cd7f32" href="@Url.Action("ProductsList","Products",new {ScoreBase = "boronz",Category="All" })"><span class="pull-left">(@Model.Types_Boronz)</span>جوایز برنزی</a></li>
+                                    <li><a style="background-color: #C0C0C0" href="@Url.Action("ProductsList","Products",new {ScoreBase = "silver",Category="All" })"><span class="pull-left">(@Model.Types_Silver)</span>جوایز نقره ایی</a></li>
+                                    <li><a style="background-color: #ffd700" href="@Url.Action("ProductsList","Products",new {ScoreBase = "gold",Category="All" })"><span class="pull-left">(@Model.Types_Gold)</span>جوایز طلایی</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!--/brands_products-->
+
+                        <h2>دسته بندی</h2>
+                        <div class="panel-group category-products" id="accordian">
+                            <!--category-productsr-->
+                            @foreach (var q in Model.Types)
+                            {
+
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordian" href="#@q.ProductTypesId">
+                                                @q.ProductTypesName
+                                                <span class="badge pull-center"><i class="fa fa-plus"></i></span><span class="pull-left">@q.ProductTypesCount</span>
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="@q.ProductTypesId" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <ul>
+                                                <li style="background-color: #22cb54"><a href="@Url.Action("ProductsList","Products",new {ScoreBase = "normal" ,Category= @q.ProductTypesName })"><span class="pull-left">@q.ProductTypesCount_Normal</span>عادی</a></li>
+                                                <li style="background-color: #cd7f32"><a href="@Url.Action("ProductsList","Products",new {ScoreBase = "boronz" ,Category= @q.ProductTypesName })"><span class="pull-left">@q.ProductTypesCount_Boronz</span>برنزی</a></li>
+                                                <li style="background-color: #C0C0C0"><a href="@Url.Action("ProductsList","Products",new {ScoreBase = "silver",Category= @q.ProductTypesName  })"><span class="pull-left">@q.ProductTypesCount_Silver</span>نقره ایی</a></li>
+                                                <li style="background-color: #ffd700"><a href="@Url.Action("ProductsList","Products",new {ScoreBase = "gold",Category= @q.ProductTypesName  })"><span class="pull-left">@q.ProductTypesCount_Gold</span>طلایی</a></li>
+                                                <li style="background-color: #08e6ed"><a href="@Url.Action("ProductsList","Products",new {ScoreBase = "All",Category= @q.ProductTypesName  })"><span class="pull-left">@q.ProductTypesCount</span>همه</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>}
+                            @*	<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a data-toggle="collapse" data-parent="#accordian" href="#mens">
+											Mens
+                                               <span class="badge pull-center"><i class="fa fa-plus"></i></span>
+										</a>
+									</h4>
+								</div>
+								<div id="mens" class="panel-collapse collapse">
+									<div class="panel-body">
+										<ul>
+											<li><a href="#">Fendi</a></li>
+											<li><a href="#">Guess</a></li>
+											<li><a href="#">Valentino</a></li>
+											<li><a href="#">Dior</a></li>
+											<li><a href="#">Versace</a></li>
+											<li><a href="#">Armani</a></li>
+											<li><a href="#">Prada</a></li>
+											<li><a href="#">Dolce and Gabbana</a></li>
+											<li><a href="#">Chanel</a></li>
+											<li><a href="#">Gucci</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>				
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a data-toggle="collapse" data-parent="#accordian" href="#womens">
+											Womens
+                                       <span class="badge pull-center"><i class="fa fa-plus"></i></span>
+										</a>
+									</h4>
+								</div>
+								<div id="womens" class="panel-collapse collapse">
+									<div class="panel-body">
+										<ul>
+											<li><a href="#">Fendi</a></li>
+											<li><a href="#">Guess</a></li>
+											<li><a href="#">Valentino</a></li>
+											<li><a href="#">Dior</a></li>
+											<li><a href="#">Versace</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title"><a href="#">Kids</a></h4>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title"><a href="#">Fashion</a></h4>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title"><a href="#">Households</a></h4>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title"><a href="#">Interiors</a></h4>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title"><a href="#">Clothing</a></h4>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title"><a href="#">Bags</a></h4>
+								</div>
+							</div>*@
+
+                        </div>
+                        <!--/category-products-->
+
+                        @*		<div class="brands_products"><!--brands_products-->
+							<h2>Brands</h2>
+							<div class="brands-name">
+								<ul class="nav nav-pills nav-stacked">
+									<li><a href="#"> <span class="pull-left">(50)</span>Acne</a></li>
+									<li><a href="#"> <span class="pull-left">(56)</span>Grüne Erde</a></li>
+									<li><a href="#"> <span class="pull-left">(27)</span>Albiro</a></li>
+									<li><a href="#"> <span class="pull-left">(32)</span>Ronhill</a></li>
+									<li><a href="#"> <span class="pull-left">(5)</span>Oddmolly</a></li>
+									<li><a href="#"> <span class="pull-left">(9)</span>Boudestijn</a></li>
+									<li><a href="#"> <span class="pull-left">(4)</span>Röschohojpje culture</a></li>
+								</ul>
+							</div>
+						</div><!--/brands_products-->*@
+
+                        @*	<div class="price-range"><!--price-range-->
+							<h2>Price Range</h2>
+							<div class="well text-center">
+								 <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]" id="sl2" ><br />
+								 <b class="pull-left">$ 0</b> <b class="pull-right">$ 600</b>
+							</div>
+						</div><!--/price-range-->
+						
+						<div class="shipping text-center"><!--shipping-->
+							<img src="~/Areas/eshop/Content/images/home/shipping.jpg" alt="" />
+						</div><!--/shipping-->*@
+
+                    </div>
+

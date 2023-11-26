@@ -1,0 +1,61 @@
+﻿@model GPLUSPLUS.Models.AgentRegister
+
+
+
+<div>  <p style="text-align:center;font-size:large;color:green;direction:rtl">عملیات ثبت نام شما به صورت موقت در سیستم ثبت گردید منتظر تماس کارشناسان ما جهت تکمیل عملیات ثبت شما و تنظیم قرارداد باشید.<br /> از هم اکنون به مدت 7 روز یک بنر رایگان و عمومی در قسمت مراکز طرف قرارداد برای شما قرار داده شد.</p></div>
+
+ <script src="~/Content/PrintArea/jquery-1.10.2.js" type="text/JavaScript" language="javascript"></script>
+        <script src="~/Content/PrintArea/jquery-ui-1.10.4.custom.js"></script>
+        <script src="~/Content/PrintArea/jquery.PrintArea.js" type="text/JavaScript" language="javascript"></script>
+
+        <link type="text/css" rel="stylesheet" href="~/Content/PrintArea/css/ui-lightness/jquery-ui-1.10.4.custom.css" />
+
+        <link type="text/css" rel="stylesheet" href="~/Content/PrintArea/PrintArea.css" />                <!-- Y : rel is stylesheet and media is in [all,print,empty,undefined] -->
+        <link type="text/css" rel="stylesheet" href="~/Content/PrintArea/media_all.css"  media="all" />   <!-- Y : rel is stylesheet and media is in [all,print,empty,undefined] -->
+        <link type="text/css" rel=""           href="~/Content/PrintArea/empty.css" />                    <!-- N : rel is not stylesheet -->
+        <link type="text/css" rel="noPrint"    href="~/Content/PrintArea/noPrint.css" />                  <!-- N : rel is not stylesheet -->
+        <link type="text/css" rel="stylesheet" href="~/Content/PrintArea/media_none.css" media="xyz" />   <!-- N : media not in [all,print,empty,undefined] -->
+        <link type="text/css"                  href="~/Content/PrintArea/no_rel.css"     media="print" /> <!-- N : no rel attribute -->
+        <link type="text/css"                  href="~/Content/PrintArea/no_rel_no_media.css"          /> <!-- N : no rel, no media attributes -->
+
+ @* <div style="padding: 0 10px 10px;" class="buttonBar">
+          <div class="button b1" style=" display: block;margin-left:auto;margin-right:auto;text-align: center;">پرینت پوستر و قرارداد</div>
+        </div>*@
+    <p id="footer_SMSNotSend" style=" display: block;margin-left:auto;margin-right:auto;text-align: center;" >جهت بازگشت به صفحه خانگی بر روی @Html.ActionLink("صفحه خانگی","Index", "Home",new { @style=" color:green;" })  کلیک نمایید.</p>
+
+
+ <script>
+    $(document).ready(function(){
+
+        $("div.b1").click(function(){
+
+            var mode = "iframe";
+            var close = mode == "popup" && $("input#closePop").is(":checked");
+            var extraCss = $("input[name='extraCss']").val();
+
+            var print = "div.PrintArea.area1";
+            //$("input.selPA:checked").each(function(){
+            //    print += (print.length > 0 ? "," : "") + "div.PrintArea." + $(this).val();
+            //});
+
+            var keepAttr = [];
+           
+
+            keepAttr.push("class");
+            keepAttr.push("id");
+            keepAttr.push("style");
+           
+
+            var headElements ='<meta charset="utf-8" />,<meta http-equiv="X-UA-Compatible" content="IE=edge"/>' ;
+
+            var options = { mode : mode, popClose : close, extraCss : extraCss, retainAttr : keepAttr, extraHead : headElements };
+
+            $( print ).printArea( options );
+        });
+
+        $("input[name='mode']").click(function(){
+            if ( $(this).val() == "iframe" ) $("#closePop").attr( "checked", false );
+        });
+    });
+
+  </script>

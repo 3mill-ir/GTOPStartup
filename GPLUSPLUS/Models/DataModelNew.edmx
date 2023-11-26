@@ -1,0 +1,1006 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="GScoreDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="FreeGiftCode">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GiftName" Type="nvarchar(max)" />
+          <Property Name="CodeScore" Type="int" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="P_ID" />
+          </Key>
+          <Property Name="P_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="P_Brand" Type="nvarchar(max)" />
+          <Property Name="P_Description" Type="text" />
+          <Property Name="P_ScoreCost" Type="int" />
+          <Property Name="P_ModelName" Type="nvarchar(max)" />
+          <Property Name="P_DateAdded" Type="datetime" />
+          <Property Name="P_Count" Type="int" />
+          <Property Name="P_Status" Type="bit" />
+          <Property Name="F_ProductType_ID" Type="int" />
+          <Property Name="P_Cost" Type="int" />
+          <Property Name="P_Name" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="ProductHistory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OperationDate" Type="datetime" />
+          <Property Name="OperationHistory" Type="nvarchar(max)" />
+          <Property Name="F_P_ID" Type="int" />
+          <Property Name="F_UserID" Type="int" />
+        </EntityType>
+        <EntityType Name="ProductImage">
+          <Key>
+            <PropertyRef Name="PI_ID" />
+          </Key>
+          <Property Name="PI_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PI_Image" Type="varbinary(max)" />
+          <Property Name="F_P_ID" Type="int" />
+          <Property Name="PI_Thumb" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="ProductType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="DescriptionOf" Type="nvarchar(max)" />
+          <Property Name="ImageOf" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="ProductUsed">
+          <Key>
+            <PropertyRef Name="PU_ID" />
+          </Key>
+          <Property Name="PU_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PU_DateBuyed" Type="datetime" />
+          <Property Name="F_P_ID" Type="int" />
+          <Property Name="F_UserID" Type="int" />
+          <Property Name="PU_ScoreUsed" Type="int" />
+          <Property Name="PU_IsNewAddress" Type="bit" />
+          <Property Name="PU_NewAddress" Type="nvarchar(max)" />
+          <Property Name="PU_NewState" Type="nvarchar(max)" />
+          <Property Name="PU_NewCity" Type="nvarchar(max)" />
+          <Property Name="PU_NewPostalCode" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="ScoreCard">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CodeNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="CodeScore" Type="int" />
+          <Property Name="GenereateDate" Type="datetime" />
+          <Property Name="ExpiredDate" Type="datetime" />
+          <Property Name="UsedDate" Type="datetime" />
+          <Property Name="CardStatus" Type="bit" />
+          <Property Name="F_UserID" Type="int" />
+          <Property Name="TrackingCode" Type="nvarchar(max)" />
+          <Property Name="CardType" Type="nvarchar(max)" />
+          <Property Name="LotteryScore" Type="int" />
+          <Property Name="BonyadKoodak" Type="int" />
+        </EntityType>
+        <EntityType Name="ScoreTry">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="LastTryDate" Type="datetime" />
+          <Property Name="LastTryNumber" Type="int" />
+          <Property Name="TotalTryNumber" Type="int" />
+          <Property Name="UserStatusForScore" Type="bit" />
+        </EntityType>
+        <EntityType Name="Shop">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar(max)" />
+          <Property Name="LastName" Type="nvarchar(max)" />
+          <Property Name="Mobile" Type="nvarchar(max)" />
+          <Property Name="ShopName" Type="nvarchar(max)" />
+          <Property Name="ShopDescription" Type="nvarchar(max)" />
+          <Property Name="ShopTell" Type="nvarchar(max)" />
+          <Property Name="ShopState" Type="nvarchar(max)" />
+          <Property Name="ShopCity" Type="nvarchar(max)" />
+          <Property Name="ShopAddress" Type="nvarchar(max)" />
+          <Property Name="DateJoined" Type="datetime" />
+          <Property Name="F_ShopType_ID" Type="int" />
+          <Property Name="AcceptCode" Type="bit" Nullable="false" />
+          <Property Name="AcceptBanner" Type="bit" Nullable="false" />
+          <Property Name="AcceptSite" Type="bit" Nullable="false" />
+          <Property Name="ShopRegisterStatus" Type="bit" Nullable="false" />
+          <Property Name="PosterQuotes" Type="nvarchar(max)" />
+          <Property Name="DateJoinedAccepted" Type="datetime" />
+          <Property Name="InstagramAddress" Type="nvarchar(max)" />
+          <Property Name="PersonalSiteAddress" Type="nvarchar(max)" />
+          <Property Name="ShopEmail" Type="nvarchar(max)" />
+          <Property Name="ShopFax" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="ShopAdvertisment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ShopId" Type="int" />
+          <Property Name="ShopName" Type="nvarchar(max)" />
+          <Property Name="ShopDescription" Type="nvarchar(max)" />
+          <Property Name="ShopTell" Type="nvarchar(max)" />
+          <Property Name="ShopAddress" Type="nvarchar(max)" />
+          <Property Name="ShopRequestDate" Type="datetime" />
+          <Property Name="ShopRequestAcceptedDate" Type="datetime" />
+          <Property Name="ShopRequestStatus" Type="bit" />
+          <Property Name="ShopAD_FirstClass" Type="bit" />
+          <Property Name="ShopAD_Position" Type="nvarchar(max)" />
+          <Property Name="ShopState" Type="nvarchar(max)" />
+          <Property Name="ShopCity" Type="nvarchar(max)" />
+          <Property Name="F_ShopType" Type="int" />
+        </EntityType>
+        <EntityType Name="ShopImage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ShopImage" Type="varbinary(max)" />
+          <Property Name="ShopThumbnail" Type="varbinary(max)" />
+          <Property Name="DateUploaded" Type="datetime" />
+          <Property Name="DateAccepted" Type="datetime" />
+          <Property Name="ImageStatus" Type="bit" />
+          <Property Name="F_Shop_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="ShopType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="DescriptionOf" Type="nvarchar(max)" />
+          <Property Name="ImageOf" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TempUserProfile">
+          <Key>
+            <PropertyRef Name="U_UserName" />
+          </Key>
+          <Property Name="U_UserName" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="U_FirstName" Type="nvarchar(max)" />
+          <Property Name="U_LastName" Type="nvarchar(max)" />
+          <Property Name="U_Gender" Type="nvarchar(max)" />
+          <Property Name="U_BirthDate" Type="nvarchar(max)" />
+          <Property Name="U_CodeMelli" Type="nvarchar(max)" />
+          <Property Name="U_Tell" Type="nvarchar(max)" />
+          <Property Name="U_Email" Type="nvarchar(max)" />
+          <Property Name="U_Address" Type="nvarchar(max)" />
+          <Property Name="U_Degree" Type="nvarchar(max)" />
+          <Property Name="U_DegreeField" Type="nvarchar(max)" />
+          <Property Name="U_RegisterDate" Type="nvarchar(max)" />
+          <Property Name="U_Status" Type="nvarchar(max)" />
+          <Property Name="U_Score" Type="nvarchar(max)" />
+          <Property Name="U_State" Type="nvarchar(max)" />
+          <Property Name="U_City" Type="nvarchar(max)" />
+          <Property Name="U_PW" Type="nvarchar(max)" />
+          <Property Name="U_SMS_FisrtStstus" Type="nvarchar(max)" />
+          <Property Name="U_SMS_SecondStatus" Type="nvarchar(max)" />
+          <Property Name="U_RandomCode" Type="nvarchar(max)" />
+          <Property Name="Try_Send_Code" Type="int" />
+          <Property Name="U_JobField" Type="nvarchar" MaxLength="150" />
+          <Property Name="U_JobTitle" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="VisitorsMessage">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="MessageText" Type="nvarchar(max)" />
+          <Property Name="MessageDate" Type="datetime" />
+        </EntityType>
+        <Association Name="FK__Product__F_Produ__14E61A24">
+          <End Role="ProductType" Type="Self.ProductType" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="F_ProductType_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Product__F_Produ__236943A5">
+          <End Role="ProductType" Type="Self.ProductType" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="F_ProductType_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductHi__F_P_I__0B91BA14">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="ProductHistory" Type="Self.ProductHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="P_ID" />
+            </Principal>
+            <Dependent Role="ProductHistory">
+              <PropertyRef Name="F_P_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductIm__F_P_I__02084FDA">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ProductImage" Type="Self.ProductImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="P_ID" />
+            </Principal>
+            <Dependent Role="ProductImage">
+              <PropertyRef Name="F_P_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductUs__F_P_I__18B6AB08">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="ProductUsed" Type="Self.ProductUsed" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="P_ID" />
+            </Principal>
+            <Dependent Role="ProductUsed">
+              <PropertyRef Name="F_P_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductUs__F_P_I__6FE99F9F">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="ProductUsed" Type="Self.ProductUsed" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="P_ID" />
+            </Principal>
+            <Dependent Role="ProductUsed">
+              <PropertyRef Name="F_P_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Shop__F_ShopType__1B9317B3">
+          <End Role="ShopType" Type="Self.ShopType" Multiplicity="0..1" />
+          <End Role="Shop" Type="Self.Shop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ShopType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Shop">
+              <PropertyRef Name="F_ShopType_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Shop__F_ShopType__3493CFA7">
+          <End Role="ShopType" Type="Self.ShopType" Multiplicity="0..1" />
+          <End Role="Shop" Type="Self.Shop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ShopType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Shop">
+              <PropertyRef Name="F_ShopType_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ShopAdver__F_Sho__1C873BEC">
+          <End Role="ShopType" Type="Self.ShopType" Multiplicity="0..1" />
+          <End Role="ShopAdvertisment" Type="Self.ShopAdvertisment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ShopType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ShopAdvertisment">
+              <PropertyRef Name="F_ShopType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ShopAdver__F_Sho__43D61337">
+          <End Role="ShopType" Type="Self.ShopType" Multiplicity="0..1" />
+          <End Role="ShopAdvertisment" Type="Self.ShopAdvertisment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ShopType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ShopAdvertisment">
+              <PropertyRef Name="F_ShopType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ShopImage__F_Sho__1E6F845E">
+          <End Role="Shop" Type="Self.Shop" Multiplicity="0..1" />
+          <End Role="ShopImage" Type="Self.ShopImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shop">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ShopImage">
+              <PropertyRef Name="F_Shop_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ShopImage__F_Sho__3587F3E0">
+          <End Role="Shop" Type="Self.Shop" Multiplicity="0..1" />
+          <End Role="ShopImage" Type="Self.ShopImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shop">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ShopImage">
+              <PropertyRef Name="F_Shop_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GScoreDBModelStoreContainer">
+          <EntitySet Name="FreeGiftCode" EntityType="Self.FreeGiftCode" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductHistory" EntityType="Self.ProductHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductImage" EntityType="Self.ProductImage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductType" EntityType="Self.ProductType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductUsed" EntityType="Self.ProductUsed" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ScoreCard" EntityType="Self.ScoreCard" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ScoreTry" EntityType="Self.ScoreTry" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Shop" EntityType="Self.Shop" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ShopAdvertisment" EntityType="Self.ShopAdvertisment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ShopImage" EntityType="Self.ShopImage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ShopType" EntityType="Self.ShopType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TempUserProfile" EntityType="Self.TempUserProfile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VisitorsMessage" EntityType="Self.VisitorsMessage" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Product__F_Produ__14E61A24" Association="Self.FK__Product__F_Produ__14E61A24">
+            <End Role="ProductType" EntitySet="ProductType" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Product__F_Produ__236943A5" Association="Self.FK__Product__F_Produ__236943A5">
+            <End Role="ProductType" EntitySet="ProductType" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductHi__F_P_I__0B91BA14" Association="Self.FK__ProductHi__F_P_I__0B91BA14">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductHistory" EntitySet="ProductHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductIm__F_P_I__02084FDA" Association="Self.FK__ProductIm__F_P_I__02084FDA">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductImage" EntitySet="ProductImage" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductUs__F_P_I__18B6AB08" Association="Self.FK__ProductUs__F_P_I__18B6AB08">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductUsed" EntitySet="ProductUsed" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductUs__F_P_I__6FE99F9F" Association="Self.FK__ProductUs__F_P_I__6FE99F9F">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductUsed" EntitySet="ProductUsed" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Shop__F_ShopType__1B9317B3" Association="Self.FK__Shop__F_ShopType__1B9317B3">
+            <End Role="ShopType" EntitySet="ShopType" />
+            <End Role="Shop" EntitySet="Shop" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Shop__F_ShopType__3493CFA7" Association="Self.FK__Shop__F_ShopType__3493CFA7">
+            <End Role="ShopType" EntitySet="ShopType" />
+            <End Role="Shop" EntitySet="Shop" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ShopAdver__F_Sho__1C873BEC" Association="Self.FK__ShopAdver__F_Sho__1C873BEC">
+            <End Role="ShopType" EntitySet="ShopType" />
+            <End Role="ShopAdvertisment" EntitySet="ShopAdvertisment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ShopAdver__F_Sho__43D61337" Association="Self.FK__ShopAdver__F_Sho__43D61337">
+            <End Role="ShopType" EntitySet="ShopType" />
+            <End Role="ShopAdvertisment" EntitySet="ShopAdvertisment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ShopImage__F_Sho__1E6F845E" Association="Self.FK__ShopImage__F_Sho__1E6F845E">
+            <End Role="Shop" EntitySet="Shop" />
+            <End Role="ShopImage" EntitySet="ShopImage" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ShopImage__F_Sho__3587F3E0" Association="Self.FK__ShopImage__F_Sho__3587F3E0">
+            <End Role="Shop" EntitySet="Shop" />
+            <End Role="ShopImage" EntitySet="ShopImage" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GScoreDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="FreeGiftCode">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GiftName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CodeScore" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="P_ID" />
+          </Key>
+          <Property Name="P_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="P_Brand" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="P_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="P_ScoreCost" Type="Int32" />
+          <Property Name="P_ModelName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="P_DateAdded" Type="DateTime" Precision="3" />
+          <Property Name="P_Count" Type="Int32" />
+          <Property Name="P_Status" Type="Boolean" />
+          <Property Name="F_ProductType_ID" Type="Int32" />
+          <Property Name="P_Cost" Type="Int32" />
+          <Property Name="P_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ProductType" Relationship="Self.FK__Product__F_Produ__236943A5" FromRole="Product" ToRole="ProductType" />
+          <NavigationProperty Name="ProductHistories" Relationship="Self.FK__ProductHi__F_P_I__0B91BA14" FromRole="Product" ToRole="ProductHistory" />
+          <NavigationProperty Name="ProductImages" Relationship="Self.FK__ProductIm__F_P_I__02084FDA" FromRole="Product" ToRole="ProductImage" />
+          <NavigationProperty Name="ProductUseds" Relationship="Self.FK__ProductUs__F_P_I__6FE99F9F" FromRole="Product" ToRole="ProductUsed" />
+        </EntityType>
+        <EntityType Name="ProductHistory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OperationDate" Type="DateTime" Precision="3" />
+          <Property Name="OperationHistory" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="F_P_ID" Type="Int32" />
+          <Property Name="F_UserID" Type="Int32" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__ProductHi__F_P_I__0B91BA14" FromRole="ProductHistory" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="ProductImage">
+          <Key>
+            <PropertyRef Name="PI_ID" />
+          </Key>
+          <Property Name="PI_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PI_Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="F_P_ID" Type="Int32" />
+          <Property Name="PI_Thumb" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__ProductIm__F_P_I__02084FDA" FromRole="ProductImage" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="ProductType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DescriptionOf" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ImageOf" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Products" Relationship="Self.FK__Product__F_Produ__236943A5" FromRole="ProductType" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="ProductUsed">
+          <Key>
+            <PropertyRef Name="PU_ID" />
+          </Key>
+          <Property Name="PU_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PU_DateBuyed" Type="DateTime" Precision="3" />
+          <Property Name="F_P_ID" Type="Int32" />
+          <Property Name="F_UserID" Type="Int32" />
+          <Property Name="PU_ScoreUsed" Type="Int32" />
+          <Property Name="PU_IsNewAddress" Type="Boolean" />
+          <Property Name="PU_NewAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PU_NewState" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PU_NewCity" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PU_NewPostalCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__ProductUs__F_P_I__6FE99F9F" FromRole="ProductUsed" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="ScoreCard">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CodeNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CodeScore" Type="Int32" />
+          <Property Name="GenereateDate" Type="DateTime" Precision="3" />
+          <Property Name="ExpiredDate" Type="DateTime" Precision="3" />
+          <Property Name="UsedDate" Type="DateTime" Precision="3" />
+          <Property Name="CardStatus" Type="Boolean" />
+          <Property Name="F_UserID" Type="Int32" />
+          <Property Name="TrackingCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CardType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LotteryScore" Type="Int32" />
+          <Property Name="BonyadKoodak" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ScoreTry">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="LastTryDate" Type="DateTime" Precision="3" />
+          <Property Name="LastTryNumber" Type="Int32" />
+          <Property Name="TotalTryNumber" Type="Int32" />
+          <Property Name="UserStatusForScore" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Shop">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Mobile" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ShopName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ShopDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ShopTell" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ShopState" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ShopCity" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ShopAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateJoined" Type="DateTime" Precision="3" />
+          <Property Name="F_ShopType_ID" Type="Int32" />
+          <Property Name="AcceptCode" Type="Boolean" Nullable="false" />
+          <Property Name="AcceptBanner" Type="Boolean" Nullable="false" />
+          <Property Name="AcceptSite" Type="Boolean" Nullable="false" />
+          <Property Name="ShopRegisterStatus" Type="Boolean" Nullable="false" />
+          <Property Name="PosterQuotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateJoinedAccepted" Type="DateTime" Precision="3" />
+          <Property Name="InstagramAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PersonalSiteAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ShopEmail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ShopFax" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ShopType" Relationship="Self.FK__Shop__F_ShopType__3493CFA7" FromRole="Shop" ToRole="ShopType" />
+          <NavigationProperty Name="ShopImages" Relationship="Self.FK__ShopImage__F_Sho__3587F3E0" FromRole="Shop" ToRole="ShopImage" />
+        </EntityType>
+        <EntityType Name="ShopAdvertisment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ShopId" Type="Int32" />
+          <Property Name="ShopName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ShopDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ShopTell" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ShopAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ShopRequestDate" Type="DateTime" Precision="3" />
+          <Property Name="ShopRequestAcceptedDate" Type="DateTime" Precision="3" />
+          <Property Name="ShopRequestStatus" Type="Boolean" />
+          <Property Name="ShopAD_FirstClass" Type="Boolean" />
+          <Property Name="ShopAD_Position" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ShopState" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ShopCity" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="F_ShopType" Type="Int32" />
+          <NavigationProperty Name="ShopType" Relationship="Self.FK__ShopAdver__F_Sho__43D61337" FromRole="ShopAdvertisment" ToRole="ShopType" />
+        </EntityType>
+        <EntityType Name="ShopImage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ShopImage1" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="ShopThumbnail" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="DateUploaded" Type="DateTime" Precision="3" />
+          <Property Name="DateAccepted" Type="DateTime" Precision="3" />
+          <Property Name="ImageStatus" Type="Boolean" />
+          <Property Name="F_Shop_ID" Type="Int32" />
+          <NavigationProperty Name="Shop" Relationship="Self.FK__ShopImage__F_Sho__3587F3E0" FromRole="ShopImage" ToRole="Shop" />
+        </EntityType>
+        <EntityType Name="ShopType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DescriptionOf" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ImageOf" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Shops" Relationship="Self.FK__Shop__F_ShopType__3493CFA7" FromRole="ShopType" ToRole="Shop" />
+          <NavigationProperty Name="ShopAdvertisments" Relationship="Self.FK__ShopAdver__F_Sho__43D61337" FromRole="ShopType" ToRole="ShopAdvertisment" />
+        </EntityType>
+        <EntityType Name="TempUserProfile">
+          <Key>
+            <PropertyRef Name="U_UserName" />
+          </Key>
+          <Property Name="U_UserName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="U_FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="U_LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="U_Gender" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="U_BirthDate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="U_CodeMelli" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="U_Tell" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="U_Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="U_Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="U_Degree" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="U_DegreeField" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="U_RegisterDate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="U_Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="U_Score" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="U_State" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="U_City" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="U_PW" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="U_SMS_FisrtStstus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="U_SMS_SecondStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="U_RandomCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Try_Send_Code" Type="Int32" />
+          <Property Name="U_JobField" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="U_JobTitle" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="VisitorsMessage">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MessageText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MessageDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <Association Name="FK__Product__F_Produ__236943A5">
+          <End Role="ProductType" Type="Self.ProductType" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="F_ProductType_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductHi__F_P_I__0B91BA14">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="ProductHistory" Type="Self.ProductHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="P_ID" />
+            </Principal>
+            <Dependent Role="ProductHistory">
+              <PropertyRef Name="F_P_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductIm__F_P_I__02084FDA">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ProductImage" Type="Self.ProductImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="P_ID" />
+            </Principal>
+            <Dependent Role="ProductImage">
+              <PropertyRef Name="F_P_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductUs__F_P_I__6FE99F9F">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="ProductUsed" Type="Self.ProductUsed" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="P_ID" />
+            </Principal>
+            <Dependent Role="ProductUsed">
+              <PropertyRef Name="F_P_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Shop__F_ShopType__3493CFA7">
+          <End Role="ShopType" Type="Self.ShopType" Multiplicity="0..1" />
+          <End Role="Shop" Type="Self.Shop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ShopType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Shop">
+              <PropertyRef Name="F_ShopType_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ShopImage__F_Sho__3587F3E0">
+          <End Role="Shop" Type="Self.Shop" Multiplicity="0..1" />
+          <End Role="ShopImage" Type="Self.ShopImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shop">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ShopImage">
+              <PropertyRef Name="F_Shop_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ShopAdver__F_Sho__43D61337">
+          <End Role="ShopType" Type="Self.ShopType" Multiplicity="0..1" />
+          <End Role="ShopAdvertisment" Type="Self.ShopAdvertisment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ShopType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ShopAdvertisment">
+              <PropertyRef Name="F_ShopType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="FreeGiftCodes" EntityType="Self.FreeGiftCode" />
+          <EntitySet Name="Products" EntityType="Self.Product" />
+          <EntitySet Name="ProductHistories" EntityType="Self.ProductHistory" />
+          <EntitySet Name="ProductImages" EntityType="Self.ProductImage" />
+          <EntitySet Name="ProductTypes" EntityType="Self.ProductType" />
+          <EntitySet Name="ProductUseds" EntityType="Self.ProductUsed" />
+          <EntitySet Name="ScoreCards" EntityType="Self.ScoreCard" />
+          <EntitySet Name="ScoreTries" EntityType="Self.ScoreTry" />
+          <EntitySet Name="Shops" EntityType="Self.Shop" />
+          <EntitySet Name="ShopAdvertisments" EntityType="Self.ShopAdvertisment" />
+          <EntitySet Name="ShopImages" EntityType="Self.ShopImage" />
+          <EntitySet Name="ShopTypes" EntityType="Self.ShopType" />
+          <EntitySet Name="TempUserProfiles" EntityType="Self.TempUserProfile" />
+          <EntitySet Name="VisitorsMessages" EntityType="Self.VisitorsMessage" />
+          <AssociationSet Name="FK__Product__F_Produ__236943A5" Association="Self.FK__Product__F_Produ__236943A5">
+            <End Role="ProductType" EntitySet="ProductTypes" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductHi__F_P_I__0B91BA14" Association="Self.FK__ProductHi__F_P_I__0B91BA14">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="ProductHistory" EntitySet="ProductHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductIm__F_P_I__02084FDA" Association="Self.FK__ProductIm__F_P_I__02084FDA">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="ProductImage" EntitySet="ProductImages" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductUs__F_P_I__6FE99F9F" Association="Self.FK__ProductUs__F_P_I__6FE99F9F">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="ProductUsed" EntitySet="ProductUseds" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Shop__F_ShopType__3493CFA7" Association="Self.FK__Shop__F_ShopType__3493CFA7">
+            <End Role="ShopType" EntitySet="ShopTypes" />
+            <End Role="Shop" EntitySet="Shops" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ShopImage__F_Sho__3587F3E0" Association="Self.FK__ShopImage__F_Sho__3587F3E0">
+            <End Role="Shop" EntitySet="Shops" />
+            <End Role="ShopImage" EntitySet="ShopImages" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ShopAdver__F_Sho__43D61337" Association="Self.FK__ShopAdver__F_Sho__43D61337">
+            <End Role="ShopType" EntitySet="ShopTypes" />
+            <End Role="ShopAdvertisment" EntitySet="ShopAdvertisments" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GScoreDBModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="FreeGiftCodes">
+            <EntityTypeMapping TypeName="GScoreDBModel.FreeGiftCode">
+              <MappingFragment StoreEntitySet="FreeGiftCode">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="GiftName" ColumnName="GiftName" />
+                <ScalarProperty Name="CodeScore" ColumnName="CodeScore" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="GScoreDBModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="P_ID" ColumnName="P_ID" />
+                <ScalarProperty Name="P_Brand" ColumnName="P_Brand" />
+                <ScalarProperty Name="P_Description" ColumnName="P_Description" />
+                <ScalarProperty Name="P_ScoreCost" ColumnName="P_ScoreCost" />
+                <ScalarProperty Name="P_ModelName" ColumnName="P_ModelName" />
+                <ScalarProperty Name="P_DateAdded" ColumnName="P_DateAdded" />
+                <ScalarProperty Name="P_Count" ColumnName="P_Count" />
+                <ScalarProperty Name="P_Status" ColumnName="P_Status" />
+                <ScalarProperty Name="F_ProductType_ID" ColumnName="F_ProductType_ID" />
+                <ScalarProperty Name="P_Cost" ColumnName="P_Cost" />
+                <ScalarProperty Name="P_Name" ColumnName="P_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductHistories">
+            <EntityTypeMapping TypeName="GScoreDBModel.ProductHistory">
+              <MappingFragment StoreEntitySet="ProductHistory">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="OperationDate" ColumnName="OperationDate" />
+                <ScalarProperty Name="OperationHistory" ColumnName="OperationHistory" />
+                <ScalarProperty Name="F_P_ID" ColumnName="F_P_ID" />
+                <ScalarProperty Name="F_UserID" ColumnName="F_UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductImages">
+            <EntityTypeMapping TypeName="GScoreDBModel.ProductImage">
+              <MappingFragment StoreEntitySet="ProductImage">
+                <ScalarProperty Name="PI_ID" ColumnName="PI_ID" />
+                <ScalarProperty Name="PI_Image" ColumnName="PI_Image" />
+                <ScalarProperty Name="F_P_ID" ColumnName="F_P_ID" />
+                <ScalarProperty Name="PI_Thumb" ColumnName="PI_Thumb" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductTypes">
+            <EntityTypeMapping TypeName="GScoreDBModel.ProductType">
+              <MappingFragment StoreEntitySet="ProductType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DescriptionOf" ColumnName="DescriptionOf" />
+                <ScalarProperty Name="ImageOf" ColumnName="ImageOf" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductUseds">
+            <EntityTypeMapping TypeName="GScoreDBModel.ProductUsed">
+              <MappingFragment StoreEntitySet="ProductUsed">
+                <ScalarProperty Name="PU_ID" ColumnName="PU_ID" />
+                <ScalarProperty Name="PU_DateBuyed" ColumnName="PU_DateBuyed" />
+                <ScalarProperty Name="F_P_ID" ColumnName="F_P_ID" />
+                <ScalarProperty Name="F_UserID" ColumnName="F_UserID" />
+                <ScalarProperty Name="PU_ScoreUsed" ColumnName="PU_ScoreUsed" />
+                <ScalarProperty Name="PU_IsNewAddress" ColumnName="PU_IsNewAddress" />
+                <ScalarProperty Name="PU_NewAddress" ColumnName="PU_NewAddress" />
+                <ScalarProperty Name="PU_NewState" ColumnName="PU_NewState" />
+                <ScalarProperty Name="PU_NewCity" ColumnName="PU_NewCity" />
+                <ScalarProperty Name="PU_NewPostalCode" ColumnName="PU_NewPostalCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ScoreCards">
+            <EntityTypeMapping TypeName="GScoreDBModel.ScoreCard">
+              <MappingFragment StoreEntitySet="ScoreCard">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CodeNumber" ColumnName="CodeNumber" />
+                <ScalarProperty Name="CodeScore" ColumnName="CodeScore" />
+                <ScalarProperty Name="GenereateDate" ColumnName="GenereateDate" />
+                <ScalarProperty Name="ExpiredDate" ColumnName="ExpiredDate" />
+                <ScalarProperty Name="UsedDate" ColumnName="UsedDate" />
+                <ScalarProperty Name="CardStatus" ColumnName="CardStatus" />
+                <ScalarProperty Name="F_UserID" ColumnName="F_UserID" />
+                <ScalarProperty Name="TrackingCode" ColumnName="TrackingCode" />
+                <ScalarProperty Name="CardType" ColumnName="CardType" />
+                <ScalarProperty Name="LotteryScore" ColumnName="LotteryScore" />
+                <ScalarProperty Name="BonyadKoodak" ColumnName="BonyadKoodak" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ScoreTries">
+            <EntityTypeMapping TypeName="GScoreDBModel.ScoreTry">
+              <MappingFragment StoreEntitySet="ScoreTry">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="LastTryDate" ColumnName="LastTryDate" />
+                <ScalarProperty Name="LastTryNumber" ColumnName="LastTryNumber" />
+                <ScalarProperty Name="TotalTryNumber" ColumnName="TotalTryNumber" />
+                <ScalarProperty Name="UserStatusForScore" ColumnName="UserStatusForScore" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Shops">
+            <EntityTypeMapping TypeName="GScoreDBModel.Shop">
+              <MappingFragment StoreEntitySet="Shop">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="ShopName" ColumnName="ShopName" />
+                <ScalarProperty Name="ShopDescription" ColumnName="ShopDescription" />
+                <ScalarProperty Name="ShopTell" ColumnName="ShopTell" />
+                <ScalarProperty Name="ShopState" ColumnName="ShopState" />
+                <ScalarProperty Name="ShopCity" ColumnName="ShopCity" />
+                <ScalarProperty Name="ShopAddress" ColumnName="ShopAddress" />
+                <ScalarProperty Name="DateJoined" ColumnName="DateJoined" />
+                <ScalarProperty Name="F_ShopType_ID" ColumnName="F_ShopType_ID" />
+                <ScalarProperty Name="AcceptCode" ColumnName="AcceptCode" />
+                <ScalarProperty Name="AcceptBanner" ColumnName="AcceptBanner" />
+                <ScalarProperty Name="AcceptSite" ColumnName="AcceptSite" />
+                <ScalarProperty Name="ShopRegisterStatus" ColumnName="ShopRegisterStatus" />
+                <ScalarProperty Name="PosterQuotes" ColumnName="PosterQuotes" />
+                <ScalarProperty Name="DateJoinedAccepted" ColumnName="DateJoinedAccepted" />
+                <ScalarProperty Name="InstagramAddress" ColumnName="InstagramAddress" />
+                <ScalarProperty Name="PersonalSiteAddress" ColumnName="PersonalSiteAddress" />
+                <ScalarProperty Name="ShopEmail" ColumnName="ShopEmail" />
+                <ScalarProperty Name="ShopFax" ColumnName="ShopFax" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ShopAdvertisments">
+            <EntityTypeMapping TypeName="GScoreDBModel.ShopAdvertisment">
+              <MappingFragment StoreEntitySet="ShopAdvertisment">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ShopId" ColumnName="ShopId" />
+                <ScalarProperty Name="ShopName" ColumnName="ShopName" />
+                <ScalarProperty Name="ShopDescription" ColumnName="ShopDescription" />
+                <ScalarProperty Name="ShopTell" ColumnName="ShopTell" />
+                <ScalarProperty Name="ShopAddress" ColumnName="ShopAddress" />
+                <ScalarProperty Name="ShopRequestDate" ColumnName="ShopRequestDate" />
+                <ScalarProperty Name="ShopRequestAcceptedDate" ColumnName="ShopRequestAcceptedDate" />
+                <ScalarProperty Name="ShopRequestStatus" ColumnName="ShopRequestStatus" />
+                <ScalarProperty Name="ShopAD_FirstClass" ColumnName="ShopAD_FirstClass" />
+                <ScalarProperty Name="ShopAD_Position" ColumnName="ShopAD_Position" />
+                <ScalarProperty Name="ShopState" ColumnName="ShopState" />
+                <ScalarProperty Name="ShopCity" ColumnName="ShopCity" />
+                <ScalarProperty Name="F_ShopType" ColumnName="F_ShopType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ShopImages">
+            <EntityTypeMapping TypeName="GScoreDBModel.ShopImage">
+              <MappingFragment StoreEntitySet="ShopImage">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ShopImage1" ColumnName="ShopImage" />
+                <ScalarProperty Name="ShopThumbnail" ColumnName="ShopThumbnail" />
+                <ScalarProperty Name="DateUploaded" ColumnName="DateUploaded" />
+                <ScalarProperty Name="DateAccepted" ColumnName="DateAccepted" />
+                <ScalarProperty Name="ImageStatus" ColumnName="ImageStatus" />
+                <ScalarProperty Name="F_Shop_ID" ColumnName="F_Shop_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ShopTypes">
+            <EntityTypeMapping TypeName="GScoreDBModel.ShopType">
+              <MappingFragment StoreEntitySet="ShopType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DescriptionOf" ColumnName="DescriptionOf" />
+                <ScalarProperty Name="ImageOf" ColumnName="ImageOf" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TempUserProfiles">
+            <EntityTypeMapping TypeName="GScoreDBModel.TempUserProfile">
+              <MappingFragment StoreEntitySet="TempUserProfile">
+                <ScalarProperty Name="U_JobTitle" ColumnName="U_JobTitle" />
+                <ScalarProperty Name="U_JobField" ColumnName="U_JobField" />
+                <ScalarProperty Name="U_UserName" ColumnName="U_UserName" />
+                <ScalarProperty Name="U_FirstName" ColumnName="U_FirstName" />
+                <ScalarProperty Name="U_LastName" ColumnName="U_LastName" />
+                <ScalarProperty Name="U_Gender" ColumnName="U_Gender" />
+                <ScalarProperty Name="U_BirthDate" ColumnName="U_BirthDate" />
+                <ScalarProperty Name="U_CodeMelli" ColumnName="U_CodeMelli" />
+                <ScalarProperty Name="U_Tell" ColumnName="U_Tell" />
+                <ScalarProperty Name="U_Email" ColumnName="U_Email" />
+                <ScalarProperty Name="U_Address" ColumnName="U_Address" />
+                <ScalarProperty Name="U_Degree" ColumnName="U_Degree" />
+                <ScalarProperty Name="U_DegreeField" ColumnName="U_DegreeField" />
+                <ScalarProperty Name="U_RegisterDate" ColumnName="U_RegisterDate" />
+                <ScalarProperty Name="U_Status" ColumnName="U_Status" />
+                <ScalarProperty Name="U_Score" ColumnName="U_Score" />
+                <ScalarProperty Name="U_State" ColumnName="U_State" />
+                <ScalarProperty Name="U_City" ColumnName="U_City" />
+                <ScalarProperty Name="U_PW" ColumnName="U_PW" />
+                <ScalarProperty Name="U_SMS_FisrtStstus" ColumnName="U_SMS_FisrtStstus" />
+                <ScalarProperty Name="U_SMS_SecondStatus" ColumnName="U_SMS_SecondStatus" />
+                <ScalarProperty Name="U_RandomCode" ColumnName="U_RandomCode" />
+                <ScalarProperty Name="Try_Send_Code" ColumnName="Try_Send_Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VisitorsMessages">
+            <EntityTypeMapping TypeName="GScoreDBModel.VisitorsMessage">
+              <MappingFragment StoreEntitySet="VisitorsMessage">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="MessageText" ColumnName="MessageText" />
+                <ScalarProperty Name="MessageDate" ColumnName="MessageDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

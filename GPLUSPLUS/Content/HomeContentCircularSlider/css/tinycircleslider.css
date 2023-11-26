@@ -1,0 +1,13 @@
+img { border: 0; }
+
+/* Tiny Circleslider */
+#rotatescroll , #rotatescroll2 { height:300px; position:relative; width:300px; }
+#rotatescroll .viewport , #rotatescroll2  .viewport{ height:300px; position: relative; margin:0 auto; overflow:hidden; width:300px; pointer-events: none }
+#rotatescroll .overview , #rotatescroll2 .overview  { position: absolute; width: 798px; list-style: none; margin: 0; padding: 0;  left: 0; top: 0; }
+#rotatescroll .overview li , #rotatescroll2 .overview li  { height:300px; width:300px; float: left; position: relative; }
+#rotatescroll .overlay  {background:url(images/bg-rotatescrol-1.png) no-repeat 0 0; pointer-events: none; position: absolute; left: 0; top: 0; height:300px; width:300px; }
+ #rotatescroll2 .overlay {background:url(images/bg-rotatescrol-2.png) no-repeat 0 0; pointer-events: none; position: absolute; left: 0; top: 0; height:300px; width:300px; }
+#rotatescroll .thumb  , #rotatescroll2 .thumb { background:url(images/bg-thumb.png) no-repeat 50% 50%; touch-action: none; -ms-touch-action: none; position: absolute; top: -3px; cursor: pointer; left: 137px; width: 100px; z-index: 200;  height: 100px; }
+#rotatescroll .dot , #rotatescroll2 .dot { background:url(images/bg-dot.png) no-repeat 0 0; display: none; height: 12px; width: 12px; position: absolute; left: 155px; top: 3px; z-index: 100; }
+#rotatescroll .dot span , #rotatescroll2  .dot span { display: none; }
+

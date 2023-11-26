@@ -1,0 +1,573 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SMSDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="SMS_Inbox_Outbox_Mapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InboxId" Type="int" />
+          <Property Name="OutboxId" Type="int" />
+        </EntityType>
+        <EntityType Name="SMS_Inbox_Pattern_Mapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InboxId" Type="int" />
+          <Property Name="PatternId" Type="int" />
+        </EntityType>
+        <EntityType Name="SMS_Outbox_Operation_Mapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OutboxId" Type="int" />
+          <Property Name="OperationId" Type="int" />
+        </EntityType>
+        <EntityType Name="SMSInbox">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Text" Type="nvarchar(max)" />
+          <Property Name="SMS_From" Type="nvarchar" MaxLength="100" />
+          <Property Name="RecievedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SMSOperation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Operation" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="PatternId" Type="int" />
+        </EntityType>
+        <EntityType Name="SMSOutbox">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Text" Type="nvarchar(max)" />
+          <Property Name="SMS_To" Type="nvarchar(max)" />
+          <Property Name="SendDate" Type="datetime" />
+          <Property Name="StatusOne" Type="nvarchar(max)" />
+          <Property Name="StatusTwo" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="SMSPattern">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Pattern" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="ReplyText" Type="nvarchar(max)" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="SMSTemplate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Text" Type="nvarchar(max)" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="DestinationNumber" Type="nvarchar(max)" />
+          <Property Name="OperationId" Type="int" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <Association Name="FK_SMS_Inbox_Outbox_Mapping_SMS_Outbox">
+          <End Role="SMSOutbox" Type="Self.SMSOutbox" Multiplicity="0..1" />
+          <End Role="SMS_Inbox_Outbox_Mapping" Type="Self.SMS_Inbox_Outbox_Mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SMSOutbox">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SMS_Inbox_Outbox_Mapping">
+              <PropertyRef Name="OutboxId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SMS_Inbox_Outbox_Mapping_SMSInbox">
+          <End Role="SMSInbox" Type="Self.SMSInbox" Multiplicity="0..1" />
+          <End Role="SMS_Inbox_Outbox_Mapping" Type="Self.SMS_Inbox_Outbox_Mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SMSInbox">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SMS_Inbox_Outbox_Mapping">
+              <PropertyRef Name="InboxId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SMS_Inbox_Pattern_Mapping_SMSInbox">
+          <End Role="SMSInbox" Type="Self.SMSInbox" Multiplicity="0..1" />
+          <End Role="SMS_Inbox_Pattern_Mapping" Type="Self.SMS_Inbox_Pattern_Mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SMSInbox">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SMS_Inbox_Pattern_Mapping">
+              <PropertyRef Name="InboxId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SMS_Inbox_Pattern_Mapping_SMSPattern">
+          <End Role="SMSPattern" Type="Self.SMSPattern" Multiplicity="0..1" />
+          <End Role="SMS_Inbox_Pattern_Mapping" Type="Self.SMS_Inbox_Pattern_Mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SMSPattern">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SMS_Inbox_Pattern_Mapping">
+              <PropertyRef Name="PatternId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SMS_Outbox_Operation_Mapping_SMS_Outbox">
+          <End Role="SMSOutbox" Type="Self.SMSOutbox" Multiplicity="0..1" />
+          <End Role="SMS_Outbox_Operation_Mapping" Type="Self.SMS_Outbox_Operation_Mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SMSOutbox">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SMS_Outbox_Operation_Mapping">
+              <PropertyRef Name="OutboxId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SMS_Outbox_Operation_Mapping_SMSOperation">
+          <End Role="SMSOperation" Type="Self.SMSOperation" Multiplicity="0..1" />
+          <End Role="SMS_Outbox_Operation_Mapping" Type="Self.SMS_Outbox_Operation_Mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SMSOperation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SMS_Outbox_Operation_Mapping">
+              <PropertyRef Name="OperationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SMSOperation_SMSPattern">
+          <End Role="SMSPattern" Type="Self.SMSPattern" Multiplicity="0..1" />
+          <End Role="SMSOperation" Type="Self.SMSOperation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SMSPattern">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SMSOperation">
+              <PropertyRef Name="PatternId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SMSTemplate_SMSOperation">
+          <End Role="SMSOperation" Type="Self.SMSOperation" Multiplicity="0..1" />
+          <End Role="SMSTemplate" Type="Self.SMSTemplate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SMSOperation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SMSTemplate">
+              <PropertyRef Name="OperationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SMSDBModelStoreContainer">
+          <EntitySet Name="SMS_Inbox_Outbox_Mapping" EntityType="Self.SMS_Inbox_Outbox_Mapping" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SMS_Inbox_Pattern_Mapping" EntityType="Self.SMS_Inbox_Pattern_Mapping" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SMS_Outbox_Operation_Mapping" EntityType="Self.SMS_Outbox_Operation_Mapping" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SMSInbox" EntityType="Self.SMSInbox" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SMSOperation" EntityType="Self.SMSOperation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SMSOutbox" EntityType="Self.SMSOutbox" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SMSPattern" EntityType="Self.SMSPattern" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SMSTemplate" EntityType="Self.SMSTemplate" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_SMS_Inbox_Outbox_Mapping_SMS_Outbox" Association="Self.FK_SMS_Inbox_Outbox_Mapping_SMS_Outbox">
+            <End Role="SMSOutbox" EntitySet="SMSOutbox" />
+            <End Role="SMS_Inbox_Outbox_Mapping" EntitySet="SMS_Inbox_Outbox_Mapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SMS_Inbox_Outbox_Mapping_SMSInbox" Association="Self.FK_SMS_Inbox_Outbox_Mapping_SMSInbox">
+            <End Role="SMSInbox" EntitySet="SMSInbox" />
+            <End Role="SMS_Inbox_Outbox_Mapping" EntitySet="SMS_Inbox_Outbox_Mapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SMS_Inbox_Pattern_Mapping_SMSInbox" Association="Self.FK_SMS_Inbox_Pattern_Mapping_SMSInbox">
+            <End Role="SMSInbox" EntitySet="SMSInbox" />
+            <End Role="SMS_Inbox_Pattern_Mapping" EntitySet="SMS_Inbox_Pattern_Mapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SMS_Inbox_Pattern_Mapping_SMSPattern" Association="Self.FK_SMS_Inbox_Pattern_Mapping_SMSPattern">
+            <End Role="SMSPattern" EntitySet="SMSPattern" />
+            <End Role="SMS_Inbox_Pattern_Mapping" EntitySet="SMS_Inbox_Pattern_Mapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SMS_Outbox_Operation_Mapping_SMS_Outbox" Association="Self.FK_SMS_Outbox_Operation_Mapping_SMS_Outbox">
+            <End Role="SMSOutbox" EntitySet="SMSOutbox" />
+            <End Role="SMS_Outbox_Operation_Mapping" EntitySet="SMS_Outbox_Operation_Mapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SMS_Outbox_Operation_Mapping_SMSOperation" Association="Self.FK_SMS_Outbox_Operation_Mapping_SMSOperation">
+            <End Role="SMSOperation" EntitySet="SMSOperation" />
+            <End Role="SMS_Outbox_Operation_Mapping" EntitySet="SMS_Outbox_Operation_Mapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SMSOperation_SMSPattern" Association="Self.FK_SMSOperation_SMSPattern">
+            <End Role="SMSPattern" EntitySet="SMSPattern" />
+            <End Role="SMSOperation" EntitySet="SMSOperation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SMSTemplate_SMSOperation" Association="Self.FK_SMSTemplate_SMSOperation">
+            <End Role="SMSOperation" EntitySet="SMSOperation" />
+            <End Role="SMSTemplate" EntitySet="SMSTemplate" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SMSDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="SMS_Inbox_Outbox_Mapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InboxId" Type="Int32" />
+          <Property Name="OutboxId" Type="Int32" />
+          <NavigationProperty Name="SMSOutbox" Relationship="Self.FK_SMS_Inbox_Outbox_Mapping_SMS_Outbox" FromRole="SMS_Inbox_Outbox_Mapping" ToRole="SMSOutbox" />
+          <NavigationProperty Name="SMSInbox" Relationship="Self.FK_SMS_Inbox_Outbox_Mapping_SMSInbox" FromRole="SMS_Inbox_Outbox_Mapping" ToRole="SMSInbox" />
+        </EntityType>
+        <EntityType Name="SMS_Inbox_Pattern_Mapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InboxId" Type="Int32" />
+          <Property Name="PatternId" Type="Int32" />
+          <NavigationProperty Name="SMSInbox" Relationship="Self.FK_SMS_Inbox_Pattern_Mapping_SMSInbox" FromRole="SMS_Inbox_Pattern_Mapping" ToRole="SMSInbox" />
+          <NavigationProperty Name="SMSPattern" Relationship="Self.FK_SMS_Inbox_Pattern_Mapping_SMSPattern" FromRole="SMS_Inbox_Pattern_Mapping" ToRole="SMSPattern" />
+        </EntityType>
+        <EntityType Name="SMS_Outbox_Operation_Mapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OutboxId" Type="Int32" />
+          <Property Name="OperationId" Type="Int32" />
+          <NavigationProperty Name="SMSOutbox" Relationship="Self.FK_SMS_Outbox_Operation_Mapping_SMS_Outbox" FromRole="SMS_Outbox_Operation_Mapping" ToRole="SMSOutbox" />
+          <NavigationProperty Name="SMSOperation" Relationship="Self.FK_SMS_Outbox_Operation_Mapping_SMSOperation" FromRole="SMS_Outbox_Operation_Mapping" ToRole="SMSOperation" />
+        </EntityType>
+        <EntityType Name="SMSInbox">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SMS_From" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RecievedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="SMS_Inbox_Outbox_Mapping" Relationship="Self.FK_SMS_Inbox_Outbox_Mapping_SMSInbox" FromRole="SMSInbox" ToRole="SMS_Inbox_Outbox_Mapping" />
+          <NavigationProperty Name="SMS_Inbox_Pattern_Mapping" Relationship="Self.FK_SMS_Inbox_Pattern_Mapping_SMSInbox" FromRole="SMSInbox" ToRole="SMS_Inbox_Pattern_Mapping" />
+        </EntityType>
+        <EntityType Name="SMSOperation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Operation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="PatternId" Type="Int32" />
+          <NavigationProperty Name="SMS_Outbox_Operation_Mapping" Relationship="Self.FK_SMS_Outbox_Operation_Mapping_SMSOperation" FromRole="SMSOperation" ToRole="SMS_Outbox_Operation_Mapping" />
+          <NavigationProperty Name="SMSPattern" Relationship="Self.FK_SMSOperation_SMSPattern" FromRole="SMSOperation" ToRole="SMSPattern" />
+          <NavigationProperty Name="SMSTemplates" Relationship="Self.FK_SMSTemplate_SMSOperation" FromRole="SMSOperation" ToRole="SMSTemplate" />
+        </EntityType>
+        <EntityType Name="SMSOutbox">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SMS_To" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SendDate" Type="DateTime" Precision="3" />
+          <Property Name="StatusOne" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StatusTwo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SMS_Inbox_Outbox_Mapping" Relationship="Self.FK_SMS_Inbox_Outbox_Mapping_SMS_Outbox" FromRole="SMSOutbox" ToRole="SMS_Inbox_Outbox_Mapping" />
+          <NavigationProperty Name="SMS_Outbox_Operation_Mapping" Relationship="Self.FK_SMS_Outbox_Operation_Mapping_SMS_Outbox" FromRole="SMSOutbox" ToRole="SMS_Outbox_Operation_Mapping" />
+        </EntityType>
+        <EntityType Name="SMSPattern">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Pattern" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="ReplyText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <NavigationProperty Name="SMS_Inbox_Pattern_Mapping" Relationship="Self.FK_SMS_Inbox_Pattern_Mapping_SMSPattern" FromRole="SMSPattern" ToRole="SMS_Inbox_Pattern_Mapping" />
+          <NavigationProperty Name="SMSOperations" Relationship="Self.FK_SMSOperation_SMSPattern" FromRole="SMSPattern" ToRole="SMSOperation" />
+        </EntityType>
+        <EntityType Name="SMSTemplate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="DestinationNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OperationId" Type="Int32" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <NavigationProperty Name="SMSOperation" Relationship="Self.FK_SMSTemplate_SMSOperation" FromRole="SMSTemplate" ToRole="SMSOperation" />
+        </EntityType>
+        <Association Name="FK_SMS_Inbox_Outbox_Mapping_SMS_Outbox">
+          <End Role="SMSOutbox" Type="Self.SMSOutbox" Multiplicity="0..1" />
+          <End Role="SMS_Inbox_Outbox_Mapping" Type="Self.SMS_Inbox_Outbox_Mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SMSOutbox">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SMS_Inbox_Outbox_Mapping">
+              <PropertyRef Name="OutboxId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SMS_Inbox_Outbox_Mapping_SMSInbox">
+          <End Role="SMSInbox" Type="Self.SMSInbox" Multiplicity="0..1" />
+          <End Role="SMS_Inbox_Outbox_Mapping" Type="Self.SMS_Inbox_Outbox_Mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SMSInbox">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SMS_Inbox_Outbox_Mapping">
+              <PropertyRef Name="InboxId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SMS_Inbox_Pattern_Mapping_SMSInbox">
+          <End Role="SMSInbox" Type="Self.SMSInbox" Multiplicity="0..1" />
+          <End Role="SMS_Inbox_Pattern_Mapping" Type="Self.SMS_Inbox_Pattern_Mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SMSInbox">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SMS_Inbox_Pattern_Mapping">
+              <PropertyRef Name="InboxId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SMS_Inbox_Pattern_Mapping_SMSPattern">
+          <End Role="SMSPattern" Type="Self.SMSPattern" Multiplicity="0..1" />
+          <End Role="SMS_Inbox_Pattern_Mapping" Type="Self.SMS_Inbox_Pattern_Mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SMSPattern">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SMS_Inbox_Pattern_Mapping">
+              <PropertyRef Name="PatternId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SMS_Outbox_Operation_Mapping_SMS_Outbox">
+          <End Role="SMSOutbox" Type="Self.SMSOutbox" Multiplicity="0..1" />
+          <End Role="SMS_Outbox_Operation_Mapping" Type="Self.SMS_Outbox_Operation_Mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SMSOutbox">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SMS_Outbox_Operation_Mapping">
+              <PropertyRef Name="OutboxId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SMS_Outbox_Operation_Mapping_SMSOperation">
+          <End Role="SMSOperation" Type="Self.SMSOperation" Multiplicity="0..1" />
+          <End Role="SMS_Outbox_Operation_Mapping" Type="Self.SMS_Outbox_Operation_Mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SMSOperation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SMS_Outbox_Operation_Mapping">
+              <PropertyRef Name="OperationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SMSOperation_SMSPattern">
+          <End Role="SMSPattern" Type="Self.SMSPattern" Multiplicity="0..1" />
+          <End Role="SMSOperation" Type="Self.SMSOperation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SMSPattern">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SMSOperation">
+              <PropertyRef Name="PatternId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SMSTemplate_SMSOperation">
+          <End Role="SMSOperation" Type="Self.SMSOperation" Multiplicity="0..1" />
+          <End Role="SMSTemplate" Type="Self.SMSTemplate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SMSOperation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SMSTemplate">
+              <PropertyRef Name="OperationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SMSDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="SMS_Inbox_Outbox_Mapping" EntityType="Self.SMS_Inbox_Outbox_Mapping" />
+          <EntitySet Name="SMS_Inbox_Pattern_Mapping" EntityType="Self.SMS_Inbox_Pattern_Mapping" />
+          <EntitySet Name="SMS_Outbox_Operation_Mapping" EntityType="Self.SMS_Outbox_Operation_Mapping" />
+          <EntitySet Name="SMSInboxes" EntityType="Self.SMSInbox" />
+          <EntitySet Name="SMSOperations" EntityType="Self.SMSOperation" />
+          <EntitySet Name="SMSOutboxes" EntityType="Self.SMSOutbox" />
+          <EntitySet Name="SMSPatterns" EntityType="Self.SMSPattern" />
+          <EntitySet Name="SMSTemplates" EntityType="Self.SMSTemplate" />
+          <AssociationSet Name="FK_SMS_Inbox_Outbox_Mapping_SMS_Outbox" Association="Self.FK_SMS_Inbox_Outbox_Mapping_SMS_Outbox">
+            <End Role="SMSOutbox" EntitySet="SMSOutboxes" />
+            <End Role="SMS_Inbox_Outbox_Mapping" EntitySet="SMS_Inbox_Outbox_Mapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SMS_Inbox_Outbox_Mapping_SMSInbox" Association="Self.FK_SMS_Inbox_Outbox_Mapping_SMSInbox">
+            <End Role="SMSInbox" EntitySet="SMSInboxes" />
+            <End Role="SMS_Inbox_Outbox_Mapping" EntitySet="SMS_Inbox_Outbox_Mapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SMS_Inbox_Pattern_Mapping_SMSInbox" Association="Self.FK_SMS_Inbox_Pattern_Mapping_SMSInbox">
+            <End Role="SMSInbox" EntitySet="SMSInboxes" />
+            <End Role="SMS_Inbox_Pattern_Mapping" EntitySet="SMS_Inbox_Pattern_Mapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SMS_Inbox_Pattern_Mapping_SMSPattern" Association="Self.FK_SMS_Inbox_Pattern_Mapping_SMSPattern">
+            <End Role="SMSPattern" EntitySet="SMSPatterns" />
+            <End Role="SMS_Inbox_Pattern_Mapping" EntitySet="SMS_Inbox_Pattern_Mapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SMS_Outbox_Operation_Mapping_SMS_Outbox" Association="Self.FK_SMS_Outbox_Operation_Mapping_SMS_Outbox">
+            <End Role="SMSOutbox" EntitySet="SMSOutboxes" />
+            <End Role="SMS_Outbox_Operation_Mapping" EntitySet="SMS_Outbox_Operation_Mapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SMS_Outbox_Operation_Mapping_SMSOperation" Association="Self.FK_SMS_Outbox_Operation_Mapping_SMSOperation">
+            <End Role="SMSOperation" EntitySet="SMSOperations" />
+            <End Role="SMS_Outbox_Operation_Mapping" EntitySet="SMS_Outbox_Operation_Mapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SMSOperation_SMSPattern" Association="Self.FK_SMSOperation_SMSPattern">
+            <End Role="SMSPattern" EntitySet="SMSPatterns" />
+            <End Role="SMSOperation" EntitySet="SMSOperations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SMSTemplate_SMSOperation" Association="Self.FK_SMSTemplate_SMSOperation">
+            <End Role="SMSOperation" EntitySet="SMSOperations" />
+            <End Role="SMSTemplate" EntitySet="SMSTemplates" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SMSDBModelStoreContainer" CdmEntityContainer="SMSDBEntities">
+          <EntitySetMapping Name="SMS_Inbox_Outbox_Mapping">
+            <EntityTypeMapping TypeName="SMSDBModel.SMS_Inbox_Outbox_Mapping">
+              <MappingFragment StoreEntitySet="SMS_Inbox_Outbox_Mapping">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="InboxId" ColumnName="InboxId" />
+                <ScalarProperty Name="OutboxId" ColumnName="OutboxId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SMS_Inbox_Pattern_Mapping">
+            <EntityTypeMapping TypeName="SMSDBModel.SMS_Inbox_Pattern_Mapping">
+              <MappingFragment StoreEntitySet="SMS_Inbox_Pattern_Mapping">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="InboxId" ColumnName="InboxId" />
+                <ScalarProperty Name="PatternId" ColumnName="PatternId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SMS_Outbox_Operation_Mapping">
+            <EntityTypeMapping TypeName="SMSDBModel.SMS_Outbox_Operation_Mapping">
+              <MappingFragment StoreEntitySet="SMS_Outbox_Operation_Mapping">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="OutboxId" ColumnName="OutboxId" />
+                <ScalarProperty Name="OperationId" ColumnName="OperationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SMSInboxes">
+            <EntityTypeMapping TypeName="SMSDBModel.SMSInbox">
+              <MappingFragment StoreEntitySet="SMSInbox">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="SMS_From" ColumnName="SMS_From" />
+                <ScalarProperty Name="RecievedDate" ColumnName="RecievedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SMSOperations">
+            <EntityTypeMapping TypeName="SMSDBModel.SMSOperation">
+              <MappingFragment StoreEntitySet="SMSOperation">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Operation" ColumnName="Operation" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="PatternId" ColumnName="PatternId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SMSOutboxes">
+            <EntityTypeMapping TypeName="SMSDBModel.SMSOutbox">
+              <MappingFragment StoreEntitySet="SMSOutbox">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="SMS_To" ColumnName="SMS_To" />
+                <ScalarProperty Name="SendDate" ColumnName="SendDate" />
+                <ScalarProperty Name="StatusOne" ColumnName="StatusOne" />
+                <ScalarProperty Name="StatusTwo" ColumnName="StatusTwo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SMSPatterns">
+            <EntityTypeMapping TypeName="SMSDBModel.SMSPattern">
+              <MappingFragment StoreEntitySet="SMSPattern">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Pattern" ColumnName="Pattern" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="ReplyText" ColumnName="ReplyText" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SMSTemplates">
+            <EntityTypeMapping TypeName="SMSDBModel.SMSTemplate">
+              <MappingFragment StoreEntitySet="SMSTemplate">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="DestinationNumber" ColumnName="DestinationNumber" />
+                <ScalarProperty Name="OperationId" ColumnName="OperationId" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

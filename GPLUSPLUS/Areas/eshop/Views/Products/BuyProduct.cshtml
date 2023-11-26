@@ -1,0 +1,325 @@
+﻿@model GPLUSPLUS.Areas.eshop.Models.Product.BuyProductModel
+
+@{
+    ViewBag.Title = "ثبت سفارش کالا";
+}
+
+<div class="container" >
+    <!-- Title -->
+    <div class="row" style="overflow: auto">
+        <div class="col-lg-12" style="height: inherit;">
+          <div style="margin:10px; border:2px solid black;-webkit-border-radius:15px;-moz-border-radius:15px;;border-radius:15px;padding:20px;background-color:#76ca8a">
+              <div class="row">
+                <div class="col-lg-12">
+                    <div id="openModalDesc" style="text-align:center;font-family:'B Nazanin',Tahoma;">
+                        <h2 style="text-align:center;font-family:'B Nazanin',Tahoma;">ثبت سفارش هدیه</h2>
+                    </div>
+                </div>
+            </div>
+              </div>
+             <div style="border:1px solid black;-webkit-border-radius:15px; -moz-border-radius:15px;border-radius:15px;padding:20px">
+            <div class="row" style="border:1px solid black;-webkit-border-radius:15px; -moz-border-radius:15px;border-radius:15px;padding:20px;background-color:#75afff">
+                <div class="col-lg-12">
+                    <div id="ModalDialog_TittleProduct" >
+                        <p style="text-align:center;font-family:'B Nazanin',Tahoma;">اطلاعات محصول سفارشی</p>
+                    </div>
+                </div>
+            </div>
+
+              
+  
+           
+            <div class="row" style="border:1px solid black;-webkit-border-radius:15px; -moz-border-radius:15px;border-radius:15px;padding:20px">
+                <div class="col-sm-8" style="text-align:center">
+                    <div id="ModalDialogDescimage">
+                        @foreach (var q in Model.ImageThumb)
+                        {
+                            <img  src="@Url.Content(q)" class="img-responsive"  alt="Pic" >
+                        }
+                    </div>
+                </div>
+                <div class="col-sm-4" style="direction: rtl; text-align: right">
+
+                    <div class="row" style="border-bottom: 3px solid white; background-color: #3b3c3c">
+                        <div class="col-sm-4 col-sm-push-8" style="background-color: #3b3c3c; color: white">
+                            <div id="ModalDialogDesc_name_Tittle">
+                                <p>نام کالا </p>
+                            </div>
+                        </div>
+                        <div class="col-sm-8 col-sm-pull-4" style="background-color: #b8b8b8; color: black">
+                            <div id="ModalDialogDesc_name">
+                                @Html.Label(Model.P_Name ?? "default value")
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row" style="border-bottom: 3px solid white; background-color: #3b3c3c">
+                        <div class="col-sm-4 col-sm-push-8" style="background-color: #3b3c3c; color: white">
+                            <div id="ModalDialogDesc_Brand_Tittle">
+                                <p>برند</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-8 col-sm-pull-4" style="background-color: #b8b8b8; color: black">
+                            <div id="ModalDialogDesc_Brand">
+                                @Html.Label(Model.P_Brand ?? "default value")
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="row" style="border-bottom: 3px solid white; background-color: #3b3c3c">
+                        <div class="col-sm-4 col-sm-push-8" style="background-color: #3b3c3c; color: white">
+                            <div id="ModalDialogDesc_Modelname_Tittle">
+                                <p>مدل </p>
+                            </div>
+                        </div>
+                        <div class="col-sm-8 col-sm-pull-4" style="background-color: #b8b8b8; color: black">
+                            <div id="ModalDialogDesc_Modelname">
+                                @Html.Label(Model.P_ModelName ?? "default value")
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row" style="border-bottom: 3px solid white; background-color: #3b3c3c">
+                        <div class="col-sm-4 col-sm-push-8" style="background-color: #3b3c3c; color: white">
+                            <div id="ModalDialogDesc_Desc_Tittle">
+                                <p>جزییات</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-8 col-sm-pull-4" style="background-color: #b8b8b8; color: black">
+                            <div id="ModalDialogDesc_Desc">
+                                @Html.Label(Model.P_Description ?? "default value")
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row" style="border-bottom: 3px solid white; background-color: #3b3c3c">
+                        <div class="col-sm-4 col-sm-push-8" style="background-color: #3b3c3c; color: white">
+                            <div id="ModalDialogDesc_Score_Tittle">
+                                <p>امتیاز لازم</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-8 col-sm-pull-4" style="background-color: #b8b8b8; color: black">
+                            <div id="ModalDialogDesc_Score">
+                                @Html.Label(Model.P_ScoreCost.ToString() ?? "default value")
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            
+
+            <div class="row" style="border:1px solid black;-webkit-border-radius:15px; -moz-border-radius:15px;border-radius:15px;padding:20px;background-color:#75afff;margin-top:10px;">
+                <div class="col-lg-12">
+                    <div id="ModalDialog_TittleUser">
+                        <p style="text-align:center;font-family:'B Nazanin',Tahoma;">اطلاعات پستی کاربر</p>
+                    </div>
+                </div>
+            </div>
+
+                 <div class="signup-form">
+<div >
+            <div class="row">
+                <div class="col-sm-12" style="direction: rtl; text-align: right">
+
+                    <div class="row" >
+                        <div class="col-sm-4 col-sm-push-8" >
+                            <div id="ModalDialogUser_name_Tittle">
+                                <p>نام گیرنده </p>
+                            </div>
+                        </div>
+                        <div class="col-sm-8 col-sm-pull-4" >
+                            <div id="ModalDialogUser_name">
+                                @Html.TextBox("FullName",Model.U_FullName ?? "default value",new { @disabled="true" })
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-4 col-sm-push-8" >
+                            <div id="ModalDialogUser_Tell_Tittle">
+                                <p>شماره تماس گیرنده</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-8 col-sm-pull-4" >
+                            <div id="ModalDialogUser_Tell">
+                                @Html.TextBox("Tell",Model.U_Tell ?? "default value",new { @disabled="true" })
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="row" >
+                        <div class="col-sm-4 col-sm-push-8" >
+                            <div id="ModalDialogUser_Address_Tittle">
+                                <p>آدرس</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-8 col-sm-pull-4" >
+                            <div id="ModalDialogUser_Address">
+                                @Html.TextArea("Address",Model.U_FullAddress ?? "default value",new { @disabled="true" })
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row" >
+                        <div class="col-sm-4 col-sm-push-8">
+                            <div id="ModalDialogUser_PostalCode_Tittle">
+                                <p>کد پستی</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-8 col-sm-pull-4" >
+                            <div id="ModalDialogUser_PostalCode">
+                                @Html.TextBox("PostalCode",Model.U_PostalCode ?? "default value",new { @disabled="true" })
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+     
+            <div class="row">
+                <div class="col-lg-12" style="direction: rtl; text-align: right;background-color: #b8b8b8">
+                    <div class="col-sm-4 col-sm-push-8" >
+                        <div id="ModalDialogUser_HaveNewAddress_Tittle">
+                            <p>ارسال هدیه به آدرس جدید</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-8 col-sm-pull-4" >
+                        <div id="ModalDialogUser_HaveNewAddress">
+                            @Html.CheckBoxFor(m => m.HaveNewAddress, new { Id = "HaveNewAddress" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+               </div>
+    
+               
+            @using (Html.BeginForm())
+            {     @Html.AntiForgeryToken()
+                @Html.ValidationSummary()
+                <div class="row" style="display: none;border:1px solid black;-webkit-border-radius:15px; -moz-border-radius:15px;border-radius:15px;padding:20px;" id="NewAddressForm">
+                    <div class="col-sm-12" style="direction: rtl; text-align: right">
+
+                        <div class="row" style="margin-bottom:5px;">
+                            <div class="col-sm-4 col-sm-push-8" >
+                                <div id="ModalDialogUser_NewState_Tittle">
+                                    <p>استان </p>
+                                </div>
+                            </div>
+                            <div class="col-sm-8 col-sm-pull-4" >
+                                <div id="ModalDialogUser_NewState">
+                                    @Html.DropDownListFor(m => m.PU_NewState, ViewData["StateName"] as List<SelectListItem>)
+
+                                    @Html.ValidationMessageFor(model => model.PU_NewState)
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row"  style="margin-bottom:5px;" >
+                            <div class="col-sm-4 col-sm-push-8" >
+                                <div id="ModalDialogUser_NewCity_Tittle">
+                                    <p>شهرستان</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-8 col-sm-pull-4">
+                                <div id="ModalDialogUser_NewCity">
+                                    @Html.DropDownListFor(m => m.PU_NewCity, new SelectList(string.Empty, "Value", "Text"), "انتخاب کنید")
+                                    @Html.ValidationMessageFor(model => model.PU_NewCity)
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row"  style="margin-bottom:5px;" >
+                            <div class="col-sm-4 col-sm-push-8" >
+                                <div id="ModalDialogUser_NewAddress_Tittle">
+                                    <p>آدرس</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-8 col-sm-pull-4" >
+                                <div id="ModalDialogUser_NewAddress">
+                                    @Html.TextAreaFor(m => m.PU_NewAddress)
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row"   style="margin-bottom:5px;">
+                            <div class="col-sm-4 col-sm-push-8" >
+                                <div id="ModalDialogUser_NewPostalCode_Tittle">
+                                    <p>کد پستی</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-8 col-sm-pull-4" >
+                                <div id="ModalDialogUser_NewPostalCode">
+                                    @Html.TextBoxFor(m => m.PU_NewPostalCode)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div id="ModalDialog_Submit_NewAddress" style="text-align: center; padding-top: 5px; margin-bottom: 10px; margin-top: 15px;">
+                            <button type="submit" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-ok"></span>ثبت سفارش</button>
+                        </div>
+                    </div>
+                </div>
+
+            }
+                     </div>
+                  </div>
+        </div>
+    </div>
+
+</div>
+
+
+@Scripts.Render("~/bundles/jquery")
+ @Scripts.Render("~/bundles/jqueryval")
+<script type="text/javascript">
+    $(document).ready(function () {
+        //Dropdownlist Selectedchange event
+        $("#PU_NewState").change(function () {
+            $("#PU_NewCity").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetCity", "Agents", new { Area  = "" })', // we are calling json method
+                dataType: 'json',
+                data: { id: $("#PU_NewState").val() },
+                success: function (states) {
+                    // states contains the JSON formatted list
+                    // of states passed from the controller
+                    $.each(states, function (i, state) {
+                        $("#PU_NewCity").append('<option value="' + state.Value + '">' + state.Text + '</option>');
+                    }); // here we are adding option for States
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve states.' + ex);
+                }
+            });
+            return false;
+        });
+
+        $("#HaveNewAddress").change(function () {
+            if ($('#HaveNewAddress').is(':checked')) {
+                $('#NewAddressForm').css({ 'display': '' });
+            }
+            else {
+                $('#NewAddressForm').css({ 'display': 'none' });
+            }
+        });
+
+    });
+</script>

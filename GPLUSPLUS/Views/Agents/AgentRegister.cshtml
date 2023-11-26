@@ -1,0 +1,864 @@
+﻿@model GPLUSPLUS.Models.AgentRegister
+
+
+@{
+    ViewBag.Title = "درخواست همکاری به عنوان مرکز طرف قرارداد";
+}
+<style>
+    .datagrid {
+        margin: auto;
+        margin: 40px auto 40px auto;
+        font-family: B Koodak,Arial, sans-serif;
+        direction: rtl;
+        width: 50%;
+        border: 1px solid #ff9600;
+        font: normal 12px/150%,B Koodak,Arial, sans-serif;
+        background: #fff;
+        -webkit-border-radius: 7px;
+        -moz-border-radius: 7px;
+        border-radius: 7px;
+    }
+
+    .Actionlink_style {
+        color: blue;
+        font: normal 12px/150%,B Koodak,Arial, sans-serif;
+    }
+
+        .Actionlink_style:hover {
+            color: orange;
+            text-decoration: underline;
+        }
+
+    .datagrid table {
+        border-collapse: collapse;
+        text-align: center;
+        width: 100%;
+    }
+
+
+        .datagrid table td, .datagrid table th {
+            padding: 3px 2px;
+            text-align: center;
+            width: auto;
+        }
+
+        .datagrid table thead th {
+            background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #000), color-stop(1, #000) );
+            background: -moz-linear-gradient( center top, #36752D 5%, #275420 100% );
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#36752D', endColorstr='#275420');
+            background-color: black;
+            color: #ff9600;
+            font-size: 18px;
+            font-weight: bold;
+            border-left: 1px solid #36752D;
+        }
+
+            .datagrid table thead th:first-child {
+                border: none;
+            }
+
+        .datagrid table tbody td {
+            color: #000;
+            font-size: 12px;
+            border-bottom: 1px solid #E1EEF4;
+            font-weight: normal;
+        }
+
+        .datagrid table tbody .alt td {
+            background: #DFFFDE;
+            color: #8D8E8F;
+        }
+
+        .datagrid table tbody td:first-child {
+            border-left: none;
+        }
+
+        .datagrid table tfoot td div {
+            border: 1px solid #36752D;
+            background: #DFFFDE;
+        }
+
+        .datagrid table tfoot td {
+            padding: 0;
+            font-size: 12px;
+        }
+
+            .datagrid table tfoot td div {
+                padding: 2px;
+            }
+
+            .datagrid table tfoot td ul {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+                text-align: right;
+            }
+
+        .datagrid table tfoot li {
+            display: inline;
+        }
+
+            .datagrid table tfoot li a {
+                text-decoration: none;
+                display: inline-block;
+                padding: 2px 8px;
+                margin: 1px;
+                color: #FFFFFF;
+                border: 1px solid #36752D;
+                -webkit-border-radius: 3px;
+                -moz-border-radius: 3px;
+                border-radius: 3px;
+                background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #36752D), color-stop(1, #275420) );
+                background: -moz-linear-gradient( center top, #36752D 5%, #275420 100% );
+                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#36752D', endColorstr='#275420');
+                background-color: #36752D;
+            }
+
+        .datagrid table tfoot ul.active, .datagrid table tfoot ul a:hover {
+            text-decoration: none;
+            border-color: #275420;
+            color: #FFFFFF;
+            background: none;
+            background-color: #36752D;
+        }
+
+    div.dhtmlx_window_active, div.dhx_modal_cover_dv {
+        position: fixed !important;
+    }
+
+    .button_link {
+        font-family: B Koodak,Arial, sans-serif;
+        font: normal 12px/150%,B Koodak,Arial, sans-serif;
+        margin: auto;
+        padding: 10px 15px;
+        background-color: #000;
+        color: #FFF;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+        border: solid 1px #20538D;
+        text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
+        -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+        -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+        -webkit-transition-duration: 0.2s;
+        -moz-transition-duration: 0.2s;
+        transition-duration: 0.2s;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        width: 100px;
+    }
+
+        .button_link:hover {
+            background: #28d288;
+            border: solid 1px #2A4E77;
+            text-decoration: none;
+            color: white;
+        }
+
+        .button_link:active {
+            -webkit-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+            -moz-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+            box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+            background: #2E5481;
+            border: solid 1px #203E5F;
+        }
+
+    #tr1 {
+        background-color: lightgreen;
+    }
+</style>
+
+
+
+<!-- START HEADER SECTION -->
+<header id="headerArea" style="background-image: none">
+    <a href="#" class="scrollToTop"><i class="fa fa-angle-up"></i></a>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            @*  <div class="slider_area">*@
+            @*    <div class="menuarea">*@
+            <div class="navbar navbar-default navbar-fixed-top" role="navigation" style="text-align: center; background-color: black;">
+                <div class="container" style="text-align: center;">
+
+                    <div class="navbar-header" style="text-align: center;">
+                        @*   <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>*@
+                        <!-- For Text Logo -->
+                        <a class="navbar-brand logo" href="~/Home" style="text-align: center;"><span>G</span>PLUSPLUS</a>
+                        <!-- For Img Logo -->
+                        @*    <a class="navbar-brand logo" href="#"><img src="/content/gtopcontent/img/mylogo.png" alt="logo"></a> *@
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</header>
+
+
+
+
+@using (Ajax.BeginForm("AgentRegisterPoster", "Agents", new AjaxOptions
+{
+    HttpMethod = "Post",
+    InsertionMode = InsertionMode.Replace,
+    LoadingElementId = "AgentRegisterPosterLoading",
+    UpdateTargetId = "AgentRegisterPosterForm",
+    LoadingElementDuration = 100000,
+    OnSuccess = "OnEndGoTOAgentPoster",
+
+}))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+    
+    <div class="datagrid">
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="2">
+                        @Html.Label("مرکز طرف قرارداد جدید")
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="editor-label">
+                            @Html.Label("نام")
+                        </div>
+                    </td>
+                    <td>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.FirstName)
+                            @Html.ValidationMessageFor(model => model.FirstName)
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="editor-label">
+                            @Html.Label("نام خانوادگی")
+                        </div>
+                    </td>
+                    <td>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.LastName)
+                            @Html.ValidationMessageFor(model => model.LastName)
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="editor-label">
+                            @Html.Label("شماره همراه")
+                        </div>
+                    </td>
+                    <td>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.Mobile)
+                            @Html.ValidationMessageFor(model => model.Mobile)
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="editor-label">
+                            @Html.Label("استان")
+                        </div>
+
+                    </td>
+                    <td>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(m => m.ShopState, ViewData["StateName"] as List<SelectListItem>, new { @style = "width: 132px;" })
+
+                            @Html.ValidationMessageFor(model => model.ShopState)
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="editor-label">
+                            @Html.Label("شهرستان")
+                        </div>
+
+                    </td>
+                    <td>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(m => m.ShopCity, ViewData["CityName"] as List<SelectListItem>, new { @style = "width: 132px;" })
+                            @Html.ValidationMessageFor(model => model.ShopCity)
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="editor-label">
+                            @Html.Label("آدرس مرکز")
+                        </div>
+
+                    </td>
+                    <td>
+                        <div class="editor-field">
+                            @Html.TextAreaFor(m => m.ShopAddress, new { @style = "width: 250px;height:50px;" })
+                            @Html.ValidationMessageFor(model => model.ShopAddress)
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="editor-label">
+                            @Html.Label("نوع صنف")
+                        </div>
+
+                    </td>
+                    <td>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(m => m.ShopType, ViewData["ShopType"] as List<SelectListItem>, new { @style = "width: 132px;" })
+
+                            @Html.ValidationMessageFor(model => model.ShopType)
+                        </div>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td>
+                        <div class="editor-label">
+                            <div class="editor-label">
+                                @Html.Label("نام مرکز")
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.ShopName, new { @style = "width: 132px;" })
+                            @Html.ValidationMessageFor(model => model.ShopName)
+                        </div>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td>
+                        <div class="editor-label">
+                            <div class="editor-label">
+                                @Html.Label("شماره تلفن مرکز")
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.ShopTell, new { @style = "width: 132px;" })
+                            @Html.ValidationMessageFor(model => model.ShopTell)
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="editor-label">
+                            <div class="editor-label">
+                                @Html.Label("شماره فکس مرکز")
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.ShopFax, new { @style = "width: 132px;" })
+                            @Html.ValidationMessageFor(model => model.ShopFax)
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="editor-label">
+                            <div class="editor-label">
+                                @Html.Label("ایمیل مرکز")
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.ShopEmail, new { @style = "width: 132px;" })
+                            @Html.ValidationMessageFor(model => model.ShopEmail)
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <div class="editor-label">
+                            @Html.Label("توضيحات")
+                        </div>
+                    </td>
+                    <td>
+                        <div class="editor-field">
+                            @Html.TextAreaFor(model => model.ShopDescription, new { @placeholder = "چنانچه جهت درج بر روی بنر میخواهید مطالب خاصی گنجانده شود در اینجا بنویسید.", @style = "width: 250px;height:150px" })
+                            @Html.ValidationMessageFor(model => model.ShopDescription)
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="editor-label">
+                            @Html.Label("شعار تبلیغاتی")
+                        </div>
+                    </td>
+                    <td>
+                        <div class="editor-field">
+                            <table>
+                                <tr>
+                                    <td style="text-align: right;">@Html.RadioButtonFor(model => model.ShopQuotes, "FirstRadio")
+                                        خرید کنید امتیاز بگیرید
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td style="text-align: right;">@Html.RadioButtonFor(x => x.ShopQuotes, "SecondRadio")
+                                        @Html.Label("در ازای هر خرید یا خدمات به ارزش")
+                                        @Html.TextBoxFor(model => model.ShopQuotes_firstbox, new { @style = "width: 100px;" })
+                                        @Html.Label("تومان")
+                                        @Html.TextBoxFor(model => model.ShopQuotes_secondbox, new { @style = "width: 50px;" })
+                                        امتیاز بگیرید.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: right;">@Html.RadioButtonFor(model => model.ShopQuotes, "ThirdRadio")
+                                        @Html.TextBoxFor(model => model.ShopOptionalQoutes, new { @style = "width: 200px;", @placeholder = "شما می توانید متن دلخواه خودتان را در این قسمت بنویسید." })
+                                    </td>
+
+                                </tr>
+                            </table>
+
+
+                            @Html.ValidationMessageFor(model => model.ShopDescription)
+                        </div>
+                    </td>
+                </tr>
+
+                <tr id="tr1">
+                    <td>
+                        <div class="editor-label">
+                            @Html.Label("نوع قرار داد")
+                            @Ajax.ActionLink("توضیحات بیشتر", "AcceptCode", "Agents", new AjaxOptions
+                       {
+                           HttpMethod = "post",
+                           InsertionMode = InsertionMode.Replace,
+                           LoadingElementId = "AcceptCodeLoading",
+                           UpdateTargetId = "AcceptCodeDiv",
+                           LoadingElementDuration = 300000,
+                       })
+                            <div id="AcceptCodeLoading" style="float: left; display: none;">
+                                <img src="/Images/ajax-loader.gif">
+                            </div>
+                            <br />
+                            <div id="AcceptCodeDiv">
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="editor-field">
+                            @*    @Html.CheckBox("True", true, new { Id = "AcceptCode", disabled = "disabled" })*@
+
+                            @Html.DropDownListFor(m => m.AcceptGPLUSCode, new[] { 
+                                new SelectListItem() {Text = "اصلی",
+                                Value = "true"},
+                                new SelectListItem() {Text = "موقت",Value = "false"}  }, new {Id = "AcceptCode" })
+                            @Html.ValidationMessageFor(model => model.AcceptGPLUSCode)
+                        </div>
+                    </td>
+                </tr>
+
+                <tr id="tr1-1">
+                    <td>
+                        <div class="editor-label">
+                            @Html.Label("توضیح قرار داد")
+                        </div>
+                    </td>
+                    <td>
+                        <div class="editor-field" id="td1-1-Asli" >
+                            <p>
+                                طرف دوم قراداد همزمان با عقد قرارداد بر اساس تعرفه صنفی شرکت می بایست امتیاز کارت لازم را خریداری نماید.
+                            </p>
+                        </div>
+                        <div class="editor-field" id="td1-1-Temp" style="display: none;">
+                            <p>
+                                طرف دوم قرارداد در ازای عقد قرارداد، هر ماه بایستی 30 امتیاز معادل 30 هزار تومان خریداری کند.
+                                <br />
+                                طرف دوم قرارداد می تواند در پایان دوره مدت هر قرارداد کارت های امتیازی مانده را عودت دهد و فقط مبلغ 25,000 تومان از بابت سهم تبلیغاتی اش بپردازد.
+                            </p>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr id="tr2">
+                    <td>
+                        <div class="editor-label">
+                            @Html.Label("سفارش طراحی بنر تبلیغاتی")
+                            @Ajax.ActionLink("توضیحات بیشتر", "AcceptBanner", "Agents", new AjaxOptions
+                       {
+                           HttpMethod = "post",
+                           InsertionMode = InsertionMode.Replace,
+                           LoadingElementId = "AcceptBannerLoading",
+                           UpdateTargetId = "AcceptBannerDiv",
+                           LoadingElementDuration = 300000,
+                       })
+                            <div id="AcceptBannerLoading" style="float: left; display: none;">
+                                <img src="/Images/ajax-loader.gif">
+                            </div>
+                            <br />
+                            <div id="AcceptBannerDiv">
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="editor-field">
+                            @Html.CheckBoxFor(m => m.AcceptBannerDesign, new { Id = "AcceptBanner" })
+                            @Html.ValidationMessageFor(model => model.AcceptBannerDesign)
+
+                        </div>
+
+                    </td>
+                </tr>
+
+                <tr id="tr3">
+                    <td>
+                        <div class="editor-label">
+                            @Html.Label("سفارش طراحی صفحه شخصی")
+                            @Ajax.ActionLink("توضیحات بیشتر", "AcceptSite", "Agents", new AjaxOptions
+                       {
+                           HttpMethod = "post",
+                           InsertionMode = InsertionMode.Replace,
+                           LoadingElementId = "AcceptSiteLoading",
+                           UpdateTargetId = "AcceptSiteDiv",
+                           LoadingElementDuration = 300000,
+                       })
+                            <div id="AcceptSiteLoading" style="float: left; display: none;">
+                                <img src="/Images/ajax-loader.gif">
+                            </div>
+                            <br />
+                            <div id="AcceptSiteDiv">
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="editor-field">
+                            @Html.CheckBoxFor(m => m.AcceptWebDesign, new { Id = "AcceptSite" })
+                            @Html.ValidationMessageFor(model => model.AcceptWebDesign)
+                        </div>
+                    </td>
+                </tr>
+                <tr id="tr4">
+                    <td>
+                        <div class="editor-label">
+                            @Html.Label("نمایش لینک اینستاگرام")
+                            @Ajax.ActionLink("توضیحات بیشتر", "AcceptInstagram", "Agents", new AjaxOptions
+                       {
+                           HttpMethod = "post",
+                           InsertionMode = InsertionMode.Replace,
+                           LoadingElementId = "AcceptInstagramLoading",
+                           UpdateTargetId = "AcceptInstagramDiv",
+                           LoadingElementDuration = 300000,
+                       })
+                            <div id="AcceptInstagramLoading" style="float: left; display: none;">
+                                <img src="/Images/ajax-loader.gif">
+                            </div>
+                            <br />
+                            <div id="AcceptInstagramDiv">
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="editor-field">
+                            @Html.CheckBoxFor(m => m.AcceptInstagram, new { Id = "AcceptInstagram" })
+                            @Html.ValidationMessageFor(model => model.AcceptInstagram)
+                        </div>
+                    </td>
+                </tr>
+                <tr id="tr5" style="display: none">
+                    <td>
+                        <div class="editor-label">
+                            @Html.Label("آدرس اینستاگرام")
+                            @Ajax.ActionLink("توضیحات بیشتر", "AcceptInstagramAddress", "Agents", new AjaxOptions
+                       {
+                           HttpMethod = "post",
+                           InsertionMode = InsertionMode.Replace,
+                           LoadingElementId = "AcceptInstagramAddressLoading",
+                           UpdateTargetId = "AcceptInstagramAddressDiv",
+                           LoadingElementDuration = 300000,
+                       })
+                            <div id="AcceptInstagramAddressLoading" style="float: left; display: none;">
+                                <img src="/Images/ajax-loader.gif">
+                            </div>
+                            <br />
+                            <div id="AcceptInstagramAddressDiv">
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(m => m.InstagramAddress, new { Id = "AcceptInstagramAddressDiv", @style = "text-align:center;" })
+                            @Html.ValidationMessageFor(model => model.InstagramAddress)
+                        </div>
+                    </td>
+
+                </tr>
+
+
+
+                <tr id="tr6">
+                    <td>
+                        <div class="editor-label">
+                            @Html.Label("نمایش لینک وب سایت شخصی")
+                            @Ajax.ActionLink("توضیحات بیشتر", "AcceptPersonalSite", "Agents", new AjaxOptions
+                       {
+                           HttpMethod = "post",
+                           InsertionMode = InsertionMode.Replace,
+                           LoadingElementId = "AcceptPersonalSiteLoading",
+                           UpdateTargetId = "AcceptPersonalSiteDiv",
+                           LoadingElementDuration = 300000,
+                       })
+                            <div id="AcceptPersonalSiteLoading" style="float: left; display: none;">
+                                <img src="/Images/ajax-loader.gif">
+                            </div>
+                            <br />
+                            <div id="AcceptPersonalSiteDiv">
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="editor-field">
+                            @Html.CheckBoxFor(m => m.AcceptPersonalSite, new { Id = "AcceptPersonalSite" })
+                            @Html.ValidationMessageFor(model => model.AcceptPersonalSite)
+                        </div>
+                    </td>
+                </tr>
+                <tr id="tr7" style="display: none">
+                    <td>
+                        <div class="editor-label">
+                            @Html.Label("آدرس وب سایت شخصی")
+                            @Ajax.ActionLink("توضیحات بیشتر", "AcceptPersonalSiteAddress", "Agents", new AjaxOptions
+                       {
+                           HttpMethod = "post",
+                           InsertionMode = InsertionMode.Replace,
+                           LoadingElementId = "AcceptPersonalSiteAddressLoading",
+                           UpdateTargetId = "AcceptPersonalSiteAddressDiv",
+                           LoadingElementDuration = 300000,
+                       })
+                            <div id="AcceptPersonalSiteAddressLoading" style="float: left; display: none;">
+                                <img src="/Images/ajax-loader.gif">
+                            </div>
+                            <br />
+                            <div id="AcceptPersonalSiteAddressDiv">
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(m => m.PersonalSiteAddress, new { Id = "PersonalSiteAddressDiv", @style = "text-align:center;" })
+                            @Html.ValidationMessageFor(model => model.PersonalSiteAddress)
+                        </div>
+                    </td>
+
+                </tr>
+
+
+                <tr>
+                    <td>
+                        <div class="editor-label">
+                            @Html.Label("مجموع قیمت")
+                        </div>
+                    </td>
+                    <td>
+                        <div class="editor-field">
+                            @Html.Label("0 تومان", new { Id = "TotalPrice" })
+                        </div>
+                    </td>
+                </tr>
+
+
+
+            </tbody>
+
+
+        </table>
+    </div>
+    <div style="text-align: center; padding-top: 5px; margin-bottom: 10px; margin-top: 15px;">
+        <button type="submit" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-ok"></span>مرحله بعد</button>
+    </div>
+    <div id="AgentRegisterPosterLoading" style="display: none; margin-left: auto; margin-right: auto; text-align: center;">
+        <img src="/Images/ajax-loader.gif">
+    </div>
+     
+}
+
+@*<div Id="AcceptCodeDiv">
+
+</div>*@
+@*<div id="AcceptBannerDiv">
+</div>*@
+@*<div id="AcceptSiteDiv">
+</div>*@
+
+
+<div id="AgentRegisterPosterForm">
+</div>
+
+
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        //Dropdownlist Selectedchange event
+        $("#ShopState").change(function () {
+            $("#ShopCity").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetCity", "Agents")', // we are calling json method
+                dataType: 'json',
+                data: { id: $("#ShopState").val() },
+                success: function (states) {
+                    // states contains the JSON formatted list
+                    // of states passed from the controller
+                    $.each(states, function (i, state) {
+                        $("#ShopCity").append('<option value="' + state.Value + '">' + state.Text + '</option>');
+                    }); // here we are adding option for States
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve states.' + ex);
+                }
+            });
+            return false;
+        })
+
+
+        //$("#AcceptCode").change(function () {
+        //    if ($('#AcceptCode').is(':checked')) {
+        //        var AcceptCode = 50000;
+        //        var TotalPrice = $("#TotalPrice").text().replace(/[^\d.]/g, '');
+        //        var Total = parseInt(TotalPrice) + parseInt(AcceptCode);
+        //        $('#TotalPrice').html(formatNumber(Total));
+        //    }
+        //    else {
+        //        var AcceptCode = 50000;
+        //        var TotalPrice = $("#TotalPrice").text().replace(/[^\d.]/g, '');
+        //        var Total = parseFloat(TotalPrice) - parseInt(AcceptCode);
+        //        $('#TotalPrice').html(formatNumber(Total));
+        //    }
+        //});
+
+
+        $("#AcceptCode").change(function () {
+
+            var selectedValue = $('#AcceptCode option:selected').val()
+            if (selectedValue == "true") {
+                $('#td1-1-Asli').css({ 'display': '' });
+                $('#td1-1-Temp').css({ 'display': 'none' });
+            }
+            else {
+                $('#td1-1-Asli').css({ 'display': 'none' });
+                $('#td1-1-Temp').css({ 'display': '' });
+            }
+
+
+        });
+
+
+        $("#AcceptBanner").change(function () {
+            if ($('#AcceptBanner').is(':checked')) {
+                var AcceptCode = 50000;
+                var TotalPrice = $("#TotalPrice").text().replace(/[^\d.]/g, '');
+                var Total = parseInt(TotalPrice) + parseInt(AcceptCode);
+                $('#TotalPrice').html(formatNumber(Total));
+                $('#tr2').css({ 'background-color': 'lightgreen' });
+            }
+            else {
+                var AcceptCode = 50000;
+                var TotalPrice = $("#TotalPrice").text().replace(/[^\d.]/g, '');
+                var Total = parseFloat(TotalPrice) - parseInt(AcceptCode);
+                $('#TotalPrice').html(formatNumber(Total));
+                $('#tr2').css({ 'background-color': 'white' });
+            }
+        })
+        $("#AcceptSite").change(function () {
+            if ($('#AcceptSite').is(':checked')) {
+                var AcceptCode = 100000;
+                var TotalPrice = $("#TotalPrice").text().replace(/[^\d.]/g, '');
+                var Total = parseInt(TotalPrice) + parseInt(AcceptCode);
+                $('#TotalPrice').html(formatNumber(Total));
+                $('#tr3').css({ 'background-color': 'lightgreen' });
+            }
+            else {
+                var AcceptCode = 100000;
+                var TotalPrice = $("#TotalPrice").text().replace(/[^\d.]/g, '');
+                var Total = parseFloat(TotalPrice) - parseInt(AcceptCode);
+                $('#TotalPrice').html(formatNumber(Total));
+                $('#tr3').css({ 'background-color': 'white' });
+            }
+        })
+        $("#AcceptInstagram").change(function () {
+            if ($('#AcceptInstagram').is(':checked')) {
+                var AcceptCode = 5000;
+                var TotalPrice = $("#TotalPrice").text().replace(/[^\d.]/g, '');
+                var Total = parseInt(TotalPrice) + parseInt(AcceptCode);
+                $('#TotalPrice').html(formatNumber(Total));
+                $('#tr4').css({ 'background-color': 'lightgreen' });
+                $('#tr5').css({ 'display': '' });
+            }
+            else {
+                var AcceptCode = 5000;
+                var TotalPrice = $("#TotalPrice").text().replace(/[^\d.]/g, '');
+                var Total = parseFloat(TotalPrice) - parseInt(AcceptCode);
+                $('#TotalPrice').html(formatNumber(Total));
+                $('#tr4').css({ 'background-color': 'white' });
+                $('#tr5').css({ 'display': 'none' });
+            }
+        })
+        $("#AcceptPersonalSite").change(function () {
+            if ($('#AcceptPersonalSite').is(':checked')) {
+                var AcceptCode = 5000;
+                var TotalPrice = $("#TotalPrice").text().replace(/[^\d.]/g, '');
+                var Total = parseInt(TotalPrice) + parseInt(AcceptCode);
+                $('#TotalPrice').html(formatNumber(Total));
+                $('#tr6').css({ 'background-color': 'lightgreen' });
+                $('#tr7').css({ 'display': '' });
+            }
+            else {
+                var AcceptCode = 5000;
+                var TotalPrice = $("#TotalPrice").text().replace(/[^\d.]/g, '');
+                var Total = parseFloat(TotalPrice) - parseInt(AcceptCode);
+                $('#TotalPrice').html(formatNumber(Total));
+                $('#tr6').css({ 'background-color': 'white' });
+                $('#tr7').css({ 'display': 'none' });
+            }
+        })
+
+        function formatNumber(num) {
+            return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " تومان";
+        };
+
+    });
+</script>
+
+<script>
+    function OnEndGoTOAgentPoster() {
+        $('html, body').animate({
+            scrollTop: $("#AgentRegisterPosterForm").offset().top - $("#headerArea").height()
+        }, 1500);
+
+    }
+</script>

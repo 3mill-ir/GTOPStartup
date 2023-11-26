@@ -1,0 +1,161 @@
+﻿@model List<string[]>
+@{
+    ViewBag.Title = "GenerateCode";
+    bool is1first = true;
+    bool is2first = true;
+    bool is5first = true;
+    bool is10first = true;
+   
+    bool is20first = true;
+    bool is25first = true;
+    bool is50first = true;
+    bool is100first = true;
+    bool is200first = true;
+}
+@*  foreach (var ele in element) {<p>@Html.DisplayFor(m => ele)</p> }*@
+<h2>GenerateCode</h2>
+@foreach (var element in Model)
+{
+        if (element[2] == "1")
+    {
+        if (is1first)
+        {<div>
+            <p>**********   1 Score *********</p>
+        </div>   is1first = false;
+        }    
+    <div>
+        <p>@Html.Label(element[0])</p>
+        <p>@Html.Label(element[1])</p>
+        <br />
+    </div>
+    }
+    
+    
+    if (element[2] == "2")
+    {
+        if (is2first)
+        {<div>
+            <p>**********   2 Score *********</p>
+        </div>   is2first = false;
+        }    
+    <div>
+        <p>@Html.Label(element[0])</p>
+        <p>@Html.Label(element[1])</p>
+        <br />
+    </div>
+    }
+    
+    else if (element[2] == "5")
+    {
+        if (is5first)
+        {<div>
+            <p>**********   5 Score *********</p>
+        </div>   is5first = false;
+        }    
+    <div>
+        <p>@Html.Label(element[0])</p>
+        <p>@Html.Label(element[1])</p>
+       
+        <br />
+    </div>
+    }
+    
+        else if (element[2] == "10")
+    {
+        if (is10first)
+        {<div>
+            <p>**********   10 Score *********</p>
+        </div>   is10first = false;
+        }    
+    <div>
+        <p>@Html.Label(element[0])</p>
+        <p>@Html.Label(element[1])</p>
+       
+        <br />
+    </div>
+    }
+    
+    
+
+    
+    
+        else if (element[2] == "20")
+    {
+        if (is20first)
+        {<div>
+            <p>**********   20 Score *********</p>
+        </div>   is20first = false;
+        }    
+    <div>
+        <p>@Html.Label(element[0])</p>
+        <p>@Html.Label(element[1])</p>
+      
+        <br />
+    </div>
+    }
+    
+    
+        else if (element[2] == "25")
+    {
+        if (is25first)
+        {<div>
+            <p>**********   25 Score *********</p>
+        </div>   is25first = false;
+        }    
+    <div>
+        <p>@Html.Label(element[0])</p>
+        <p>@Html.Label(element[1])</p>
+
+        <br />
+    </div>
+    }
+    
+    
+        else if (element[2] == "50")
+    {
+        if (is50first)
+        {<div>
+            <p>**********   50 Score *********</p>
+        </div>   is50first = false;
+        }    
+    <div>
+        <p>@Html.Label(element[0])</p>
+        <p>@Html.Label(element[1])</p>
+      
+        <br />
+    </div>
+    }
+    
+    
+        else if (element[2] == "100")
+    {
+        if (is100first)
+        {<div>
+            <p>**********   100 Score *********</p>
+        </div>   is100first = false;
+        }    
+    <div>
+        <p>@Html.Label(element[0])</p>
+        <p>@Html.Label(element[1])</p>
+   
+        <br />
+    </div>
+    }
+    
+    
+        else if (element[2] == "200")
+    {
+        if (is200first)
+        {<div>
+            <p>**********   200 Score *********</p>
+        </div>   is200first = false;
+        }    
+    <div>
+        <p>@Html.Label(element[0])</p>
+        <p>@Html.Label(element[1])</p>
+   
+        <br />
+    </div>
+    }
+}
+
